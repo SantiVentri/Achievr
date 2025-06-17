@@ -5,13 +5,14 @@ import { useRouter } from 'expo-router';
 import { useState } from "react";
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-export default function SignInPage() {
+export default function SignInScreen() {
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    const disabled = !email || !password;
 
     const handleSignIn = async () => {
         setLoading(true);
@@ -66,10 +67,21 @@ export default function SignInPage() {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TouchableOpacity style={[styles.button, { opacity: loading ? 0.5 : 1 }]} onPress={handleSignIn} disabled={loading}>
+                    <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignIn} disabled={loading || disabled}>
                         <Text style={styles.buttonText}>{loading ? "Loading..." : "Sign in"}</Text>
                     </TouchableOpacity>
+                    <View style={styles.formFooter}>
+                        <TouchableOpacity onPress={() => router.replace("/signup")}>
+                            <Text>Forgot password?</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
+            </View>
+            <View style={styles.extraInfo}>
+                <Text style={styles.extraInfoText}>Don't have an account?</Text>
+                <TouchableOpacity onPress={() => router.replace("/signup")}>
+                    <Text style={styles.extraInfoLink}>Sign up</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -78,11 +90,14 @@ export default function SignInPage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: "space-between",
         alignItems: "center",
+        paddingVertical: 60,
     },
     form: {
+        padding: 30,
         width: "100%",
-        padding: 20,
+        gap: 40,
     },
     formHeader: {
         alignItems: "center",
@@ -99,6 +114,7 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 16,
+        textAlign: "center",
         color: "gray",
     },
     formBody: {
@@ -135,5 +151,23 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 16,
         fontWeight: "bold",
-    }
+    },
+    formFooter: {
+        paddingVertical: 6,
+    },
+    extraInfo: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 10,
+    },
+    extraInfoText: {
+        fontSize: 16,
+        color: "gray",
+    },
+    extraInfoLink: {
+        color: Colors.primary,
+        fontSize: 16,
+        fontWeight: "bold",
+    },
 })

@@ -5,19 +5,26 @@ import { useRouter } from 'expo-router';
 import { useState } from "react";
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-export default function SignUpPage() {
+export default function SignUpScreen() {
     const router = useRouter();
+    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleSignUp = async () => {
+    const disabled = !username || !email || !password;
+
+    const handleSignIn = async () => {
         setLoading(true);
         const { error } = await supabase.auth.signUp({
             email,
             password,
+            options: {
+                data: {
+                    display_name: username,
+                }
+            }
         })
         if (error) {
             Alert.alert("Error", error.message);
@@ -35,10 +42,20 @@ export default function SignUpPage() {
                         source={require("@/assets/images/splash-icon.png")}
                         style={styles.logo}
                     />
-                    <Text style={styles.title}>Sign in</Text>
-                    <Text style={styles.description}>Enter your email and password to sign in</Text>
+                    <Text style={styles.title}>Sign up</Text>
+                    <Text style={styles.description}>Enter your email and password to create an account</Text>
                 </View>
                 <View style={styles.formBody}>
+                    <View style={styles.formGroup}>
+                        <Text style={styles.formGroupLabel}>Username:</Text>
+                        <TextInput
+                            style={styles.input}
+                            value={username}
+                            onChangeText={setUsername}
+                            placeholder="e.g: John Doe"
+                            placeholderTextColor="gray"
+                        />
+                    </View>
                     <View style={styles.formGroup}>
                         <Text style={styles.formGroupLabel}>Email:</Text>
                         <TextInput
@@ -66,10 +83,16 @@ export default function SignUpPage() {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TouchableOpacity style={[styles.button, { opacity: loading ? 0.5 : 1 }]} onPress={handleSignUp} disabled={loading}>
-                        <Text style={styles.buttonText}>{loading ? "Loading..." : "Create account"}</Text>
+                    <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignIn} disabled={loading || disabled}>
+                        <Text style={styles.buttonText}>{loading ? "Creating..." : "Create account"}</Text>
                     </TouchableOpacity>
                 </View>
+            </View>
+            <View style={styles.extraInfo}>
+                <Text style={styles.extraInfoText}>Already have an account?</Text>
+                <TouchableOpacity onPress={() => router.replace("/signin")}>
+                    <Text style={styles.extraInfoLink}>Sign in</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -78,11 +101,14 @@ export default function SignUpPage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: "space-between",
         alignItems: "center",
+        paddingVertical: 60,
     },
     form: {
+        padding: 30,
         width: "100%",
-        padding: 20,
+        gap: 40,
     },
     formHeader: {
         alignItems: "center",
@@ -99,6 +125,7 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 16,
+        textAlign: "center",
         color: "gray",
     },
     formBody: {
@@ -135,5 +162,20 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 16,
         fontWeight: "bold",
-    }
+    },
+    extraInfo: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 10,
+    },
+    extraInfoText: {
+        fontSize: 16,
+        color: "gray",
+    },
+    extraInfoLink: {
+        color: Colors.primary,
+        fontSize: 16,
+        fontWeight: "bold",
+    },
 })

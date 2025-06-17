@@ -7,7 +7,7 @@ export default function RootLayout() {
     <UserContextProvider>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View style={{ flex: 1 }}>
-          <Stack />
+          <Stack screenOptions={{ headerShown: false }} />
         </View>
       </TouchableWithoutFeedback>
     </UserContextProvider>
