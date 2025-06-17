@@ -1,4 +1,3 @@
-import SignOutButton from '@/components/SignOutButton';
 import { useUser } from '@/context/UserContext';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -9,7 +8,6 @@ export default function Page() {
   return (
     <View style={styles.container}>
       <Text>Hola, {user?.email}</Text>
-      <SignOutButton />
     </View>
   );
 }

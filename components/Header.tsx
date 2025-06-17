@@ -1,10 +1,12 @@
 import { Colors } from "@/constants/palette";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Avatar from "./Avatar";
 
 export default function Header({ title }: { title: string }) {
+    const router = useRouter();
     return (
         <View style={styles.container}>
             <StatusBar style="light" />
@@ -12,7 +14,9 @@ export default function Header({ title }: { title: string }) {
                 <MaterialIcons name="menu" size={35} color="white" />
             </TouchableOpacity>
             <Text style={styles.title}>{title}</Text>
-            <Avatar />
+            <TouchableOpacity onPress={() => router.push("/account")}>
+                <Avatar size={35} />
+            </TouchableOpacity>
         </View>
     )
 }
