@@ -1,3 +1,4 @@
+import Header from "@/components/Header";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import { Stack, useRouter } from "expo-router";
@@ -18,14 +19,15 @@ export default function HomeLayout() {
     if (loading || !user) {
         return (
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: Colors.primary }}>
-                <StatusBar style="light" />
+                <StatusBar style="dark" />
                 <Image source={require("@/assets/images/splash-icon.png")} style={{ height: 120, width: 120 }} />
             </View>
         );
     }
     return (
-        <Stack>
-            <Stack.Screen name="index" />
+        <Stack >
+            <Stack.Screen name="index" options={{ header: () => <Header title="Dreamr" /> }} />
+            <Stack.Screen name="account" options={{ headerShown: false }} />
         </Stack>
     )
 }
