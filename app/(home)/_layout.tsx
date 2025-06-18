@@ -28,6 +28,8 @@ export default function HomeLayout() {
         <Stack >
             <Stack.Screen name="index" options={{ header: () => <Header title="Dreamr" /> }} />
             <Stack.Screen name="account" options={{ headerShown: false }} />
+            <Stack.Screen name="editAccount" options={{ headerShown: false }} />
+            <Stack.Screen name="AvatarModal" options={{ headerShown: false, presentation: 'modal' }} />
         </Stack>
     )
 }
