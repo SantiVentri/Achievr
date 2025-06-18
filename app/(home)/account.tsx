@@ -2,16 +2,20 @@ import Avatar from "@/components/Avatar";
 import SignOutButton from "@/components/SignOutButton";
 import { useUser } from "@/context/UserContext";
 import Feather from '@expo/vector-icons/Feather';
+import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function AccountScreen() {
     const { user } = useUser();
     const username = user?.user_metadata.display_name;
+    const router = useRouter();
     return (
         <View style={styles.container}>
             <StatusBar style="dark" />
-            <Feather name="edit" size={24} color="black" />
+            <TouchableOpacity onPress={() => router.push("/editAccount")}>
+                <Feather name="edit" size={24} color="black" />
+            </TouchableOpacity>
             <View style={styles.accountHeader}>
                 <Avatar size={120} />
                 <View style={styles.accountInfo}>

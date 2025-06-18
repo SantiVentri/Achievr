@@ -1,6 +1,7 @@
 import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
-import { useEffect, useState } from "react";
+import { useFocusEffect } from '@react-navigation/native';
+import { useCallback, useState } from "react";
 import { Image, View } from "react-native";
 
 export default function Avatar({ size }: { size: number }) {
@@ -16,9 +17,11 @@ export default function Avatar({ size }: { size: number }) {
         setAvatar(data?.avatar);
     }
 
-    useEffect(() => {
-        getAvatar();
-    }, [user]);
+    useFocusEffect(
+        useCallback(() => {
+            getAvatar();
+        }, [user])
+    );
 
     return (
         <View style={{ backgroundColor: "white", borderRadius: '100%' }}>
