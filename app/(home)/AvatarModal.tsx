@@ -22,7 +22,37 @@ export default function AvatarModal() {
 
     const handleChangeAvatar = async (avatar: string) => {
         setIsLoading(true);
-        const { error } = await supabase.from("avatars").update({ avatar: avatar }).eq("user_id", user?.id);
+
+        const { data: currentData, error: fetchError } = await supabase
+            .from("avatars")
+            .select("updated_at")
+            .eq("user_id", user?.id)
+            .single();
+
+        if (fetchError) {
+            Alert.alert("Error", "Failed to check avatar update time");
+            setIsLoading(false);
+            return;
+        }
+
+        if (currentData?.updated_at) {
+            const lastUpdate = new Date(currentData.updated_at);
+            const now = new Date();
+            const timeDiff = now.getTime() - lastUpdate.getTime();
+            const minutesDiff = Math.floor(timeDiff / (1000 * 60));
+
+            if (minutesDiff < 5) {
+                const remainingMinutes = 5 - minutesDiff;
+                Alert.alert(
+                    "Time Restriction",
+                    `You need to wait ${remainingMinutes} more minutes before changing your avatar again.`
+                );
+                setIsLoading(false);
+                return;
+            }
+        }
+
+        const { error } = await supabase.from("avatars").update({ avatar: avatar, updated_at: new Date().toISOString() }).eq("user_id", user?.id);
         if (error) {
             Alert.alert("Error", "Failed to change avatar");
         } else {
