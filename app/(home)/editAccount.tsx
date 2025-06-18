@@ -43,10 +43,10 @@ const styles = StyleSheet.create({
     },
     editAvatar: {
         position: "relative",
-        outlineWidth: 3,
+        outlineWidth: 4,
         outlineColor: Colors.primary,
         outlineStyle: "solid",
-        outlineOffset: -2,
+        outlineOffset: -1,
         borderRadius: '100%',
         alignItems: "flex-start",
         gap: 10,
