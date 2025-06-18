@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
         outlineColor: Colors.primary,
         outlineStyle: "solid",
         outlineOffset: -1,
-        borderRadius: '100%',
+        borderRadius: 100,
         alignItems: "flex-start",
         gap: 10,
     },
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         outlineColor: "white",
         outlineStyle: "solid",
         backgroundColor: Colors.primary,
-        borderRadius: '100%',
+        borderRadius: 100,
         padding: 8,
     },
     formGroup: {
