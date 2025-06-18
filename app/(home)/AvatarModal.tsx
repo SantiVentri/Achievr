@@ -1,4 +1,5 @@
 import { avatars } from "@/constants/defaultAvatars";
+import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
 import Feather from "@expo/vector-icons/Feather";
@@ -9,6 +10,7 @@ import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-na
 export default function AvatarModal() {
     const { user } = useUser();
     const [currentAvatar, setCurrentAvatar] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const getAvatar = async () => {
         const { data, error } = await supabase.from("avatars").select().eq("user_id", user?.id).single();
@@ -19,6 +21,7 @@ export default function AvatarModal() {
     }
 
     const handleChangeAvatar = async (avatar: string) => {
+        setIsLoading(true);
         const { error } = await supabase.from("avatars").update({ avatar: avatar }).eq("user_id", user?.id);
         if (error) {
             Alert.alert("Error", "Failed to change avatar");
@@ -26,6 +29,7 @@ export default function AvatarModal() {
             Alert.alert("Success", "Avatar changed successfully");
         }
         setCurrentAvatar(avatar);
+        setIsLoading(false);
     }
 
     useEffect(() => {
@@ -38,7 +42,7 @@ export default function AvatarModal() {
             <Text style={styles.title}>Select your avatar</Text>
             <View style={styles.avatarContainer}>
                 {avatars.map((avatar) => (
-                    <TouchableOpacity key={avatar.id} style={{ position: "relative" }} onPress={() => handleChangeAvatar(avatar.image)}>
+                    <TouchableOpacity key={avatar.id} style={styles.avatar} onPress={() => handleChangeAvatar(avatar.image)} disabled={isLoading}>
                         <View>
                             <Image source={{ uri: avatar.image }} style={{ width: 80, height: 80, borderRadius: 80 }} />
                         </View>
@@ -64,6 +68,14 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: "bold",
+    },
+    avatar: {
+        position: "relative",
+        outlineWidth: 2,
+        outlineColor: Colors.primary,
+        outlineStyle: "solid",
+        backgroundColor: Colors.primary,
+        borderRadius: 100,
     },
     avatarContainer: {
         flexDirection: "row",
