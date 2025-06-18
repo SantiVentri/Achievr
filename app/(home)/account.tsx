@@ -1,5 +1,6 @@
 import Avatar from "@/components/Avatar";
 import SignOutButton from "@/components/SignOutButton";
+import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from "expo-router";
@@ -17,7 +18,9 @@ export default function AccountScreen() {
                 <Feather name="edit" size={24} color="black" />
             </TouchableOpacity>
             <View style={styles.accountHeader}>
-                <Avatar size={120} />
+                <View style={styles.avatarContainer}>
+                    <Avatar size={120} />
+                </View>
                 <View style={styles.accountInfo}>
                     <Text style={styles.title}>{username}</Text>
                     <Text style={styles.subtitle}>{user?.email}</Text>
@@ -38,6 +41,13 @@ const styles = StyleSheet.create({
     accountHeader: {
         alignItems: "center",
         gap: 20,
+    },
+    avatarContainer: {
+        borderWidth: 3,
+        borderColor: Colors.primary,
+        backgroundColor: Colors.primary,
+        borderRadius: 100,
+        padding: 3,
     },
     accountInfo: {
         alignItems: "center",
