@@ -28,6 +28,7 @@ export default function HomeLayout() {
         <Stack >
             <Stack.Screen name="index" options={{ header: () => <Header title="Dreamr" /> }} />
             <Stack.Screen name="account" options={{ headerShown: false }} />
+            <Stack.Screen name="[id]" options={{ headerShown: false }} />
         </Stack>
     )
 }

@@ -1,4 +1,5 @@
 import { useUser } from '@/context/UserContext';
+import { Link } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -17,6 +18,7 @@ export default function Page() {
       <View style={styles.header}>
         <Text style={styles.subtitle}>Hi, {user?.user_metadata?.display_name}</Text>
         <Text style={styles.title}>{getGreeting()}</Text>
+        <Link href={{ pathname: "/(home)/[id]", params: { id: "d2e735c8-268b-42ac-aadf-bc2897150ef2" } }}>Goal</Link>
       </View>
     </View>
   );
