@@ -1,3 +1,4 @@
+import CreateGoalButton from '@/components/createGoalButton';
 import { useUser } from '@/context/UserContext';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -18,12 +19,14 @@ export default function Page() {
         <Text style={styles.subtitle}>Hi, {user?.user_metadata?.display_name}</Text>
         <Text style={styles.title}>{getGreeting()}</Text>
       </View>
+      <CreateGoalButton />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     paddingTop: 25,
     paddingHorizontal: 25,
     gap: 20,
