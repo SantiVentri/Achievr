@@ -1,6 +1,8 @@
 import { useUser } from '@/context/UserContext';
+import { GoalType } from '@/types/interfaces';
+import { supabase } from '@/utils/supabase';
 import { Link } from 'expo-router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const getGreeting = () => {
@@ -12,6 +14,19 @@ const getGreeting = () => {
 
 export default function Page() {
   const { user } = useUser();
+  const [goals, setGoals] = useState<GoalType[]>([]);
+
+  const getGoals = async () => {
+    const { data, error } = await supabase.from("goals").select("*").eq("creator", user?.id).order("created_at", { ascending: false });
+    if (error) {
+      console.error(error);
+    }
+    setGoals(data as GoalType[]);
+  }
+
+  useEffect(() => {
+    getGoals();
+  }, []);
 
   return (
     <View style={styles.container}>
