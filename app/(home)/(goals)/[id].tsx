@@ -3,16 +3,17 @@ import Subtask from "@/components/Subtask";
 import { SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
 import { FontAwesome } from "@expo/vector-icons";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useState } from "react";
-import { FlatList, Image, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Image, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function GoalScreen() {
     const { id } = useLocalSearchParams();
     const [goal, setGoal] = useState<any | null>(null);
     const [subtasks, setSubtasks] = useState<SubtaskType[]>([]);
     const [refreshing, setRefreshing] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const fetchAllData = useCallback(async () => {
         if (!id) return;
@@ -40,6 +41,21 @@ export default function GoalScreen() {
         setRefreshing(false);
     }, [fetchAllData]);
 
+    const handleDeleteGoal = useCallback(async () => {
+        setIsDeleting(true);
+        Alert.alert("Delete Goal", "Are you sure you want to delete this goal?", [
+            {
+                text: "Delete", onPress: async () => {
+                    await supabase.from("goals").delete().eq("id", id);
+                    router.push("/");
+                },
+                style: "destructive"
+            },
+            { text: "Cancel" }
+        ]);
+        setIsDeleting(false);
+    }, [id]);
+
     return (
         <View style={styles.container}>
             <StatusBar style="dark" />
@@ -58,7 +74,7 @@ export default function GoalScreen() {
                             <Text style={styles.title}>{goal?.title}</Text>
                             <Text style={styles.subtitle}>{goal?.short_description}</Text>
                         </View>
-                        <TouchableOpacity style={styles.deleteButton}>
+                        <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteGoal} disabled={isDeleting}>
                             <FontAwesome name="trash" size={30} color="red" />
                         </TouchableOpacity>
                     </View>
