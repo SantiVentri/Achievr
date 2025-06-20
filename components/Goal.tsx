@@ -11,7 +11,7 @@ export default function Goal({ id, icon, title, short_description, is_done }: Go
     const handlePress = () => {
         setIsLoading(true);
         router.push({
-            pathname: "/(home)/[id]",
+            pathname: "/(home)/(goals)/[id]",
             params: { id }
         });
         setIsLoading(false);
