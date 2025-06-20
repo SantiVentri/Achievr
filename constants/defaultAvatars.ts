@@ -49,4 +49,14 @@ export const avatars = [
         name: "Default 10",
         image: "https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/avatars/default/Avatar_10.png",
     },
+    {
+        id: 11,
+        name: "Default 11",
+        image: "https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/avatars/default/Avatar_11.png",
+    },
+    {
+        id: 12,
+        name: "Default 12",
+        image: "https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/avatars/default/Avatar_12.png",
+    },
 ];
