@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     },
     subtasksListContainer: {
         padding: 15,
+        paddingBottom: 100,
         gap: 15,
     },
     subtaskItem: {
