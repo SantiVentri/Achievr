@@ -2,12 +2,14 @@ import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { DrawerContentComponentProps, DrawerItem } from "@react-navigation/drawer";
-import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Avatar from "./Avatar";
 import SignOutButton from "./SignOutButton";
 
 export default function DrawerContent(props: DrawerContentComponentProps) {
     const { user } = useUser();
+    const router = useRouter();
 
     const activeRoute = props.state.routes[props.state.index];
     const activeScreen = activeRoute.name;
@@ -36,9 +38,14 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
         }
     ]
 
+    const handleRouterPress = (path: string) => {
+        router.push(path as any);
+        props.navigation.closeDrawer();
+    }
+
     return (
         <View style={styles.container}>
-            <TouchableHighlight style={styles.header}>
+            <Pressable style={styles.header} onPress={() => handleRouterPress("(home)/account")}>
                 <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
                     <Avatar size={60} />
                     <View style={styles.nameContainer}>
@@ -46,7 +53,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
                         <Text style={styles.email}>{user?.email}</Text>
                     </View>
                 </View>
-            </TouchableHighlight>
+            </Pressable>
             <View style={styles.divider} />
             <View style={styles.menu}>
                 <View style={styles.menuItems}>
