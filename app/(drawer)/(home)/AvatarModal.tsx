@@ -3,7 +3,6 @@ import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
 import Feather from "@expo/vector-icons/Feather";
-import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -68,7 +67,6 @@ export default function AvatarModal() {
 
     return (
         <View style={styles.container}>
-            <StatusBar style="light" />
             <Text style={styles.title}>Select your avatar</Text>
             <View style={styles.avatarContainer}>
                 {avatars.map((avatar) => (

@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import { Stack, useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Image, View } from "react-native";
 
@@ -19,7 +18,6 @@ export default function HomeLayout() {
     if (loading || !user) {
         return (
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: Colors.primary }}>
-                <StatusBar style="dark" />
                 <Image source={require("@/assets/images/splash-icon.png")} style={{ height: 120, width: 120 }} />
             </View>
         );
