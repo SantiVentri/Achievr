@@ -3,10 +3,12 @@ import { supabase } from '@/utils/supabase';
 import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from 'expo-router';
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function SignInScreen() {
     const router = useRouter();
+    const { t } = useTranslation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
@@ -21,7 +23,7 @@ export default function SignInScreen() {
             password,
         })
         if (error) {
-            Alert.alert("Error", error.message);
+            Alert.alert(t("error"), t("errorMessage"));
         } else {
             router.replace("/");
         }
@@ -36,29 +38,29 @@ export default function SignInScreen() {
                         source={require("@/assets/images/splash-icon.png")}
                         style={styles.logo}
                     />
-                    <Text style={styles.title}>Sign in</Text>
-                    <Text style={styles.description}>Enter your email and password to sign in</Text>
+                    <Text style={styles.title}>{t("auth.signin.title")}</Text>
+                    <Text style={styles.description}>{t("auth.signin.description")}</Text>
                 </View>
                 <View style={styles.formBody}>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>Email:</Text>
+                        <Text style={styles.formGroupLabel}>{t("auth.signin.email")}:</Text>
                         <TextInput
                             style={styles.input}
                             value={email}
                             onChangeText={setEmail}
-                            placeholder="e.g: example@gmail.com"
+                            placeholder={t("auth.signin.emailPlaceholder")}
                             placeholderTextColor="gray"
                             keyboardType="email-address"
                         />
                     </View>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>Password:</Text>
+                        <Text style={styles.formGroupLabel}>{t("auth.signin.password")}:</Text>
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.input}
                                 value={password}
                                 onChangeText={setPassword}
-                                placeholder="e.g: MyDogBirthday123"
+                                placeholder={t("auth.signin.passwordPlaceholder")}
                                 placeholderTextColor="gray"
                                 secureTextEntry={!showPassword}
                             />
@@ -68,19 +70,19 @@ export default function SignInScreen() {
                         </View>
                     </View>
                     <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignIn} disabled={loading || disabled}>
-                        <Text style={styles.buttonText}>{loading ? "Loading..." : "Sign in"}</Text>
+                        <Text style={styles.buttonText}>{loading ? t("auth.signin.loading") : t("auth.signin.signin")}</Text>
                     </TouchableOpacity>
                     <View style={styles.formFooter}>
                         <TouchableOpacity onPress={() => router.replace("/signup")}>
-                            <Text>Forgot password?</Text>
+                            <Text>{t("auth.signin.forgotPassword")}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </View>
             <View style={styles.extraInfo}>
-                <Text style={styles.extraInfoText}>Don't have an account?</Text>
+                <Text style={styles.extraInfoText}>{t("auth.signin.dontHaveAccount")}</Text>
                 <TouchableOpacity onPress={() => router.replace("/signup")}>
-                    <Text style={styles.extraInfoLink}>Sign up</Text>
+                    <Text style={styles.extraInfoLink}>{t("auth.signin.signupLink")}</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -114,6 +116,7 @@ const styles = StyleSheet.create({
     },
     description: {
         fontSize: 16,
+        maxWidth: 260,
         textAlign: "center",
         color: "gray",
     },

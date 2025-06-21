@@ -5,10 +5,12 @@ import { supabase } from "@/utils/supabase";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function EditAccountScreen() {
     const router = useRouter();
+    const { t } = useTranslation();
     const { user } = useUser();
     const [username, setUsername] = useState(user?.user_metadata?.display_name || '');
     const [isLoading, setLoading] = useState(false);
@@ -26,9 +28,9 @@ export default function EditAccountScreen() {
             }
         })
         if (error) {
-            Alert.alert("Error", "Failed to update username");
+            Alert.alert(t("account.editAccount.error"), t("account.editAccount.errorMessage"));
         } else {
-            Alert.alert("Success", "Username updated successfully");
+            Alert.alert(t("account.editAccount.success"), t("account.editAccount.successMessage"));
             router.back();
         }
         setLoading(false);
@@ -36,9 +38,9 @@ export default function EditAccountScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.formTitle}>Edit Account</Text>
+            <Text style={styles.formTitle}>{t("account.editAccount.title")}</Text>
             <View style={styles.form}>
-                <Text style={styles.formSubtitle}>Your avatar</Text>
+                <Text style={styles.formSubtitle}>{t("account.editAccount.avatar")}</Text>
                 <TouchableOpacity style={styles.editAvatar} onPress={() => router.push('/AvatarModal')}>
                     <Avatar size={120} />
                     <View style={styles.editAvatarButton}>
@@ -46,17 +48,17 @@ export default function EditAccountScreen() {
                     </View>
                 </TouchableOpacity>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupLabel}>Username</Text>
+                    <Text style={styles.formGroupLabel}>{t("account.editAccount.username")}</Text>
                     <TextInput
                         style={styles.input}
                         value={username}
                         onChangeText={setUsername}
-                        placeholder="e.g: John Doe"
+                        placeholder={t("account.editAccount.usernamePlaceholder")}
                         placeholderTextColor="gray"
                     />
                 </View>
                 <TouchableOpacity style={[styles.saveButton, { backgroundColor: isLoading || !isUsernameValid ? "gray" : Colors.primary }]} onPress={handleSave} disabled={isLoading || !isUsernameValid}>
-                    <Text style={styles.saveButtonText}>{isLoading ? "Saving..." : "Save"}</Text>
+                    <Text style={styles.saveButtonText}>{isLoading ? t("account.editAccount.loading") : t("account.editAccount.save")}</Text>
                 </TouchableOpacity>
             </View>
         </View>

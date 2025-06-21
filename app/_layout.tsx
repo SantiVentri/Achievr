@@ -1,4 +1,5 @@
 import { UserContextProvider } from "@/context/UserContext";
+import '@/i18n';
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
