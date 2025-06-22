@@ -9,7 +9,7 @@ i18n
   .use(initReactI18next)
   .init({
     compatibilityJSON: 'v3',
-    lng: Localization.getLocales()[0].languageCode, // Get first locale's language code
+    lng: Localization.getLocales()[0].languageCode,
     fallbackLng: 'en',
     resources: {
       en: { translation: en },
@@ -18,10 +18,6 @@ i18n
     interpolation: {
       escapeValue: false
     },
-    debug: true, // Enable debug mode
   });
 
-console.log('i18n initialized with language:', Localization.getLocales()[0].languageCode);
-console.log('Available resources:', Object.keys(i18n.options.resources));
-
-export default i18n;
+  export default i18n;

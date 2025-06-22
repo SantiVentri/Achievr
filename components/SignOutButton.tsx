@@ -10,7 +10,7 @@ export default function SignOutButton() {
 
     return (
         <TouchableOpacity onPress={handleSignOut} style={styles.button}>
-            <Text style={styles.buttonText}>{t("auth.signout.signout")}</Text>
+            <Text style={styles.buttonText}>{t("auth.signout")}</Text>
         </TouchableOpacity>
     )
 }
