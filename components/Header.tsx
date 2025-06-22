@@ -3,16 +3,24 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Avatar from "./Avatar";
 
 export default function Header({ title }: { title: string }) {
     const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
     const navigation = useNavigation<DrawerNavigationProp<any>>();
+
+    const handleOpenDrawer = () => {
+        setIsLoading(true);
+        navigation.openDrawer();
+        setIsLoading(false);
+    }
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <TouchableOpacity onPress={handleOpenDrawer} disabled={isLoading}>
                 <MaterialIcons name="menu" size={35} color="white" />
             </TouchableOpacity>
             <Text style={styles.title}>{title}</Text>

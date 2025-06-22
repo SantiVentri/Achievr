@@ -3,15 +3,17 @@ import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
 import Feather from "@expo/vector-icons/Feather";
+import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function AvatarModal() {
-    const { user } = useUser();
+    const { user, updateAvatar } = useUser();
     const { t } = useTranslation();
     const [currentAvatar, setCurrentAvatar] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
 
     const getAvatar = async () => {
         const { data, error } = await supabase.from("avatars").select().eq("user_id", user?.id).single();
@@ -58,6 +60,7 @@ export default function AvatarModal() {
             Alert.alert("Error", "Failed to change avatar");
         } else {
             Alert.alert("Success", "Avatar changed successfully");
+            updateAvatar();
         }
         setCurrentAvatar(avatar);
         setIsLoading(false);

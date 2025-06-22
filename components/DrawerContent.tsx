@@ -3,6 +3,7 @@ import { useUser } from "@/context/UserContext";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { DrawerContentComponentProps, DrawerItem } from "@react-navigation/drawer";
 import { useRouter } from "expo-router";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Avatar from "./Avatar";
@@ -12,6 +13,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
     const { user } = useUser();
     const router = useRouter();
     const { t } = useTranslation();
+    const [isLoading, setIsLoading] = useState(false);
 
     const activeRoute = props.state.routes[props.state.index];
     const activeScreen = activeRoute.name;
@@ -41,13 +43,15 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
     ]
 
     const handleRouterPress = (path: string) => {
+        setIsLoading(true);
         router.push(path as any);
         props.navigation.closeDrawer();
+        setIsLoading(false);
     }
 
     return (
         <View style={styles.container}>
-            <Pressable style={styles.header} onPress={() => handleRouterPress("(home)/account")}>
+            <Pressable style={styles.header} onPress={() => handleRouterPress("(home)/account")} disabled={isLoading}>
                 <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
                     <Avatar size={60} />
                     <View style={styles.nameContainer}>
