@@ -1,4 +1,5 @@
 import Avatar from "@/components/Avatar";
+import LocaleSelect from "@/components/LocaleSelect";
 import SignOutButton from "@/components/SignOutButton";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
@@ -12,9 +13,12 @@ export default function AccountScreen() {
     const router = useRouter();
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => router.push("/editAccount")}>
-                <Feather name="edit" size={24} color="black" />
-            </TouchableOpacity>
+            <View style={styles.buttonsContainer}>
+                <LocaleSelect />
+                <TouchableOpacity onPress={() => router.push("/editAccount")}>
+                    <Feather name="edit" size={24} color="black" />
+                </TouchableOpacity>
+            </View>
             <View style={styles.accountHeader}>
                 <View style={styles.avatarContainer}>
                     <Avatar size={120} />
@@ -36,8 +40,13 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
         gap: 30,
     },
+    buttonsContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
     accountHeader: {
         alignItems: "center",
+        marginTop: 20,
         gap: 20,
     },
     avatarContainer: {

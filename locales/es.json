@@ -1,0 +1,74 @@
+{
+    "auth": {
+        "signin": {
+            "title": "Iniciar sesión",
+            "description": "Ingresa tu email y contraseña para iniciar sesión",
+            "email": "Email",
+            "emailPlaceholder": "e.g: juanperez@gmail.com",
+            "password": "Contraseña",
+            "passwordPlaceholder": "e.g: Juancito123",
+            "signin": "Iniciar sesión",
+            "signup": "Registrarse",
+            "forgotPassword": "¿Olvidaste tu contraseña?",
+            "dontHaveAccount": "¿No tienes una cuenta?",
+            "signupLink": "Registrarse",
+            "error": "Error",
+            "errorMessage": "Ocurrió un error al iniciar sesión. Por favor, intenta nuevamente.",
+            "loading": "Iniciando sesión..."
+        },
+        "signup": {
+            "title": "Registrarse",
+            "description": "Ingresa tu email y contraseña para registrarte",
+            "username": "Nombre de usuario",
+            "usernamePlaceholder": "e.g: Juan Perez",
+            "email": "Email",
+            "emailPlaceholder": "e.g: juanperez@gmail.com",
+            "password": "Contraseña",
+            "passwordPlaceholder": "e.g: Juancito123",
+            "confirmPassword": "Confirmar contraseña",
+            "confirmPasswordPlaceholder": "e.g: MyDogBirthday123",
+            "signup": "Registrarse",
+            "signin": "Iniciar sesión",
+            "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+            "signinLink": "Iniciar sesión",
+            "error": "Error",
+            "errorMessage": "Ocurrió un error al registrarse. Por favor, intenta nuevamente.",
+            "loading": "Registrando..."
+        },
+        "signout": "Cerrar sesión"
+    },
+    "home": {
+        "subtitle": "Hola, {{name}}",
+        "greeting": {
+            "morning": "Buenos días",
+            "afternoon": "Buenas tardes",
+            "evening": "Buenas noches"
+        }
+    },
+    "account": {
+        "editAccount": {
+            "title": "Editar cuenta",
+            "avatar": "Tu avatar",
+            "username": "Nombre de usuario",
+            "usernamePlaceholder": "e.g: Juan Perez",
+            "save": "Guardar",
+            "error": "Error",
+            "errorMessage": "Ocurrió un error al editar la cuenta. Por favor, intenta nuevamente.",
+            "success": "Cuenta editada correctamente",
+            "successMessage": "La cuenta se ha editado correctamente",
+            "loading": "Guardando..."
+        },
+        "avatar": {
+            "select": "Selecciona tu avatar",
+            "timeRestriction": "Tiempo de restricción",
+            "timeRestrictionMessage": "Necesitas esperar {{remainingMinutes}} minutos antes de cambiar tu avatar nuevamente.",
+            "error": "Error",
+            "errorMessage": "Ocurrió un error al obtener el avatar. Por favor, intenta nuevamente."
+        },
+        "locale": {
+            "languages": "Idiomas",
+            "success": "Éxito",
+            "locale_changed_successfully": "El idioma se ha cambiado correctamente"
+        }
+    }
+}

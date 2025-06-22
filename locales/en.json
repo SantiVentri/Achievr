@@ -1,0 +1,74 @@
+{
+    "auth": {
+        "signin": {
+            "title": "Sign in",
+            "description": "Enter your email and password to sign in",
+            "email": "Email",
+            "emailPlaceholder": "e.g: example@gmail.com",
+            "password": "Password",
+            "passwordPlaceholder": "e.g: MyDogBirthday123",
+            "signin": "Sign in",
+            "signup": "Sign up",
+            "forgotPassword": "Forgot password?",
+            "dontHaveAccount": "Don't have an account?",
+            "signupLink": "Sign up",
+            "error": "Error",
+            "errorMessage": "An error occurred while signing in. Please try again.",
+            "loading": "Signing in..."
+        },
+        "signup": {
+            "title": "Sign up",
+            "description": "Enter your email and password to sign up",
+            "username": "Username",
+            "usernamePlaceholder": "e.g: John Doe",
+            "email": "Email",
+            "emailPlaceholder": "e.g: example@gmail.com",
+            "password": "Password",
+            "passwordPlaceholder": "e.g: MyDogBirthday123",
+            "confirmPassword": "Confirm Password",
+            "confirmPasswordPlaceholder": "e.g: MyDogBirthday123",
+            "signup": "Sign up",
+            "signin": "Sign in",
+            "alreadyHaveAccount": "Already have an account?",
+            "signinLink": "Sign in",
+            "error": "Error",
+            "errorMessage": "An error occurred while signing up. Please try again.",
+            "loading": "Signing up..."
+        },
+        "signout": "Sign out"
+    },
+    "home": {
+        "subtitle": "Hi, {{name}}",
+        "greeting": {
+            "morning": "Good morning",
+            "afternoon": "Good afternoon",
+            "evening": "Good evening"
+        }
+    },
+    "account": {
+        "editAccount": {
+            "title": "Edit account",
+            "avatar": "Your avatar",
+            "username": "Username",
+            "usernamePlaceholder": "e.g: John Doe",
+            "save": "Save",
+            "error": "Error",
+            "errorMessage": "An error occurred while editing the account. Please try again.",
+            "success": "Account edited successfully",
+            "successMessage": "The account has been edited successfully",
+            "loading": "Saving..."
+        },
+        "avatar": {
+            "select": "Select your avatar",
+            "timeRestriction": "Time restriction",
+            "timeRestrictionMessage": "You need to wait {{remainingMinutes}} more minutes before changing your avatar again.",
+            "error": "Error",
+            "errorMessage": "An error occurred while getting the avatar. Please try again."
+        },
+        "locale": {
+            "languages": "Languages",
+            "success": "Success",
+            "locale_changed_successfully": "Locale changed successfully"
+        }
+    }
+}

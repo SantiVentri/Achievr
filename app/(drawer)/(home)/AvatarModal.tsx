@@ -4,10 +4,12 @@ import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
 import Feather from "@expo/vector-icons/Feather";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function AvatarModal() {
     const { user } = useUser();
+    const { t } = useTranslation();
     const [currentAvatar, setCurrentAvatar] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -29,7 +31,7 @@ export default function AvatarModal() {
             .single();
 
         if (fetchError) {
-            Alert.alert("Error", "Failed to check avatar update time");
+            Alert.alert(t("account.avatar.error"), t("account.avatar.errorMessage"));
             setIsLoading(false);
             return;
         }
@@ -43,8 +45,8 @@ export default function AvatarModal() {
             if (minutesDiff < 5) {
                 const remainingMinutes = 5 - minutesDiff;
                 Alert.alert(
-                    "Time Restriction",
-                    `You need to wait ${remainingMinutes} more minutes before changing your avatar again.`
+                    t("account.avatar.timeRestriction"),
+                    t("account.avatar.timeRestrictionMessage", { remainingMinutes })
                 );
                 setIsLoading(false);
                 return;
@@ -67,7 +69,7 @@ export default function AvatarModal() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Select your avatar</Text>
+            <Text style={styles.title}>{t("account.avatar.select")}</Text>
             <View style={styles.avatarContainer}>
                 {avatars.map((avatar) => (
                     <TouchableOpacity key={avatar.id} style={styles.avatar} onPress={() => handleChangeAvatar(avatar.image)} disabled={isLoading}>

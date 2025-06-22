@@ -3,10 +3,12 @@ import { supabase } from '@/utils/supabase';
 import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from 'expo-router';
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function SignUpScreen() {
     const router = useRouter();
+    const { t } = useTranslation();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,7 +29,7 @@ export default function SignUpScreen() {
             }
         })
         if (error) {
-            Alert.alert("Error", error.message);
+            Alert.alert(t("auth.signup.error"), t("auth.signup.errorMessage"));
         } else {
             router.replace("/");
         }
@@ -42,39 +44,39 @@ export default function SignUpScreen() {
                         source={require("@/assets/images/splash-icon.png")}
                         style={styles.logo}
                     />
-                    <Text style={styles.title}>Sign up</Text>
-                    <Text style={styles.description}>Enter your email and password to create an account</Text>
+                    <Text style={styles.title}>{t("auth.signup.title")}</Text>
+                    <Text style={styles.description}>{t("auth.signup.description")}</Text>
                 </View>
                 <View style={styles.formBody}>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>Username:</Text>
+                        <Text style={styles.formGroupLabel}>{t("auth.signup.username")}:</Text>
                         <TextInput
                             style={styles.input}
                             value={username}
                             onChangeText={setUsername}
-                            placeholder="e.g: John Doe"
+                            placeholder={t("auth.signup.usernamePlaceholder")}
                             placeholderTextColor="gray"
                         />
                     </View>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>Email:</Text>
+                        <Text style={styles.formGroupLabel}>{t("auth.signup.email")}:</Text>
                         <TextInput
                             style={styles.input}
                             value={email}
                             onChangeText={setEmail}
-                            placeholder="e.g: example@gmail.com"
+                            placeholder={t("auth.signup.emailPlaceholder")}
                             placeholderTextColor="gray"
                             keyboardType="email-address"
                         />
                     </View>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>Password:</Text>
+                        <Text style={styles.formGroupLabel}>{t("auth.signup.password")}:</Text>
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.input}
                                 value={password}
                                 onChangeText={setPassword}
-                                placeholder="e.g: MyDogBirthday123"
+                                placeholder={t("auth.signup.passwordPlaceholder")}
                                 placeholderTextColor="gray"
                                 secureTextEntry={!showPassword}
                             />
@@ -84,14 +86,14 @@ export default function SignUpScreen() {
                         </View>
                     </View>
                     <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignIn} disabled={loading || disabled}>
-                        <Text style={styles.buttonText}>{loading ? "Creating..." : "Create account"}</Text>
+                        <Text style={styles.buttonText}>{loading ? t("auth.signup.loading") : t("auth.signup.signup")}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.extraInfo}>
-                <Text style={styles.extraInfoText}>Already have an account?</Text>
+                <Text style={styles.extraInfoText}>{t("auth.signup.alreadyHaveAccount")}</Text>
                 <TouchableOpacity onPress={() => router.replace("/signin")}>
-                    <Text style={styles.extraInfoLink}>Sign in</Text>
+                    <Text style={styles.extraInfoLink}>{t("auth.signup.signinLink")}</Text>
                 </TouchableOpacity>
             </View>
         </View>
