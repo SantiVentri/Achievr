@@ -1,14 +1,16 @@
 import { supabase } from "@/utils/supabase";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 export default function SignOutButton() {
+    const { t } = useTranslation();
     const handleSignOut = async () => {
         await supabase.auth.signOut();
     }
 
     return (
         <TouchableOpacity onPress={handleSignOut} style={styles.button}>
-            <Text style={styles.buttonText}>Sign out</Text>
+            <Text style={styles.buttonText}>{t("auth.signout")}</Text>
         </TouchableOpacity>
     )
 }

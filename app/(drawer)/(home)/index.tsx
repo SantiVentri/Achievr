@@ -4,20 +4,15 @@ import Goal from '@/components/Goal';
 import { useUser } from '@/context/UserContext';
 import { GoalType } from '@/enums/types';
 import { useCallback, useEffect, useState } from 'react';
-import {
-  FlatList,
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const getGreeting = () => {
+  const { t } = useTranslation();
   const hour = new Date().getHours();
-  if (hour > 5 && hour <= 12) return "Good Morning"
-  if (hour >= 13 && hour <= 19) return "Good Afternoon"
-  return "Good Evening"
+  if (hour > 5 && hour <= 12) return t("home.greeting.morning")
+  if (hour >= 13 && hour <= 19) return t("home.greeting.afternoon")
+  return t("home.greeting.evening")
 };
 
 export default function Page() {
