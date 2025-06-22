@@ -51,7 +51,7 @@ export default function GoalScreen() {
             {
                 text: t("home.goal.deleteGoal"), onPress: async () => {
                     await supabase.from("goals").delete().eq("id", id);
-                    router.push("/");
+                    router.back();
                 },
                 style: "destructive"
             },
