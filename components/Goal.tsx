@@ -11,7 +11,7 @@ export default function Goal({ id, icon, title, short_description, is_done }: Go
     const handlePress = () => {
         setIsLoading(true);
         router.push({
-            pathname: "/(home)/(goals)/[id]",
+            pathname: "/(drawer)/(home)/(goals)/[id]",
             params: { id }
         });
         setIsLoading(false);
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
         padding: 15,
         minHeight: 110,
         gap: 15,
+        marginBottom: 15,
     },
     is_done: {
         backgroundColor: "rgba(52, 84, 209, 0.3)",
