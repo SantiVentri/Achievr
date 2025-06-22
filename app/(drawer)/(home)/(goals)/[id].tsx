@@ -1,3 +1,4 @@
+import CreateGoalButton from "@/components/createGoalButton";
 import { getSubtasks } from "@/components/data";
 import Subtask from "@/components/Subtask";
 import { GoalType, SubtaskType } from "@/enums/types";
@@ -67,7 +68,7 @@ export default function GoalScreen() {
 
     return (
         <View style={styles.container}>
-            <StatusBar style="dark" />
+            <StatusBar style="light" />
             <ScrollView
                 style={styles.scrollView}
                 refreshControl={
@@ -110,6 +111,7 @@ export default function GoalScreen() {
                     )}
                 />
             </ScrollView>
+            <CreateGoalButton route={`/createSubtask?goal_id=${id}`} />
         </View>
     )
 }

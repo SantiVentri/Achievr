@@ -76,7 +76,7 @@ export default function Page() {
           />
         </View>
       </ScrollView>
-      <CreateGoalButton />
+      <CreateGoalButton route="/createGoal" />
     </View>
   );
 }

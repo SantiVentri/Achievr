@@ -4,13 +4,13 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 
-export default function CreateGoalButton() {
+export default function CreateGoalButton({ route }: { route: string }) {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
 
     const handleRouter = () => {
         setIsLoading(true);
-        router.push("/createGoal");
+        router.push(route as any);
         setIsLoading(false);
     }
 

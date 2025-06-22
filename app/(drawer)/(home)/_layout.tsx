@@ -31,6 +31,7 @@ export default function HomeLayout() {
             <Stack.Screen name="AvatarModal" options={{ headerShown: false, presentation: 'modal' }} />
             <Stack.Screen name="(goals)/[id]" options={{ headerShown: false }} />
             <Stack.Screen name="(subtasks)/[id]" options={{ headerShown: false }} />
+            <Stack.Screen name="(subtasks)/createSubtask" options={{ headerShown: false, presentation: 'modal' }} />
         </Stack>
     )
 }

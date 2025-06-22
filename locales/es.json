@@ -83,6 +83,20 @@
             "success": "Objetivo creado correctamente",
             "successMessage": "El objetivo se ha creado correctamente"
         },
+        "createSubtask": {
+            "title": "Crear subtarea",
+            "subtitle": "Completa el formulario y comienza tu viaje!",
+            "form": {
+                "subtask": "¿Cuál es tu subtarea?",
+                "subtaskPlaceholder": "e.g. '¿Qué es Python?', 'Organizar una dieta'.",
+                "description": "Describe tu subtarea",
+                "descriptionPlaceholder": "e.g. 'Aprender las bases de Python es clave para empezar a programar. Investigar sobre los frameworks más populares.'",
+                "button": {
+                    "create": "Crear subtarea",
+                    "loading": "Creando..."
+                }
+            }
+        },
         "goal": {
             "subtasks": "Subtareas",
             "noSubtasks": "No hay subtareas",
