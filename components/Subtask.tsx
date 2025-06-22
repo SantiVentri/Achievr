@@ -14,7 +14,7 @@ export default function Subtask({ id, title, short_description, step, is_done }:
     const handlePress = () => {
         setIsLoading(true);
         router.push({
-            pathname: "/(home)/(subtasks)/[id]",
+            pathname: "/(drawer)/(home)/(subtasks)/[id]",
             params: { id }
         });
         setIsLoading(false);
