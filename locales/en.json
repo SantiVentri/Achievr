@@ -77,7 +77,11 @@
             "button": {
                 "create": "Create goal",
                 "loading": "Creando..."
-            }
+            },
+            "error": "Error",
+            "errorMessage": "An error occurred while creating the goal. Please try again.",
+            "success": "Goal created successfully",
+            "successMessage": "The goal has been created successfully"
         },
         "goal": {
             "subtasks": "Subtasks",

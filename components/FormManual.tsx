@@ -1,18 +1,34 @@
 import { Colors } from "@/constants/palette";
+import { useUser } from "@/context/UserContext";
+import { supabase } from "@/utils/supabase";
+import { useRouter } from "expo-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function FormManual() {
+    const { user } = useUser();
     const { t } = useTranslation();
+    const router = useRouter();
     const [goal, setGoal] = useState("");
     const [description, setDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
     const handleCreateGoal = async () => {
         setIsLoading(true);
-
+        const { error } = await supabase.from("goals").insert({
+            title: goal,
+            short_description: description,
+            creator_id: user?.id,
+            ai: false,
+        });
+        if (error) {
+            Alert.alert(t("home.createGoal.error"), t("home.createGoal.errorMessage"));
+        } else {
+            Alert.alert(t("home.createGoal.success"), t("home.createGoal.successMessage"));
+        }
         resetForm();
+        router.back();
         setIsLoading(false);
     }
 

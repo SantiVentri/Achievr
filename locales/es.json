@@ -77,7 +77,11 @@
             "button": {
                 "create": "Crear objetivo",
                 "loading": "Creando..."
-            }
+            },
+            "error": "Error",
+            "errorMessage": "Ocurrió un error al crear el objetivo. Por favor, intenta nuevamente.",
+            "success": "Objetivo creado correctamente",
+            "successMessage": "El objetivo se ha creado correctamente"
         },
         "goal": {
             "subtasks": "Subtareas",
