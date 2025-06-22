@@ -58,9 +58,13 @@
         "createGoal": {
             "title": "Set your next goal",
             "subtitle": "Complete the form and start your journey!",
+            "ai": "Create with AI",
+            "manual": "Create manually",
             "form": {
                 "goal": "What is your goal?",
                 "goalPlaceholder": "e.g. 'Learn Python', 'Lose 5kg', 'Start a business'",
+                "description": "Describe your goal",
+                "descriptionPlaceholder": "e.g. 'Learning Python is a task that requires time and effort, but with dedication and practice, you can achieve it.'",
                 "stepsTitle": "How many steps to achieve?",
                 "steps": "Steps",
                 "stepsPlaceholder": "e.g. '10', '20', '30'",

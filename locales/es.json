@@ -58,9 +58,13 @@
         "createGoal": {
             "title": "Establece tu próximo objetivo",
             "subtitle": "Completa el formulario y comienza tu viaje!",
+            "ai": "Crear con IA",
+            "manual": "Crear manualmente",
             "form": {
                 "goal": "¿Cuál es tu objetivo?",
                 "goalPlaceholder": "e.g. 'Aprender Python', 'Perder 5kg', 'Iniciar un negocio'",
+                "description": "Describe tu objetivo",
+                "descriptionPlaceholder": "e.g. 'Aprender Python es una tarea que requiere tiempo y esfuerzo, pero con dedicación y práctica, puedes lograrlo.'",
                 "stepsTitle": "¿Cuántos pasos para lograrlo?",
                 "steps": "Pasos",
                 "stepsPlaceholder": "e.g. '10', '20', '30'",
