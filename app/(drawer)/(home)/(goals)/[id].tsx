@@ -82,9 +82,9 @@ export default function GoalScreen() {
                         <View style={styles.headerTitles}>
                             <Pressable style={styles.headerTitle} onPress={handleCheckboxPress}>
                                 {isDone ? <MaterialCommunityIcons name="checkbox-marked-circle" size={28} color="green" /> : <MaterialCommunityIcons name="checkbox-blank-circle-outline" size={28} color="black" />}
-                                <Text style={styles.title}>{goal?.title}</Text>
+                                <Text style={[styles.title, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.title}</Text>
                             </Pressable>
-                            <Text style={styles.subtitle}>{goal?.short_description}</Text>
+                            <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.short_description}</Text>
                         </View>
                         <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteGoal} disabled={isDeleting}>
                             <FontAwesome name="trash" size={30} color="red" />
