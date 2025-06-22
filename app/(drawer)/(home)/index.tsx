@@ -3,7 +3,8 @@ import { getGoals } from '@/components/data';
 import Goal from '@/components/Goal';
 import { useUser } from '@/context/UserContext';
 import { GoalType } from '@/enums/types';
-import { useCallback, useEffect, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -32,9 +33,11 @@ export default function Page() {
     setDoneGoals(doneGoals);
   }, [user]);
 
-  useEffect(() => {
-    fetchAllGoals();
-  }, [fetchAllGoals]);
+  useFocusEffect(
+    useCallback(() => {
+      fetchAllGoals();
+    }, [fetchAllGoals])
+  );
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
@@ -105,6 +108,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   goalsContainer: {
-    gap: 16,
+    gap: 10,
   },
 });
