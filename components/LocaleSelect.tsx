@@ -16,8 +16,8 @@ export default function LocaleSelect() {
             </Pressable>
             {isOpen && (
                 <View style={styles.localeContainer}>
-                    <ChangeLocale locale="en" />
-                    <ChangeLocale locale="es" />
+                    <ChangeLocale locale="en" text size={25} />
+                    <ChangeLocale locale="es" text size={25} />
                 </View>
             )}
         </View>

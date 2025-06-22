@@ -1,3 +1,4 @@
+import AuthLocaleSelect from '@/components/AuthLocaleSelect';
 import { Colors } from '@/constants/palette';
 import { supabase } from '@/utils/supabase';
 import Feather from '@expo/vector-icons/Feather';
@@ -33,6 +34,7 @@ export default function SignInScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.form}>
+                <AuthLocaleSelect />
                 <View style={styles.formHeader}>
                     <Image
                         source={require("@/assets/images/splash-icon.png")}
@@ -94,7 +96,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-between",
         alignItems: "center",
-        paddingVertical: 60,
+        paddingTop: 40,
+        paddingBottom: 60,
     },
     form: {
         padding: 30,

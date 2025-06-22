@@ -7,7 +7,7 @@ const enFlag = require("../assets/icons/enFlag.png");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const esFlag = require("../assets/icons/esFlag.png");
 
-export default function ChangeLocale({ locale }: { locale: string }) {
+export default function ChangeLocale({ locale, text, size }: { locale: string, text?: boolean, size: number }) {
     const { i18n, t } = useTranslation();
     const [isLoading, setIsLoading] = useState(false);
     const handleChangeLocale = (locale: string) => {
@@ -21,9 +21,9 @@ export default function ChangeLocale({ locale }: { locale: string }) {
             <Image
                 source={locale === "en" ? enFlag : esFlag}
                 resizeMode="contain"
-                style={styles.flag}
+                style={[styles.flag, { width: size, height: size }]}
             />
-            <Text style={styles.text}>{locale.toUpperCase()}</Text>
+            {text && <Text style={styles.text}>{locale.toUpperCase()}</Text>}
         </TouchableOpacity>
     )
 }
@@ -36,8 +36,6 @@ const styles = StyleSheet.create({
     },
     flag: {
         borderRadius: 100,
-        width: 25,
-        height: 25,
     },
     text: {
         fontSize: 16,
