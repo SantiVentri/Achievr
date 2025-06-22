@@ -1,21 +1,22 @@
 import { getSubtasks } from "@/components/data";
 import Subtask from "@/components/Subtask";
-import { SubtaskType } from "@/enums/types";
+import { GoalType, SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, FlatList, Image, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Image, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function GoalScreen() {
     const { id } = useLocalSearchParams();
     const { t } = useTranslation();
-    const [goal, setGoal] = useState<any | null>(null);
+    const [goal, setGoal] = useState<GoalType>();
     const [subtasks, setSubtasks] = useState<SubtaskType[]>([]);
     const [refreshing, setRefreshing] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
+    const [isDone, setIsDone] = useState(false);
 
     const fetchAllData = useCallback(async () => {
         if (!id) return;
@@ -26,6 +27,7 @@ export default function GoalScreen() {
             return;
         }
         setGoal(goalData);
+        setIsDone(goalData?.is_done || false);
 
         if (goalData) {
             const subtasksData = await getSubtasks(goalData.id);
@@ -58,6 +60,11 @@ export default function GoalScreen() {
         setIsDeleting(false);
     }, [id]);
 
+    const handleCheckboxPress = useCallback(async () => {
+        setIsDone(!isDone);
+        await supabase.from("goals").update({ is_done: !isDone }).eq("id", id);
+    }, [id, isDone]);
+
     return (
         <View style={styles.container}>
             <StatusBar style="dark" />
@@ -73,7 +80,10 @@ export default function GoalScreen() {
                             style={styles.image}
                         />
                         <View style={styles.headerTitles}>
-                            <Text style={styles.title}>{goal?.title}</Text>
+                            <Pressable style={styles.headerTitle} onPress={handleCheckboxPress}>
+                                {isDone ? <MaterialCommunityIcons name="checkbox-marked-circle" size={28} color="green" /> : <MaterialCommunityIcons name="checkbox-blank-circle-outline" size={28} color="black" />}
+                                <Text style={styles.title}>{goal?.title}</Text>
+                            </Pressable>
                             <Text style={styles.subtitle}>{goal?.short_description}</Text>
                         </View>
                         <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteGoal} disabled={isDeleting}>
@@ -134,6 +144,11 @@ const styles = StyleSheet.create({
         height: 250,
         width: "100%",
         filter: "brightness(0.7)",
+    },
+    headerTitle: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 10,
     },
     headerTitles: {
         padding: 15,
