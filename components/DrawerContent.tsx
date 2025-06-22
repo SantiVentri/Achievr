@@ -3,6 +3,7 @@ import { useUser } from "@/context/UserContext";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { DrawerContentComponentProps, DrawerItem } from "@react-navigation/drawer";
 import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Avatar from "./Avatar";
 import SignOutButton from "./SignOutButton";
@@ -10,6 +11,7 @@ import SignOutButton from "./SignOutButton";
 export default function DrawerContent(props: DrawerContentComponentProps) {
     const { user } = useUser();
     const router = useRouter();
+    const { t } = useTranslation();
 
     const activeRoute = props.state.routes[props.state.index];
     const activeScreen = activeRoute.name;
@@ -17,7 +19,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
     const Links = [
         {
             id: 1,
-            name: "Home",
+            name: t("drawer.home"),
             icon: "home" as const,
             screen: "(home)",
         },
@@ -26,13 +28,13 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
     const extraLinks = [
         {
             id: 1,
-            name: "Support",
+            name: t("drawer.support"),
             icon: "help" as const,
             screen: "(support)",
         },
         {
             id: 2,
-            name: "Privacy Policy",
+            name: t("drawer.privacyPolicy"),
             icon: "privacy-tip" as const,
             screen: "(privacy-policy)",
         }

@@ -37,6 +37,11 @@
         },
         "signout": "Sign out"
     },
+    "drawer": {
+        "home": "Home",
+        "support": "Support",
+        "privacyPolicy": "Privacy Policy"
+    },
     "home": {
         "subtitle": "Hi, {{name}}",
         "greeting": {

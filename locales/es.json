@@ -37,6 +37,11 @@
         },
         "signout": "Cerrar sesión"
     },
+    "drawer": {
+        "home": "Inicio",
+        "support": "Soporte",
+        "privacyPolicy": "Política de privacidad"
+    },
     "home": {
         "subtitle": "Hola, {{name}}",
         "greeting": {
