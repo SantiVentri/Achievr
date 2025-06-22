@@ -6,10 +6,12 @@ import { FontAwesome } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Alert, FlatList, Image, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function GoalScreen() {
     const { id } = useLocalSearchParams();
+    const { t } = useTranslation();
     const [goal, setGoal] = useState<any | null>(null);
     const [subtasks, setSubtasks] = useState<SubtaskType[]>([]);
     const [refreshing, setRefreshing] = useState(false);
@@ -43,15 +45,15 @@ export default function GoalScreen() {
 
     const handleDeleteGoal = useCallback(async () => {
         setIsDeleting(true);
-        Alert.alert("Delete Goal", "Are you sure you want to delete this goal?", [
+        Alert.alert(t("home.goal.deleteGoal"), t("home.goal.deleteGoalMessage"), [
             {
-                text: "Delete", onPress: async () => {
+                text: t("home.goal.deleteGoal"), onPress: async () => {
                     await supabase.from("goals").delete().eq("id", id);
                     router.push("/");
                 },
                 style: "destructive"
             },
-            { text: "Cancel" }
+            { text: t("home.goal.cancel") }
         ]);
         setIsDeleting(false);
     }, [id]);
@@ -85,10 +87,10 @@ export default function GoalScreen() {
                     contentContainerStyle={styles.subtasksListContainer}
                     scrollEnabled={false}
                     ListHeaderComponent={
-                        <Text style={styles.listTitle}>Subtasks:</Text>
+                        <Text style={styles.listTitle}>{t("home.goal.subtasks")}:</Text>
                     }
                     ListEmptyComponent={
-                        <Text>No subtasks yet</Text>
+                        <Text>{t("home.goal.noSubtasks")}</Text>
                     }
                     refreshControl={
                         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

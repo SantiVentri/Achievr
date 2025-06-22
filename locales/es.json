@@ -48,6 +48,39 @@
             "morning": "Buenos días",
             "afternoon": "Buenas tardes",
             "evening": "Buenas noches"
+        },
+        "goalsLists": {
+            "goals": "Objetivos",
+            "doneGoals": "Objetivos completados",
+            "noGoals": "No hay objetivos",
+            "noDoneGoals": "No hay objetivos completados"
+        },
+        "createGoal": {
+            "title": "Establece tu próximo objetivo",
+            "subtitle": "Completa el formulario y comienza tu viaje!",
+            "form": {
+                "goal": "¿Cuál es tu objetivo?",
+                "goalPlaceholder": "e.g. 'Aprender Python', 'Perder 5kg', 'Iniciar un negocio'",
+                "stepsTitle": "¿Cuántos pasos para lograrlo?",
+                "steps": "Pasos",
+                "stepsPlaceholder": "e.g. '10', '20', '30'",
+                "hoursTitle": "¿Cuántas horas por semana puedes dedicar?",
+                "hours": "Horas",
+                "hoursPlaceholder": "e.g. '10', '20', '30'",
+                "extraInfoTitle": "Información extra para ayudar a la IA:",
+                "extraInfoPlaceholder": "e.g. 'Sé que ya conozco los conceptos básicos', 'Tengo un presupuesto ajustado', 'Solo los fines de semana'"
+            },
+            "button": {
+                "create": "Crear objetivo",
+                "loading": "Creando..."
+            }
+        },
+        "goal": {
+            "subtasks": "Subtareas",
+            "noSubtasks": "No hay subtareas",
+            "deleteGoal": "Eliminar",
+            "deleteGoalMessage": "¿Estás seguro de querer eliminar este objetivo?",
+            "cancel": "Cancelar"
         }
     },
     "account": {

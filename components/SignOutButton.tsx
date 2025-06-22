@@ -1,11 +1,14 @@
 import { supabase } from "@/utils/supabase";
+import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 export default function SignOutButton() {
     const { t } = useTranslation();
+    const router = useRouter();
     const handleSignOut = async () => {
         await supabase.auth.signOut();
+        router.replace("/(auth)/signin");
     }
 
     return (

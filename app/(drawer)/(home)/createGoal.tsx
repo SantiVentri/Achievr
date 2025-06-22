@@ -1,9 +1,11 @@
 import { Colors } from "@/constants/palette";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function CreateGoalScreen() {
+    const { t } = useTranslation();
     const [goal, setGoal] = useState("");
     const [steps, setSteps] = useState<number | null>(null);
     const [hours, setHours] = useState<number | null>(null);
@@ -31,22 +33,22 @@ export default function CreateGoalScreen() {
         <ScrollView contentContainerStyle={styles.container}>
             <StatusBar style="dark" />
             <View style={styles.header}>
-                <Text style={styles.title}>Set your next big goal</Text>
-                <Text style={styles.subtitle}>Complete the form and start your journey!</Text>
+                <Text style={styles.title}>{t("home.createGoal.title")}</Text>
+                <Text style={styles.subtitle}>{t("home.createGoal.subtitle")}</Text>
             </View>
             <View style={styles.form}>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupTitle}>What is your goal?</Text>
+                    <Text style={styles.formGroupTitle}>{t("home.createGoal.form.goal")}</Text>
                     <TextInput
                         style={styles.input}
-                        placeholder='e.g. "Learn Python", "Lose 5kg", "Start a business"'
+                        placeholder={t("home.createGoal.form.goalPlaceholder")}
                         placeholderTextColor="gray"
                         value={goal}
                         onChangeText={setGoal}
                     />
                 </View>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupTitle}>How many steps to achieve?</Text>
+                    <Text style={styles.formGroupTitle}>{t("home.createGoal.form.stepsTitle")}</Text>
                     <ScrollView horizontal contentContainerStyle={{ paddingVertical: 5, gap: 10 }}>
                         {stepsOptions.map((option) => (
                             <TouchableOpacity
@@ -60,13 +62,13 @@ export default function CreateGoalScreen() {
                                 <Text style={[
                                     styles.optionText,
                                     steps === option && { color: 'white' }
-                                ]}>{option} Steps</Text>
+                                ]}>{option} {t("home.createGoal.form.steps")}</Text>
                             </TouchableOpacity>
                         ))}
                     </ScrollView>
                 </View>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupTitle}>How many hours per week can you dedicate?</Text>
+                    <Text style={styles.formGroupTitle}>{t("home.createGoal.form.hoursTitle")}</Text>
                     <ScrollView horizontal contentContainerStyle={{ paddingVertical: 5, gap: 10 }}>
                         {hoursOptions.map((option) => (
                             <TouchableOpacity
@@ -80,16 +82,16 @@ export default function CreateGoalScreen() {
                                 <Text style={[
                                     styles.optionText,
                                     hours === option && { color: 'white' }
-                                ]}>{option}-{option + 1} hours</Text>
+                                ]}>{option}-{option + 1} {t("home.createGoal.form.hours")}</Text>
                             </TouchableOpacity>
                         ))}
                     </ScrollView>
                 </View>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupTitle}>Any extra info to help the AI?</Text>
+                    <Text style={styles.formGroupTitle}>{t("home.createGoal.form.extraInfoTitle")}</Text>
                     <TextInput
                         style={styles.input}
-                        placeholder={'e.g. "I already know the basics", "I\'m on a tight budget", "Weekends only"'}
+                        placeholder={t("home.createGoal.form.extraInfoPlaceholder")}
                         placeholderTextColor="gray"
                         multiline
                         value={extraInfo}
@@ -105,7 +107,7 @@ export default function CreateGoalScreen() {
                 onPress={handleCreateGoal}
                 disabled={!goal || steps === null || hours === null || isLoading}
             >
-                <Text style={styles.buttonText}>{isLoading ? 'Creating...' : 'Create Goal'}</Text>
+                <Text style={styles.buttonText}>{isLoading ? t("home.createGoal.button.loading") : t("home.createGoal.button.create")}</Text>
             </TouchableOpacity>
         </ScrollView>
     )
@@ -123,10 +125,12 @@ const styles = StyleSheet.create({
         gap: 10,
     },
     title: {
+        textAlign: 'center',
         fontSize: 24,
         fontWeight: "bold",
     },
     subtitle: {
+        textAlign: 'center',
         fontSize: 16,
         color: "gray",
     },

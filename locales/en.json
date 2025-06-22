@@ -4,7 +4,7 @@
             "title": "Sign in",
             "description": "Enter your email and password to sign in",
             "email": "Email",
-            "emailPlaceholder": "e.g: example@gmail.com",
+            "emailPlaceholder": "e.g: john.doe@gmail.com",
             "password": "Password",
             "passwordPlaceholder": "e.g: MyDogBirthday123",
             "signin": "Sign in",
@@ -22,10 +22,10 @@
             "username": "Username",
             "usernamePlaceholder": "e.g: John Doe",
             "email": "Email",
-            "emailPlaceholder": "e.g: example@gmail.com",
+            "emailPlaceholder": "e.g: john.doe@gmail.com",
             "password": "Password",
             "passwordPlaceholder": "e.g: MyDogBirthday123",
-            "confirmPassword": "Confirm Password",
+            "confirmPassword": "Confirm password",
             "confirmPasswordPlaceholder": "e.g: MyDogBirthday123",
             "signup": "Sign up",
             "signin": "Sign in",
@@ -48,6 +48,39 @@
             "morning": "Good morning",
             "afternoon": "Good afternoon",
             "evening": "Good evening"
+        },
+        "goalsLists": {
+            "goals": "Goals",
+            "doneGoals": "Done goals",
+            "noGoals": "No goals",
+            "noDoneGoals": "No done goals"
+        },
+        "createGoal": {
+            "title": "Set your next goal",
+            "subtitle": "Complete the form and start your journey!",
+            "form": {
+                "goal": "What is your goal?",
+                "goalPlaceholder": "e.g. 'Learn Python', 'Lose 5kg', 'Start a business'",
+                "stepsTitle": "How many steps to achieve?",
+                "steps": "Steps",
+                "stepsPlaceholder": "e.g. '10', '20', '30'",
+                "hoursTitle": "How many hours per week can you dedicate?",
+                "hours": "Hours",
+                "hoursPlaceholder": "e.g. '10', '20', '30'",
+                "extraInfoTitle": "Extra info to help the AI:",
+                "extraInfoPlaceholder": "e.g. 'I already know the basics', 'I'm on a tight budget', 'Weekends only'"
+            },
+            "button": {
+                "create": "Create goal",
+                "loading": "Creando..."
+            }
+        },
+        "goal": {
+            "subtasks": "Subtasks",
+            "noSubtasks": "No subtasks",
+            "deleteGoal": "Delete",
+            "deleteGoalMessage": "Are you sure you want to delete this goal?",
+            "cancel": "Cancel"
         }
     },
     "account": {
@@ -66,14 +99,14 @@
         "avatar": {
             "select": "Select your avatar",
             "timeRestriction": "Time restriction",
-            "timeRestrictionMessage": "You need to wait {{remainingMinutes}} more minutes before changing your avatar again.",
+            "timeRestrictionMessage": "You need to wait {{remainingMinutes}} minutes before changing your avatar again.",
             "error": "Error",
             "errorMessage": "An error occurred while getting the avatar. Please try again."
         },
         "locale": {
             "languages": "Languages",
             "success": "Success",
-            "locale_changed_successfully": "Locale changed successfully"
+            "locale_changed_successfully": "The language has been changed successfully"
         }
     }
 }

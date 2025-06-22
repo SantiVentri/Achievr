@@ -16,6 +16,7 @@ const getGreeting = () => {
 };
 
 export default function Page() {
+  const { t } = useTranslation();
   const { user } = useUser();
   const [goals, setGoals] = useState<GoalType[]>([]);
   const [doneGoals, setDoneGoals] = useState<GoalType[]>([]);
@@ -50,7 +51,7 @@ export default function Page() {
         }
       >
         <View style={styles.header}>
-          <Text style={styles.subtitle}>Hi, {user?.user_metadata?.display_name}</Text>
+          <Text style={styles.subtitle}>{t("home.subtitle", { name: user?.user_metadata?.display_name })}</Text>
           <Text style={styles.title}>{getGreeting()}</Text>
         </View>
         <View style={styles.goalsContainer}>
@@ -58,17 +59,17 @@ export default function Page() {
             data={goals}
             keyExtractor={(goal) => goal.id}
             renderItem={({ item }) => <Goal {...item} />}
-            ListHeaderComponent={<Text style={styles.listTitle}>Goals:</Text>}
+            ListHeaderComponent={<Text style={styles.listTitle}>{t("home.goalsLists.goals")}</Text>}
             scrollEnabled={false}
-            ListEmptyComponent={<Text>No goals yet</Text>}
+            ListEmptyComponent={<Text>{t("home.goalsLists.noGoals")}</Text>}
           />
           <FlatList
             data={doneGoals}
             keyExtractor={(goal) => goal.id}
             renderItem={({ item }) => <Goal {...item} />}
-            ListHeaderComponent={<Text style={styles.listTitle}>Done Goals:</Text>}
+            ListHeaderComponent={<Text style={styles.listTitle}>{t("home.goalsLists.doneGoals")}</Text>}
             scrollEnabled={false}
-            ListEmptyComponent={<Text>No done goals yet</Text>}
+            ListEmptyComponent={<Text>{t("home.goalsLists.noDoneGoals")}</Text>}
           />
         </View>
       </ScrollView>
