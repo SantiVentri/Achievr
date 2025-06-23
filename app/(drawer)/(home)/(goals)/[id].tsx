@@ -4,15 +4,16 @@ import Subtask from "@/components/Subtask";
 import { GoalType, SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-import { router, useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, FlatList, Image, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, GestureResponderEvent, Image, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function GoalScreen() {
     const { id } = useLocalSearchParams();
     const { t } = useTranslation();
+    const router = useRouter();
     const [goal, setGoal] = useState<GoalType>();
     const [subtasks, setSubtasks] = useState<SubtaskType[]>([]);
     const [refreshing, setRefreshing] = useState(false);
@@ -61,7 +62,8 @@ export default function GoalScreen() {
         setIsDeleting(false);
     }, [id]);
 
-    const handleCheckboxPress = useCallback(async () => {
+    const handleCheckboxPress = useCallback(async (event: GestureResponderEvent) => {
+        event?.stopPropagation();
         setIsDone(!isDone);
         await supabase.from("goals").update({ is_done: !isDone }).eq("id", id);
     }, [id, isDone]);
@@ -75,22 +77,24 @@ export default function GoalScreen() {
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }>
                 <View style={styles.headerContainer}>
-                    <View style={styles.header}>
+                    <Pressable style={styles.header} onPress={() => router.push(`/editGoal?id=${id}`)}>
                         <Image
                             source={{ uri: goal?.header_image }}
                             style={styles.image}
                         />
                         <View style={styles.headerTitles}>
-                            <Pressable style={styles.headerTitle} onPress={handleCheckboxPress}>
-                                {isDone ? <MaterialCommunityIcons name="checkbox-marked-circle" size={28} color="green" /> : <MaterialCommunityIcons name="checkbox-blank-circle-outline" size={28} color="black" />}
+                            <View style={styles.headerTitle}>
+                                <Pressable onPress={handleCheckboxPress}>
+                                    {isDone ? <MaterialCommunityIcons name="checkbox-marked-circle" size={28} color="green" /> : <MaterialCommunityIcons name="checkbox-blank-circle-outline" size={28} color="black" />}
+                                </Pressable>
                                 <Text style={[styles.title, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.title}</Text>
-                            </Pressable>
+                            </View>
                             <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.short_description}</Text>
                         </View>
                         <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteGoal} disabled={isDeleting}>
                             <FontAwesome name="trash" size={30} color="red" />
                         </TouchableOpacity>
-                    </View>
+                    </Pressable>
                 </View>
                 <FlatList
                     data={subtasks}
