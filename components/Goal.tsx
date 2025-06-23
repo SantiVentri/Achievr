@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
         borderColor: Colors.primary,
         borderRadius: 15,
         padding: 15,
-        minHeight: 110,
         gap: 15,
         marginBottom: 15,
     },
