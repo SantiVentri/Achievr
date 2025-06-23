@@ -55,3 +55,18 @@ export async function getSubtasks(goal_id: string): Promise<SubtaskType[]> {
         }
     }
 }
+
+export async function getSubtask(subtask_id: string): Promise<SubtaskType | null> {
+    const { data, error } = await supabase
+        .from("subtasks")
+        .select("*")
+        .eq("id", subtask_id)
+        .single();
+
+    if (error) {
+        console.error(error);
+        return null;
+    } else {
+        return data;
+    }
+}

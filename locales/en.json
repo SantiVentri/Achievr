@@ -120,6 +120,18 @@
             "success": "Goal edited successfully",
             "successMessage": "The goal has been edited successfully",
             "loading": "Saving..."
+        },
+        "editSubtask": {
+            "title": "Edit subtask",
+            "titlePlaceholder": "e.g. 'Learn Python'",
+            "description": "Description",
+            "descriptionPlaceholder": "e.g. 'Learn Python is a task that requires time and effort, but with dedication and practice, you can achieve it.'",
+            "save": "Save",
+            "error": "Error",
+            "errorMessage": "An error occurred while editing the subtask. Please try again.",
+            "success": "Subtask edited successfully",
+            "successMessage": "The subtask has been edited successfully",
+            "loading": "Saving..."
         }
     },
     "account": {

@@ -1,16 +1,14 @@
-import { getGoal } from "@/components/data";
-import EditGoalHeader from "@/components/EditGoalHeader";
-import EditGoalIcon from "@/components/EditGoalIcon";
+import { getSubtask } from "@/components/data";
 import { Colors } from "@/constants/palette";
-import { GoalType } from "@/enums/types";
+import { SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-export default function EditGoalScreen() {
-    const { goal_id } = useLocalSearchParams();
+export default function EditSubtaskScreen() {
+    const { subtask_id } = useLocalSearchParams();
     const router = useRouter();
     const { t } = useTranslation();
     const [title, setTitle] = useState('');
@@ -19,7 +17,7 @@ export default function EditGoalScreen() {
     const [isTitleValid, setIsTitleValid] = useState(false);
     const [isDescriptionValid, setIsDescriptionValid] = useState(false);
     const [hasChanges, setHasChanges] = useState(false);
-    const [goal, setGoal] = useState<GoalType | null>(null);
+    const [subtask, setSubtask] = useState<SubtaskType | null>(null);
 
     useEffect(() => {
         setIsTitleValid(title.length > 4 && title.length < 50);
@@ -30,30 +28,30 @@ export default function EditGoalScreen() {
     }, [description]);
 
     useEffect(() => {
-        if (goal) {
-            const titleChanged = title !== goal.title;
-            const descriptionChanged = description !== goal.short_description;
+        if (subtask) {
+            const titleChanged = title !== subtask.title;
+            const descriptionChanged = description !== subtask.short_description;
             setHasChanges(titleChanged || descriptionChanged);
         }
-    }, [title, description, goal]);
+    }, [title, description, subtask]);
 
     useEffect(() => {
-        const fetchGoal = async () => {
-            const goal = await getGoal(goal_id as string);
-            if (goal) {
-                setTitle(goal.title || '');
-                setDescription(goal.short_description || '');
-                setGoal(goal);
+        const fetchSubtask = async () => {
+            const subtask = await getSubtask(subtask_id as string);
+            if (subtask) {
+                setTitle(subtask.title || '');
+                setDescription(subtask.short_description || '');
+                setSubtask(subtask);
             } else {
                 router.back();
             }
         }
-        fetchGoal();
-    }, [goal_id]);
+        fetchSubtask();
+    }, [subtask_id]);
 
     const handleSave = async () => {
         setLoading(true);
-        const { error } = await supabase.from("goals").update({ title, short_description: description }).eq("id", goal_id);
+        const { error } = await supabase.from("subtasks").update({ title, short_description: description }).eq("id", subtask_id);
         setLoading(false);
 
         if (error) {
@@ -67,33 +65,25 @@ export default function EditGoalScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.formTitle}>{t("home.editGoal.title")}</Text>
+            <Text style={styles.formTitle}>{t("home.editSubtask.title")}</Text>
             <View style={styles.form}>
-                <View style={styles.formEditHeader}>
-                    <Text style={styles.formGroupLabel}>{t("home.editGoal.headerImage")}:</Text>
-                    <EditGoalHeader link={goal?.header_image || ''} />
-                </View>
-                <View style={styles.formEditHeader}>
-                    <Text style={styles.formGroupLabel}>{t("home.editGoal.iconImage")}:</Text>
-                    <EditGoalIcon link={goal?.icon || ''} />
-                </View>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupLabel}>{t("home.editGoal.title")}:</Text>
+                    <Text style={styles.formGroupLabel}>{t("home.editSubtask.title")}:</Text>
                     <TextInput
                         style={styles.input}
                         value={title}
                         onChangeText={setTitle}
-                        placeholder={t("home.editGoal.titlePlaceholder")}
+                        placeholder={t("home.editSubtask.titlePlaceholder")}
                         placeholderTextColor="gray"
                     />
                 </View>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupLabel}>{t("home.editGoal.description")}:</Text>
+                    <Text style={styles.formGroupLabel}>{t("home.editSubtask.description")}:</Text>
                     <TextInput
                         style={styles.input}
                         value={description}
                         onChangeText={setDescription}
-                        placeholder={t("home.editGoal.descriptionPlaceholder")}
+                        placeholder={t("home.editSubtask.descriptionPlaceholder")}
                         placeholderTextColor="gray"
                         multiline
                         numberOfLines={4}
@@ -112,7 +102,7 @@ export default function EditGoalScreen() {
                     disabled={isLoading || !isTitleValid || !isDescriptionValid || !hasChanges}
                 >
                     <Text style={styles.saveButtonText}>
-                        {isLoading ? t("home.editGoal.loading") : t("home.editGoal.save")}
+                        {isLoading ? t("home.editSubtask.loading") : t("home.editSubtask.save")}
                     </Text>
                 </TouchableOpacity>
             </View>

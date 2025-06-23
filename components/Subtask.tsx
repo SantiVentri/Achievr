@@ -6,7 +6,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { GestureResponderEvent, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Subtask({ id, title, short_description, step, is_done }: SubtaskType) {
+export default function Subtask({ id, title, short_description, is_done, header_image }: SubtaskType & { header_image: string }) {
     const [isLoading, setIsLoading] = useState(false);
     const [isDone, setIsDone] = useState(is_done);
     const router = useRouter();
@@ -15,7 +15,7 @@ export default function Subtask({ id, title, short_description, step, is_done }:
         setIsLoading(true);
         router.push({
             pathname: "/(drawer)/(home)/(subtasks)/[id]",
-            params: { id }
+            params: { id, header_image }
         });
         setIsLoading(false);
     }

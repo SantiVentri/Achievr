@@ -71,7 +71,12 @@ export default function GoalScreen() {
 
     const handleRouter = useCallback(() => {
         setIsLoading(true);
-        router.push(`/editGoal?goal_id=${id}`);
+        router.push({
+            pathname: "/editGoal",
+            params: {
+                goal_id: id as string,
+            }
+        });
         setIsLoading(false);
     }, [id]);
 
@@ -118,7 +123,7 @@ export default function GoalScreen() {
                         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                     }
                     renderItem={({ item }) => (
-                        <Subtask {...item} />
+                        <Subtask {...item} header_image={goal?.header_image || ""} />
                     )}
                 />
             </ScrollView>

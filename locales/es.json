@@ -120,6 +120,18 @@
             "success": "Objetivo editado correctamente",
             "successMessage": "El objetivo se ha editado correctamente",
             "loading": "Guardando..."
+        },
+        "editSubtask": {
+            "title": "Editar subtarea",
+            "titlePlaceholder": "e.g. 'Aprender Python'",
+            "description": "Descripción",
+            "descriptionPlaceholder": "e.g. 'Aprender Python es una tarea que requiere tiempo y esfuerzo, pero con dedicación y práctica, puedes lograrlo.'",
+            "save": "Guardar",
+            "error": "Error",
+            "errorMessage": "Ocurrió un error al editar la subtarea. Por favor, intenta nuevamente.",
+            "success": "Subtarea editada correctamente",
+            "successMessage": "La subtarea se ha editado correctamente",
+            "loading": "Guardando..."
         }
     },
     "account": {
