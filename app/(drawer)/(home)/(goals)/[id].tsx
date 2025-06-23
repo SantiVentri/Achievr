@@ -19,6 +19,7 @@ export default function GoalScreen() {
     const [refreshing, setRefreshing] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isDone, setIsDone] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchAllData = useCallback(async () => {
         if (!id) return;
@@ -68,6 +69,12 @@ export default function GoalScreen() {
         await supabase.from("goals").update({ is_done: !isDone }).eq("id", id);
     }, [id, isDone]);
 
+    const handleRouter = useCallback(() => {
+        setIsLoading(true);
+        router.push(`/editGoal?goal_id=${id}`);
+        setIsLoading(false);
+    }, [id]);
+
     return (
         <View style={styles.container}>
             <StatusBar style="light" />
@@ -77,7 +84,7 @@ export default function GoalScreen() {
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }>
                 <View style={styles.headerContainer}>
-                    <Pressable style={styles.header} onPress={() => router.push(`/editGoal?id=${id}`)}>
+                    <Pressable style={styles.header} onPress={handleRouter} disabled={isLoading}>
                         <Image
                             source={{ uri: goal?.header_image }}
                             style={styles.image}

@@ -22,6 +22,21 @@ export async function getGoals(user: User | null, is_done: boolean): Promise<Goa
     }
 }
 
+export async function getGoal(goal_id: string): Promise<GoalType | null> {
+    const { data, error } = await supabase
+        .from("goals")
+        .select("*")
+        .eq("id", goal_id)
+        .single();
+
+    if (error) {
+        console.error(error);
+        return null;
+    } else {
+        return data;
+    }
+}
+
 export async function getSubtasks(goal_id: string): Promise<SubtaskType[]> {
     const { data, error } = await supabase
         .from("subtasks")

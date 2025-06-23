@@ -1,18 +1,179 @@
-import { useLocalSearchParams } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { getGoal } from "@/components/data";
+import { Colors } from "@/constants/palette";
+import { GoalType } from "@/enums/types";
+import { supabase } from "@/utils/supabase";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-export default function EditGoal() {
+export default function EditAccountScreen() {
     const { goal_id } = useLocalSearchParams();
-    return <View style={styles.container}>
-        <Text>Edit Goal</Text>
-    </View>;
+    const router = useRouter();
+    const { t } = useTranslation();
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [isLoading, setLoading] = useState(false);
+    const [isTitleValid, setIsTitleValid] = useState(false);
+    const [isDescriptionValid, setIsDescriptionValid] = useState(false);
+    const [hasChanges, setHasChanges] = useState(false);
+    const [goal, setGoal] = useState<GoalType | null>(null);
+
+    useEffect(() => {
+        setIsTitleValid(title.length > 4 && title.length < 50);
+    }, [title]);
+
+    useEffect(() => {
+        setIsDescriptionValid(description.length < 100);
+    }, [description]);
+
+    // Verificar si hay cambios en cualquiera de los dos campos
+    useEffect(() => {
+        if (goal) {
+            const titleChanged = title !== goal.title;
+            const descriptionChanged = description !== goal.short_description;
+            setHasChanges(titleChanged || descriptionChanged);
+        }
+    }, [title, description, goal]);
+
+    useEffect(() => {
+        const fetchGoal = async () => {
+            const goal = await getGoal(goal_id as string);
+            if (goal) {
+                setTitle(goal.title || '');
+                setDescription(goal.short_description || '');
+                setGoal(goal);
+            } else {
+                router.back();
+            }
+        }
+        fetchGoal();
+    }, [goal_id]);
+
+    const handleSave = async () => {
+        setLoading(true);
+        const { error } = await supabase.from("goals").update({ title, short_description: description }).eq("id", goal_id);
+        setLoading(false);
+
+        if (error) {
+            Alert.alert("Error", "No se pudo guardar los cambios");
+        } else {
+            Alert.alert("Éxito", "Cambios guardados correctamente", [
+                { text: "OK", onPress: () => router.back() }
+            ]);
+        }
+    }
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.formTitle}>{t("home.editGoal.title")}</Text>
+            <View style={styles.form}>
+                <View style={styles.formGroup}>
+                    <Text style={styles.formGroupLabel}>{t("home.editGoal.title")}</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={title}
+                        onChangeText={setTitle}
+                        placeholder={t("home.editGoal.titlePlaceholder")}
+                        placeholderTextColor="gray"
+                    />
+                </View>
+                <View style={styles.formGroup}>
+                    <Text style={styles.formGroupLabel}>{t("home.editGoal.description")}</Text>
+                    <TextInput
+                        style={styles.input}
+                        value={description}
+                        onChangeText={setDescription}
+                        placeholder={t("home.editGoal.descriptionPlaceholder")}
+                        placeholderTextColor="gray"
+                        multiline
+                        numberOfLines={4}
+                    />
+                </View>
+                <TouchableOpacity
+                    style={[
+                        styles.saveButton,
+                        {
+                            backgroundColor: isLoading || !isTitleValid || !isDescriptionValid || !hasChanges
+                                ? "gray"
+                                : Colors.primary
+                        }
+                    ]}
+                    onPress={handleSave}
+                    disabled={isLoading || !isTitleValid || !isDescriptionValid || !hasChanges}
+                >
+                    <Text style={styles.saveButtonText}>
+                        {isLoading ? t("home.editGoal.loading") : t("home.editGoal.save")}
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        </View>
+    )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "white",
+        paddingTop: 70,
+        paddingHorizontal: 25,
+        gap: 30,
+    },
+    formTitle: {
+        fontSize: 24,
+        fontWeight: "bold",
+    },
+    formSubtitle: {
+        fontSize: 20,
+        fontWeight: "bold",
+    },
+    form: {
+        alignItems: "flex-start",
+        gap: 20,
+    },
+    editAvatar: {
+        position: "relative",
+        outlineWidth: 4,
+        outlineColor: Colors.primary,
+        outlineStyle: "solid",
+        outlineOffset: -1,
+        borderRadius: 100,
+        alignItems: "flex-start",
+        gap: 10,
+    },
+    editAvatarButton: {
+        position: "absolute",
+        bottom: -5,
+        right: -5,
+        outlineWidth: 3,
+        outlineColor: "white",
+        outlineStyle: "solid",
+        backgroundColor: Colors.primary,
+        borderRadius: 100,
+        padding: 8,
+    },
+    formGroup: {
+        width: "100%",
+        gap: 5,
+    },
+    formGroupLabel: {
+        fontSize: 16,
+        fontWeight: "bold",
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: "gray",
+        borderRadius: 10,
+        padding: 10,
+    },
+    saveButton: {
+        backgroundColor: Colors.primary,
+        borderRadius: 10,
+        padding: 10,
+        width: "100%",
+    },
+    saveButtonText: {
+        textAlign: "center",
+        color: "white",
+        fontWeight: "bold",
     },
 });

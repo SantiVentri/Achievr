@@ -106,6 +106,18 @@
             "deleteGoal": "Eliminar",
             "deleteGoalMessage": "¿Estás seguro de querer eliminar este objetivo?",
             "cancel": "Cancelar"
+        },
+        "editGoal": {
+            "title": "Editar objetivo",
+            "titlePlaceholder": "e.g. 'Aprender Python'",
+            "description": "Descripción",
+            "descriptionPlaceholder": "e.g. 'Aprender Python es una tarea que requiere tiempo y esfuerzo, pero con dedicación y práctica, puedes lograrlo.'",
+            "save": "Guardar",
+            "error": "Error",
+            "errorMessage": "Ocurrió un error al editar el objetivo. Por favor, intenta nuevamente.",
+            "success": "Objetivo editado correctamente",
+            "successMessage": "El objetivo se ha editado correctamente",
+            "loading": "Guardando..."
         }
     },
     "account": {
