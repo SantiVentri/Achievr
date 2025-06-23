@@ -10,14 +10,22 @@ export default function FormManual() {
     const { user } = useUser();
     const { t } = useTranslation();
     const router = useRouter();
-    const [goal, setGoal] = useState("");
+    const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState({
+        title: "",
+    });
 
     const handleCreateGoal = async () => {
         setIsLoading(true);
+        if (title.length < 4) {
+            setErrors({ ...errors, title: t("home.createGoal.form.goalMinLength") });
+            setIsLoading(false);
+            return;
+        }
         const { error } = await supabase.from("goals").insert({
-            title: goal,
+            title: title,
             short_description: description,
             creator_id: user?.id,
             ai: false,
@@ -33,8 +41,11 @@ export default function FormManual() {
     }
 
     const resetForm = () => {
-        setGoal("");
+        setTitle("");
         setDescription("");
+        setErrors({
+            title: "",
+        });
     }
 
     return (
@@ -43,12 +54,16 @@ export default function FormManual() {
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupTitle}>{t("home.createGoal.form.goal")}</Text>
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, errors.title && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
                         placeholder={t("home.createGoal.form.goalPlaceholder")}
                         placeholderTextColor="gray"
-                        value={goal}
-                        onChangeText={setGoal}
+                        value={title}
+                        onChangeText={(text) => {
+                            setTitle(text);
+                            setErrors({ ...errors, title: "" });
+                        }}
                     />
+                    {errors.title && <Text style={styles.error}>{errors.title}</Text>}
                 </View>
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupTitle}>{t("home.createGoal.form.description")}</Text>
@@ -58,11 +73,13 @@ export default function FormManual() {
                         placeholderTextColor="gray"
                         multiline
                         value={description}
-                        onChangeText={setDescription}
+                        onChangeText={(text) => {
+                            setDescription(text);
+                        }}
                     />
                 </View>
             </View>
-            <TouchableOpacity style={[styles.button, { backgroundColor: !goal || !description || isLoading ? 'gray' : Colors.primary }]} onPress={handleCreateGoal} disabled={!goal || !description || isLoading}>
+            <TouchableOpacity style={[styles.button, { backgroundColor: !title || isLoading ? 'gray' : Colors.primary }]} onPress={handleCreateGoal} disabled={!title || isLoading}>
                 <Text style={styles.buttonText}>{isLoading ? t("home.createGoal.button.loading") : t("home.createGoal.button.create")}</Text>
             </TouchableOpacity>
         </View>
@@ -85,8 +102,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     input: {
+        borderWidth: 2,
+        borderColor: "grey",
+        backgroundColor: "#f4f4f4",
         borderRadius: 10,
-        backgroundColor: '#f4f4f4',
         padding: 10,
     },
     button: {
@@ -97,5 +116,9 @@ const styles = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         textAlign: "center",
+    },
+    error: {
+        color: "red",
+        fontSize: 12,
     },
 });

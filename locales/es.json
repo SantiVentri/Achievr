@@ -72,7 +72,9 @@
                 "hours": "Horas",
                 "hoursPlaceholder": "e.g. '10', '20', '30'",
                 "extraInfoTitle": "Información extra para ayudar a la IA:",
-                "extraInfoPlaceholder": "e.g. 'Sé que ya conozco los conceptos básicos', 'Tengo un presupuesto ajustado', 'Solo los fines de semana'"
+                "extraInfoPlaceholder": "e.g. 'Sé que ya conozco los conceptos básicos', 'Tengo un presupuesto ajustado', 'Solo los fines de semana'",
+                "goalMinLength": "El objetivo debe tener al menos 4 caracteres",
+                "extraInfoMinLength": "La información extra debe tener al menos 10 caracteres"
             },
             "button": {
                 "create": "Crear objetivo",
@@ -91,6 +93,7 @@
                 "subtaskPlaceholder": "e.g. '¿Qué es Python?', 'Organizar una dieta'.",
                 "description": "Describe tu subtarea",
                 "descriptionPlaceholder": "e.g. 'Aprender las bases de Python es clave para empezar a programar. Investigar sobre los frameworks más populares.'",
+                "subtaskMinLength": "La subtarea debe tener al menos 4 caracteres",
                 "button": {
                     "create": "Crear subtarea",
                     "loading": "Creando..."

@@ -72,7 +72,9 @@
                 "hours": "Hours",
                 "hoursPlaceholder": "e.g. '10', '20', '30'",
                 "extraInfoTitle": "Extra info to help the AI:",
-                "extraInfoPlaceholder": "e.g. 'I already know the basics', 'I'm on a tight budget', 'Weekends only'"
+                "extraInfoPlaceholder": "e.g. 'I already know the basics', 'I'm on a tight budget', 'Weekends only'",
+                "goalMinLength": "The goal must have at least 4 characters",
+                "extraInfoMinLength": "The extra info must have at least 10 characters"
             },
             "button": {
                 "create": "Create goal",
@@ -82,6 +84,21 @@
             "errorMessage": "An error occurred while creating the goal. Please try again.",
             "success": "Goal created successfully",
             "successMessage": "The goal has been created successfully"
+        },
+        "createSubtask": {
+            "title": "Create subtask",
+            "subtitle": "Complete the form and start your journey!",
+            "form": {
+                "subtask": "What is your subtask?",
+                "subtaskPlaceholder": "e.g. 'What is Python?', 'Organize a diet'.",
+                "description": "Describe your subtask",
+                "descriptionPlaceholder": "e.g. 'Learning Python is a task that requires time and effort, but with dedication and practice, you can achieve it.'",
+                "subtaskMinLength": "The subtask must have at least 4 characters",
+                "button": {
+                    "create": "Create subtask",
+                    "loading": "Creating..."
+                }
+            }
         },
         "goal": {
             "subtasks": "Subtasks",

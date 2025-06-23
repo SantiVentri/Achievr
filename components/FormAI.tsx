@@ -10,19 +10,34 @@ export default function FormAI() {
     const [hours, setHours] = useState<number | null>(null);
     const [extraInfo, setExtraInfo] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState({
+        goal: "",
+        extraInfo: "",
+    });
 
     const handleCreateGoal = async () => {
         setIsLoading(true);
-
+        if (goal.length < 4) {
+            setErrors({ ...errors, goal: t("home.createGoal.form.goalMinLength") });
+            setIsLoading(false);
+            return;
+        }
+        if (extraInfo.length > 0 && extraInfo.length < 10) {
+            setErrors({ ...errors, extraInfo: t("home.createGoal.form.extraInfoMinLength") });
+            setIsLoading(false);
+            return;
+        }
         resetForm();
         setIsLoading(false);
     }
 
     const resetForm = () => {
         setGoal("");
-        setSteps(null);
-        setHours(null);
         setExtraInfo("");
+        setErrors({
+            goal: "",
+            extraInfo: "",
+        });
     }
 
     const stepsOptions = [5, 10, 20];
@@ -34,12 +49,16 @@ export default function FormAI() {
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupTitle}>{t("home.createGoal.form.goal")}</Text>
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, errors.goal && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
                         placeholder={t("home.createGoal.form.goalPlaceholder")}
                         placeholderTextColor="gray"
                         value={goal}
-                        onChangeText={setGoal}
+                        onChangeText={(text) => {
+                            setGoal(text);
+                            setErrors({ ...errors, goal: "" });
+                        }}
                     />
+                    {errors.goal && <Text style={styles.error}>{errors.goal}</Text>}
                 </View>
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupTitle}>{t("home.createGoal.form.stepsTitle")}</Text>
@@ -51,7 +70,9 @@ export default function FormAI() {
                                     styles.option,
                                     steps === option && { backgroundColor: Colors.primary }
                                 ]}
-                                onPress={() => setSteps(option)}
+                                onPress={() => {
+                                    setSteps(option);
+                                }}
                             >
                                 <Text style={[
                                     styles.optionText,
@@ -71,7 +92,9 @@ export default function FormAI() {
                                     styles.option,
                                     hours === option && { backgroundColor: Colors.primary }
                                 ]}
-                                onPress={() => setHours(option)}
+                                onPress={() => {
+                                    setHours(option);
+                                }}
                             >
                                 <Text style={[
                                     styles.optionText,
@@ -84,20 +107,21 @@ export default function FormAI() {
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupTitle}>{t("home.createGoal.form.extraInfoTitle")}</Text>
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, errors.extraInfo && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
                         placeholder={t("home.createGoal.form.extraInfoPlaceholder")}
                         placeholderTextColor="gray"
                         multiline
                         value={extraInfo}
-                        onChangeText={setExtraInfo}
+                        onChangeText={(text) => {
+                            setExtraInfo(text);
+                            setErrors({ ...errors, extraInfo: "" });
+                        }}
                     />
+                    {errors.extraInfo && <Text style={styles.error}>{errors.extraInfo}</Text>}
                 </View>
             </View>
             <TouchableOpacity
-                style={[
-                    styles.button,
-                    { backgroundColor: !goal || steps === null || hours === null || isLoading ? 'gray' : Colors.primary }
-                ]}
+                style={[styles.button, { backgroundColor: !goal || steps === null || hours === null || isLoading ? 'gray' : Colors.primary }]}
                 onPress={handleCreateGoal}
                 disabled={!goal || steps === null || hours === null || isLoading}
             >
@@ -123,8 +147,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     input: {
+        borderWidth: 2,
+        borderColor: "grey",
+        backgroundColor: "#f4f4f4",
         borderRadius: 10,
-        backgroundColor: '#f4f4f4',
         padding: 10,
     },
     option: {
@@ -146,5 +172,9 @@ const styles = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         textAlign: "center",
+    },
+    error: {
+        color: "red",
+        fontSize: 12,
     },
 });

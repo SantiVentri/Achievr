@@ -13,12 +13,20 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
     const [subtask, setSubtask] = useState("");
     const [description, setDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState({
+        subtask: "",
+    });
 
     const handleCreateGoal = async () => {
         setIsLoading(true);
+        if (subtask.length < 4) {
+            setErrors({ ...errors, subtask: t("home.createSubtask.form.subtaskMinLength") });
+            setIsLoading(false);
+            return;
+        }
         const { error } = await supabase.from("subtasks").insert({
             title: subtask,
-            short_description: description,
+            short_description: description || null,
             creator_id: user?.id,
             goal_id: goal_id,
         });
@@ -35,6 +43,9 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
     const resetForm = () => {
         setSubtask("");
         setDescription("");
+        setErrors({
+            subtask: "",
+        });
     }
 
     return (
@@ -43,12 +54,16 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupTitle}>{t("home.createSubtask.form.subtask")}</Text>
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, errors.subtask && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
                         placeholder={t("home.createSubtask.form.subtaskPlaceholder")}
                         placeholderTextColor="gray"
                         value={subtask}
-                        onChangeText={setSubtask}
+                        onChangeText={(text) => {
+                            setSubtask(text);
+                            setErrors({ ...errors, subtask: "" });
+                        }}
                     />
+                    {errors.subtask && <Text style={styles.error}>{errors.subtask}</Text>}
                 </View>
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupTitle}>{t("home.createSubtask.form.description")}</Text>
@@ -62,7 +77,7 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
                     />
                 </View>
             </View>
-            <TouchableOpacity style={[styles.button, { backgroundColor: !subtask || !description || isLoading ? 'gray' : Colors.primary }]} onPress={handleCreateGoal} disabled={!subtask || !description || isLoading}>
+            <TouchableOpacity style={[styles.button, { backgroundColor: !subtask || isLoading ? 'gray' : Colors.primary }]} onPress={handleCreateGoal} disabled={!subtask || isLoading}>
                 <Text style={styles.buttonText}>{isLoading ? t("home.createSubtask.form.button.loading") : t("home.createSubtask.form.button.create")}</Text>
             </TouchableOpacity>
         </View>
@@ -97,5 +112,9 @@ const styles = StyleSheet.create({
         color: "white",
         fontWeight: "bold",
         textAlign: "center",
+    },
+    error: {
+        color: "red",
+        fontSize: 12,
     },
 });
