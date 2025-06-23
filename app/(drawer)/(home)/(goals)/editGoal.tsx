@@ -1,4 +1,6 @@
 import { getGoal } from "@/components/data";
+import EditGoalHeader from "@/components/EditGoalHeader";
+import EditGoalIcon from "@/components/EditGoalIcon";
 import { Colors } from "@/constants/palette";
 import { GoalType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
@@ -27,7 +29,6 @@ export default function EditAccountScreen() {
         setIsDescriptionValid(description.length < 100);
     }, [description]);
 
-    // Verificar si hay cambios en cualquiera de los dos campos
     useEffect(() => {
         if (goal) {
             const titleChanged = title !== goal.title;
@@ -68,8 +69,16 @@ export default function EditAccountScreen() {
         <View style={styles.container}>
             <Text style={styles.formTitle}>{t("home.editGoal.title")}</Text>
             <View style={styles.form}>
+                <View style={styles.formEditHeader}>
+                    <Text style={styles.formGroupLabel}>{t("home.editGoal.headerImage")}:</Text>
+                    <EditGoalHeader link={goal?.header_image || ''} />
+                </View>
+                <View style={styles.formEditHeader}>
+                    <Text style={styles.formGroupLabel}>{t("home.editGoal.iconImage")}:</Text>
+                    <EditGoalIcon link={goal?.icon || ''} />
+                </View>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupLabel}>{t("home.editGoal.title")}</Text>
+                    <Text style={styles.formGroupLabel}>{t("home.editGoal.title")}:</Text>
                     <TextInput
                         style={styles.input}
                         value={title}
@@ -79,7 +88,7 @@ export default function EditAccountScreen() {
                     />
                 </View>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupLabel}>{t("home.editGoal.description")}</Text>
+                    <Text style={styles.formGroupLabel}>{t("home.editGoal.description")}:</Text>
                     <TextInput
                         style={styles.input}
                         value={description}
@@ -129,6 +138,9 @@ const styles = StyleSheet.create({
     form: {
         alignItems: "flex-start",
         gap: 20,
+    },
+    formEditHeader: {
+        gap: 10,
     },
     editAvatar: {
         position: "relative",

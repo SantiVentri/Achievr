@@ -1,4 +1,4 @@
-import CreateGoalButton from "@/components/createGoalButton";
+import CreateGoalButton from "@/components/CreateGoalButton";
 import { getSubtasks } from "@/components/data";
 import Subtask from "@/components/Subtask";
 import { GoalType, SubtaskType } from "@/enums/types";

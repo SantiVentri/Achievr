@@ -108,6 +108,8 @@
             "cancel": "Cancel"
         },
         "editGoal": {
+            "headerImage": "Edit image",
+            "iconImage": "Edit icon",
             "title": "Edit goal",
             "titlePlaceholder": "e.g. 'Learn Python'",
             "description": "Description",

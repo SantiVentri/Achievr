@@ -1,4 +1,4 @@
-import CreateGoalButton from '@/components/createGoalButton';
+import CreateGoalButton from '@/components/CreateGoalButton';
 import { getGoals } from '@/components/data';
 import Goal from '@/components/Goal';
 import { useUser } from '@/context/UserContext';
