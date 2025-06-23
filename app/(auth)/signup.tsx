@@ -30,7 +30,7 @@ export default function SignUpScreen() {
             }
         })
         if (error) {
-            Alert.alert(t("auth.signup.error"), t("auth.signup.errorMessage"));
+            Alert.alert(t("common.error"), t("auth.signup.errorMessage"));
         } else {
             router.replace("/");
         }
@@ -51,34 +51,34 @@ export default function SignUpScreen() {
                 </View>
                 <View style={styles.formBody}>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>{t("auth.signup.username")}:</Text>
+                        <Text style={styles.formGroupLabel}>{t("common.username")}:</Text>
                         <TextInput
                             style={styles.input}
                             value={username}
                             onChangeText={setUsername}
-                            placeholder={t("auth.signup.usernamePlaceholder")}
+                            placeholder={t("common.usernamePlaceholder")}
                             placeholderTextColor="gray"
                         />
                     </View>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>{t("auth.signup.email")}:</Text>
+                        <Text style={styles.formGroupLabel}>{t("common.email")}:</Text>
                         <TextInput
                             style={styles.input}
                             value={email}
                             onChangeText={setEmail}
-                            placeholder={t("auth.signup.emailPlaceholder")}
+                            placeholder={t("common.emailPlaceholder")}
                             placeholderTextColor="gray"
                             keyboardType="email-address"
                         />
                     </View>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>{t("auth.signup.password")}:</Text>
+                        <Text style={styles.formGroupLabel}>{t("common.password")}:</Text>
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.input}
                                 value={password}
                                 onChangeText={setPassword}
-                                placeholder={t("auth.signup.passwordPlaceholder")}
+                                placeholder={t("common.passwordPlaceholder")}
                                 placeholderTextColor="gray"
                                 secureTextEntry={!showPassword}
                             />
@@ -88,7 +88,7 @@ export default function SignUpScreen() {
                         </View>
                     </View>
                     <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignIn} disabled={loading || disabled}>
-                        <Text style={styles.buttonText}>{loading ? t("auth.signup.loading") : t("auth.signup.signup")}</Text>
+                        <Text style={styles.buttonText}>{loading ? t("common.loading") : t("auth.signup.signup")}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

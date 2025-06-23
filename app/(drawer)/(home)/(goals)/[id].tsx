@@ -1,12 +1,12 @@
-import CreateGoalButton from "@/components/CreateGoalButton";
+import CreateGoalButton from "@/components/createGoalButton";
 import { getSubtasks } from "@/components/data";
 import Subtask from "@/components/Subtask";
 import { GoalType, SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, FlatList, GestureResponderEvent, Image, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -38,9 +38,11 @@ export default function GoalScreen() {
         }
     }, [id]);
 
-    useEffect(() => {
-        fetchAllData();
-    }, [fetchAllData]);
+    useFocusEffect(
+        useCallback(() => {
+            fetchAllData();
+        }, [fetchAllData])
+    );
 
     const onRefresh = useCallback(async () => {
         setRefreshing(true);

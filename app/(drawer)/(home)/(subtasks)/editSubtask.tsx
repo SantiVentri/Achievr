@@ -55,10 +55,10 @@ export default function EditSubtaskScreen() {
         setLoading(false);
 
         if (error) {
-            Alert.alert("Error", "No se pudo guardar los cambios");
+            Alert.alert(t("home.editSubtask.error"), t("home.editSubtask.errorMessage"));
         } else {
-            Alert.alert("Éxito", "Cambios guardados correctamente", [
-                { text: "OK", onPress: () => router.back() }
+            Alert.alert(t("home.editSubtask.success"), t("home.editSubtask.successMessage"), [
+                { text: t("home.editSubtask.ok"), onPress: () => router.back() }
             ]);
         }
     }

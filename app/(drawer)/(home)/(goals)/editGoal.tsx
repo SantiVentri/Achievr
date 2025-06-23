@@ -57,10 +57,10 @@ export default function EditGoalScreen() {
         setLoading(false);
 
         if (error) {
-            Alert.alert("Error", "No se pudo guardar los cambios");
+            Alert.alert(t("home.editGoal.error"), t("home.editGoal.errorMessage"));
         } else {
-            Alert.alert("Éxito", "Cambios guardados correctamente", [
-                { text: "OK", onPress: () => router.back() }
+            Alert.alert(t("home.editGoal.success"), t("home.editGoal.successMessage"), [
+                { text: t("common.ok"), onPress: () => router.back() }
             ]);
         }
     }

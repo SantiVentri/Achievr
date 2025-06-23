@@ -1,163 +1,178 @@
 {
+    "common": {
+      "email": "Email",
+      "emailPlaceholder": "e.g: juanperez@gmail.com",
+      "password": "Contraseña",
+      "passwordPlaceholder": "e.g: Juancito123",
+      "confirmPassword": "Confirmar contraseña",
+      "confirmPasswordPlaceholder": "e.g: MyDogBirthday123",
+      "username": "Nombre de usuario",
+      "usernamePlaceholder": "e.g: Juan Perez",
+      "description": "Descripción",
+      "descriptionPlaceholder": "e.g: 'Aprender Python requiere tiempo y práctica.'",
+      "error": "Error",
+      "errorMessage": "Ocurrió un error. Por favor, intenta nuevamente.",
+      "loading": "Cargando...",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "ok": "OK",
+      "create": "Crear",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "success": "Éxito"
+    },
     "auth": {
-        "signin": {
-            "title": "Iniciar sesión",
-            "description": "Ingresa tu email y contraseña para iniciar sesión",
-            "email": "Email",
-            "emailPlaceholder": "e.g: juanperez@gmail.com",
-            "password": "Contraseña",
-            "passwordPlaceholder": "e.g: Juancito123",
-            "signin": "Iniciar sesión",
-            "signup": "Registrarse",
-            "forgotPassword": "¿Olvidaste tu contraseña?",
-            "dontHaveAccount": "¿No tienes una cuenta?",
-            "signupLink": "Registrarse",
-            "error": "Error",
-            "errorMessage": "Ocurrió un error al iniciar sesión. Por favor, intenta nuevamente.",
-            "loading": "Iniciando sesión..."
-        },
-        "signup": {
-            "title": "Registrarse",
-            "description": "Ingresa tu email y contraseña para registrarte",
-            "username": "Nombre de usuario",
-            "usernamePlaceholder": "e.g: Juan Perez",
-            "email": "Email",
-            "emailPlaceholder": "e.g: juanperez@gmail.com",
-            "password": "Contraseña",
-            "passwordPlaceholder": "e.g: Juancito123",
-            "confirmPassword": "Confirmar contraseña",
-            "confirmPasswordPlaceholder": "e.g: MyDogBirthday123",
-            "signup": "Registrarse",
-            "signin": "Iniciar sesión",
-            "alreadyHaveAccount": "¿Ya tienes una cuenta?",
-            "signinLink": "Iniciar sesión",
-            "error": "Error",
-            "errorMessage": "Ocurrió un error al registrarse. Por favor, intenta nuevamente.",
-            "loading": "Registrando..."
-        },
-        "signout": "Cerrar sesión"
+      "signin": {
+        "title": "Iniciar sesión",
+        "description": "Ingresa tu email y contraseña para iniciar sesión",
+        "signin": "Iniciar sesión",
+        "signup": "Registrarse",
+        "forgotPassword": "¿Olvidaste tu contraseña?",
+        "dontHaveAccount": "¿No tienes una cuenta?",
+        "signupLink": "Registrarse",
+        "loading": "Iniciando sesión...",
+        "errorMessage": "Ocurrió un error al iniciar sesión. Por favor, intenta nuevamente."
+      },
+      "signup": {
+        "title": "Registrarse",
+        "description": "Ingresa tu email y contraseña para registrarte",
+        "signup": "Registrarse",
+        "signin": "Iniciar sesión",
+        "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+        "signinLink": "Iniciar sesión",
+        "loading": "Registrando...",
+        "errorMessage": "Ocurrió un error al registrarse. Por favor, intenta nuevamente."
+      },
+      "signout": "Cerrar sesión"
     },
     "drawer": {
-        "home": "Inicio",
-        "support": "Soporte",
-        "privacyPolicy": "Política de privacidad"
+      "home": "Inicio",
+      "support": "Soporte",
+      "privacyPolicy": "Política de privacidad"
     },
     "home": {
-        "subtitle": "Hola, {{name}}",
-        "greeting": {
-            "morning": "Buenos días",
-            "afternoon": "Buenas tardes",
-            "evening": "Buenas noches"
+      "subtitle": "Hola, {{name}}",
+      "greeting": {
+        "morning": "Buenos días",
+        "afternoon": "Buenas tardes",
+        "evening": "Buenas noches"
+      },
+      "goalsLists": {
+        "goals": "Objetivos",
+        "doneGoals": "Objetivos completados",
+        "noGoals": "No hay objetivos",
+        "noDoneGoals": "No hay objetivos completados"
+      },
+      "createGoal": {
+        "title": "Establece tu próximo objetivo",
+        "subtitle": "Completa el formulario y comienza tu viaje!",
+        "ai": "Crear con IA",
+        "manual": "Crear manualmente",
+        "form": {
+            "goal": "¿Cuál es tu objetivo?",
+          "goalPlaceholder": "e.g. 'Aprender Python', 'Perder 5kg', 'Iniciar un negocio'",
+          "description": "Descripción",
+          "descriptionPlaceholder": "e.g. 'Aprender Python requiere tiempo y práctica.'",
+          "stepsTitle": "¿Cuántos pasos para lograrlo?",
+          "steps": "Pasos",
+          "stepsPlaceholder": "e.g. '10', '20', '30'",
+          "hoursTitle": "¿Cuántas horas por semana puedes dedicar?",
+          "hours": "Horas",
+          "hoursPlaceholder": "e.g. '10', '20', '30'",
+          "extraInfoTitle": "Información extra para ayudar a la IA:",
+          "extraInfoPlaceholder": "e.g. 'Sé que ya conozco los conceptos básicos', 'Tengo un presupuesto ajustado', 'Solo los fines de semana'",
+          "goalMinLength": "El objetivo debe tener al menos 4 caracteres",
+          "extraInfoMinLength": "La información extra debe tener al menos 10 caracteres"
         },
-        "goalsLists": {
-            "goals": "Objetivos",
-            "doneGoals": "Objetivos completados",
-            "noGoals": "No hay objetivos",
-            "noDoneGoals": "No hay objetivos completados"
+        "button": {
+            "create": "Crear objetivo",
+            "loading": "Creando..."
         },
-        "createGoal": {
-            "title": "Establece tu próximo objetivo",
-            "subtitle": "Completa el formulario y comienza tu viaje!",
-            "ai": "Crear con IA",
-            "manual": "Crear manualmente",
-            "form": {
-                "goal": "¿Cuál es tu objetivo?",
-                "goalPlaceholder": "e.g. 'Aprender Python', 'Perder 5kg', 'Iniciar un negocio'",
-                "description": "Describe tu objetivo",
-                "descriptionPlaceholder": "e.g. 'Aprender Python es una tarea que requiere tiempo y esfuerzo, pero con dedicación y práctica, puedes lograrlo.'",
-                "stepsTitle": "¿Cuántos pasos para lograrlo?",
-                "steps": "Pasos",
-                "stepsPlaceholder": "e.g. '10', '20', '30'",
-                "hoursTitle": "¿Cuántas horas por semana puedes dedicar?",
-                "hours": "Horas",
-                "hoursPlaceholder": "e.g. '10', '20', '30'",
-                "extraInfoTitle": "Información extra para ayudar a la IA:",
-                "extraInfoPlaceholder": "e.g. 'Sé que ya conozco los conceptos básicos', 'Tengo un presupuesto ajustado', 'Solo los fines de semana'",
-                "goalMinLength": "El objetivo debe tener al menos 4 caracteres",
-                "extraInfoMinLength": "La información extra debe tener al menos 10 caracteres"
-            },
-            "button": {
-                "create": "Crear objetivo",
-                "loading": "Creando..."
-            },
-            "error": "Error",
-            "errorMessage": "Ocurrió un error al crear el objetivo. Por favor, intenta nuevamente.",
-            "success": "Objetivo creado correctamente",
-            "successMessage": "El objetivo se ha creado correctamente"
-        },
-        "createSubtask": {
-            "title": "Crear subtarea",
-            "subtitle": "Completa el formulario y comienza tu viaje!",
-            "form": {
-                "subtask": "¿Cuál es tu subtarea?",
-                "subtaskPlaceholder": "e.g. '¿Qué es Python?', 'Organizar una dieta'.",
-                "description": "Describe tu subtarea",
-                "descriptionPlaceholder": "e.g. 'Aprender las bases de Python es clave para empezar a programar. Investigar sobre los frameworks más populares.'",
-                "subtaskMinLength": "La subtarea debe tener al menos 4 caracteres",
-                "button": {
-                    "create": "Crear subtarea",
-                    "loading": "Creando..."
-                }
-            }
-        },
-        "goal": {
-            "subtasks": "Subtareas",
-            "noSubtasks": "No hay subtareas",
-            "deleteGoal": "Eliminar",
-            "deleteGoalMessage": "¿Estás seguro de querer eliminar este objetivo?",
-            "cancel": "Cancelar"
-        },
-        "editGoal": {
-            "headerImage": "Editar imagen",
-            "iconImage": "Editar icono",
-            "title": "Editar objetivo",
-            "titlePlaceholder": "e.g. 'Aprender Python'",
-            "description": "Descripción",
-            "descriptionPlaceholder": "e.g. 'Aprender Python es una tarea que requiere tiempo y esfuerzo, pero con dedicación y práctica, puedes lograrlo.'",
-            "save": "Guardar",
-            "error": "Error",
-            "errorMessage": "Ocurrió un error al editar el objetivo. Por favor, intenta nuevamente.",
-            "success": "Objetivo editado correctamente",
-            "successMessage": "El objetivo se ha editado correctamente",
-            "loading": "Guardando..."
-        },
-        "editSubtask": {
-            "title": "Editar subtarea",
-            "titlePlaceholder": "e.g. 'Aprender Python'",
-            "description": "Descripción",
-            "descriptionPlaceholder": "e.g. 'Aprender Python es una tarea que requiere tiempo y esfuerzo, pero con dedicación y práctica, puedes lograrlo.'",
-            "save": "Guardar",
-            "error": "Error",
-            "errorMessage": "Ocurrió un error al editar la subtarea. Por favor, intenta nuevamente.",
-            "success": "Subtarea editada correctamente",
-            "successMessage": "La subtarea se ha editado correctamente",
-            "loading": "Guardando..."
+        "error": "Error",
+        "errorMessage": "Ocurrió un error al crear el objetivo. Por favor, intenta nuevamente.",
+        "success": "Éxito",
+        "successMessage": "El objetivo se ha creado correctamente"
+      },
+      "createSubtask": {
+        "title": "Crear subtarea",
+        "subtitle": "Completa el formulario y comienza tu viaje!",
+        "form": {
+          "subtask": "¿Cuál es tu subtarea?",
+          "subtaskPlaceholder": "e.g. '¿Qué es Python?', 'Organizar una dieta'.",
+          "subtaskMinLength": "La subtarea debe tener al menos 4 caracteres",
+          "description": "Descripción",
+          "descriptionPlaceholder": "e.g. 'Aprender los conceptos básicos de programación en Python'",
+          "button": {
+            "create": "Crear subtarea",
+            "loading": "Creando..."
+          }
         }
+      },
+      "goal": {
+        "subtasks": "Subtareas",
+        "noSubtasks": "No hay subtareas",
+        "deleteGoal": "Eliminar",
+        "deleteGoalMessage": "¿Estás seguro de querer eliminar este objetivo?",
+        "cancel": "Cancelar"
+      },
+      "subtask": {
+        "deleteSubtask": "Eliminar",
+        "deleteSubtaskMessage": "¿Estás seguro de querer eliminar esta subtarea?",
+        "cancel": "Cancelar"
+      },
+      "editGoal": {
+        "headerImage": "Editar imagen",
+        "iconImage": "Editar icono",
+        "title": "Editar objetivo",
+        "titlePlaceholder": "e.g. 'Aprender Python'",
+        "description": "Descripción",
+        "descriptionPlaceholder": "e.g. 'Aprender programación en Python desde cero'",
+        "success": "Éxito",
+        "successMessage": "El objetivo se ha editado correctamente",
+        "error": "Error",
+        "errorMessage": "Ocurrió un error al editar el objetivo. Por favor, intenta nuevamente.",
+        "loading": "Guardando...",
+        "save": "Guardar",
+        "ok": "OK"
+      },
+      "editSubtask": {
+        "title": "Editar subtarea",
+        "titlePlaceholder": "e.g. 'Aprender Python'",
+        "description": "Descripción",
+        "descriptionPlaceholder": "e.g. 'Aprender los conceptos básicos de programación en Python'",
+        "success": "Éxito",
+        "successMessage": "La subtarea se ha editado correctamente",
+        "error": "Error",
+        "errorMessage": "Ocurrió un error al editar la subtarea. Por favor, intenta nuevamente.",
+        "loading": "Guardando...",
+        "save": "Guardar",
+        "ok": "OK"
+      }
     },
     "account": {
-        "editAccount": {
-            "title": "Editar cuenta",
-            "avatar": "Tu avatar",
-            "username": "Nombre de usuario",
-            "usernamePlaceholder": "e.g: Juan Perez",
-            "save": "Guardar",
-            "error": "Error",
-            "errorMessage": "Ocurrió un error al editar la cuenta. Por favor, intenta nuevamente.",
-            "success": "Cuenta editada correctamente",
-            "successMessage": "La cuenta se ha editado correctamente",
-            "loading": "Guardando..."
-        },
-        "avatar": {
-            "select": "Selecciona tu avatar",
-            "timeRestriction": "Tiempo de restricción",
-            "timeRestrictionMessage": "Necesitas esperar {{remainingMinutes}} minutos antes de cambiar tu avatar nuevamente.",
-            "error": "Error",
-            "errorMessage": "Ocurrió un error al obtener el avatar. Por favor, intenta nuevamente."
-        },
-        "locale": {
-            "languages": "Idiomas",
-            "success": "Éxito",
-            "locale_changed_successfully": "El idioma se ha cambiado correctamente"
-        }
+      "editAccount": {
+        "title": "Editar cuenta",
+        "avatar": "Tu avatar",
+        "username": "Nombre de usuario",
+        "usernamePlaceholder": "e.g. Juan Perez",
+        "success": "Éxito",
+        "successMessage": "La cuenta se ha editado correctamente",
+        "error": "Error",
+        "errorMessage": "Ocurrió un error al editar la cuenta. Por favor, intenta nuevamente.",
+        "loading": "Guardando...",
+        "save": "Guardar"
+      },
+      "avatar": {
+        "select": "Selecciona tu avatar",
+        "timeRestriction": "Tiempo de restricción",
+        "timeRestrictionMessage": "Necesitas esperar {{remainingMinutes}} minutos antes de cambiar tu avatar nuevamente.",
+        "errorMessage": "Ocurrió un error al obtener el avatar. Por favor, intenta nuevamente."
+      },
+      "locale": {
+        "languages": "Idiomas",
+        "locale_changed_successfully": "El idioma se ha cambiado correctamente",
+        "success": "Éxito"
+      }
     }
-}
+  }
+  

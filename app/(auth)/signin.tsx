@@ -24,7 +24,7 @@ export default function SignInScreen() {
             password,
         })
         if (error) {
-            Alert.alert(t("error"), t("errorMessage"));
+            Alert.alert(t("common.error"), t("common.errorMessage"));
         } else {
             router.replace("/");
         }
@@ -45,24 +45,24 @@ export default function SignInScreen() {
                 </View>
                 <View style={styles.formBody}>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>{t("auth.signin.email")}:</Text>
+                        <Text style={styles.formGroupLabel}>{t("common.email")}:</Text>
                         <TextInput
                             style={styles.input}
                             value={email}
                             onChangeText={setEmail}
-                            placeholder={t("auth.signin.emailPlaceholder")}
+                            placeholder={t("common.emailPlaceholder")}
                             placeholderTextColor="gray"
                             keyboardType="email-address"
                         />
                     </View>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>{t("auth.signin.password")}:</Text>
+                        <Text style={styles.formGroupLabel}>{t("common.password")}:</Text>
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.input}
                                 value={password}
                                 onChangeText={setPassword}
-                                placeholder={t("auth.signin.passwordPlaceholder")}
+                                placeholder={t("common.passwordPlaceholder")}
                                 placeholderTextColor="gray"
                                 secureTextEntry={!showPassword}
                             />
@@ -72,7 +72,7 @@ export default function SignInScreen() {
                         </View>
                     </View>
                     <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignIn} disabled={loading || disabled}>
-                        <Text style={styles.buttonText}>{loading ? t("auth.signin.loading") : t("auth.signin.signin")}</Text>
+                        <Text style={styles.buttonText}>{loading ? t("common.loading") : t("auth.signin.signin")}</Text>
                     </TouchableOpacity>
                     <View style={styles.formFooter}>
                         <TouchableOpacity onPress={() => router.replace("/signup")}>

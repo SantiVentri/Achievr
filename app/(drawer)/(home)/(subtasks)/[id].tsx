@@ -50,7 +50,7 @@ export default function SubtaskScreen() {
                 },
                 style: "destructive"
             },
-            { text: t("home.subtask.cancel") }
+            { text: t("common.cancel") }
         ]);
         setIsDeleting(false);
     }, [id]);
