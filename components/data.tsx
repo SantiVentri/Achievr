@@ -70,3 +70,18 @@ export async function getSubtask(subtask_id: string): Promise<SubtaskType | null
         return data;
     }
 }
+
+export async function getProgress(goal_id: string): Promise<{ total: number, completed: number } | null> {
+    const { data, error } = await supabase.from('subtasks').select().eq('goal_id', goal_id);
+
+    if (error) {
+        console.error(error);
+        return null;
+    } else {
+        if (data.length === 0) {
+            return null;
+        } else {
+            return { total: data.length, completed: data.filter((subtask) => subtask.is_done).length };
+        }
+    }
+}
