@@ -1,5 +1,5 @@
 import CreateGoalButton from "@/components/createGoalButton";
-import { getSubtasks } from "@/components/data";
+import { getGoal, getSubtasks } from "@/components/data";
 import Subtask from "@/components/Subtask";
 import { GoalType, SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
@@ -21,34 +21,47 @@ export default function GoalScreen() {
     const [isDone, setIsDone] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchAllData = useCallback(async () => {
-        if (!id) return;
-
-        const { data: goalData, error } = await supabase.from("goals").select("*").eq("id", id).single();
-        if (error) {
-            console.error(error);
-            return;
-        }
-        setGoal(goalData);
-        setIsDone(goalData?.is_done || false);
-
-        if (goalData) {
-            const subtasksData = await getSubtasks(goalData.id);
-            setSubtasks(subtasksData);
-        }
-    }, [id]);
-
     useFocusEffect(
         useCallback(() => {
-            fetchAllData();
-        }, [fetchAllData])
+            const fetchData = async () => {
+                if (!id) return;
+
+                const goalData = await getGoal(id as string);
+                if (goalData) {
+                    setGoal(goalData);
+                    setIsDone(goalData?.is_done || false);
+
+                    const subtasksData = await getSubtasks(goalData.id);
+                    setSubtasks(subtasksData);
+                } else {
+                    Alert.alert(t("home.goal.goalNotFound"), t("home.goal.goalNotFoundMessage"));
+                }
+            };
+
+            fetchData();
+        }, [id])
     );
 
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
-        await fetchAllData();
+
+        if (!id) return;
+        const goalData = await getGoal(id as string);
+
+        if (goalData) {
+            setGoal(goalData);
+            setIsDone(goalData?.is_done || false);
+
+            const subtasksData = await getSubtasks(goalData.id);
+            setSubtasks(subtasksData);
+        } else {
+            Alert.alert(t("home.goal.goalNotFound"), t("home.goal.goalNotFoundMessage"));
+            router.back();
+        }
+
         setRefreshing(false);
-    }, [fetchAllData]);
+    }, [id]);
+
 
     const handleDeleteGoal = useCallback(async () => {
         setIsDeleting(true);

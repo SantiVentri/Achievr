@@ -2,14 +2,36 @@ import { Colors } from "@/constants/palette";
 import { SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useEffect, useState } from "react";
 import { GestureResponderEvent, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Subtask({ id, title, short_description, is_done, header_image }: SubtaskType & { header_image: string }) {
     const [isLoading, setIsLoading] = useState(false);
     const [isDone, setIsDone] = useState(is_done);
     const router = useRouter();
+
+    useEffect(() => {
+        setIsDone(is_done);
+    }, [is_done]);
+
+    useFocusEffect(
+        useCallback(() => {
+            const refreshData = async () => {
+                const { data } = await supabase
+                    .from("subtasks")
+                    .select("is_done")
+                    .eq("id", id)
+                    .single();
+
+                if (data) {
+                    setIsDone(data.is_done);
+                }
+            };
+
+            refreshData();
+        }, [id])
+    );
 
     const handlePress = () => {
         setIsLoading(true);

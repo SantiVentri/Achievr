@@ -1,9 +1,10 @@
+import { getSubtask } from "@/components/data";
 import { SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, GestureResponderEvent, Image, Pressable, RefreshControl, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -17,28 +18,39 @@ export default function SubtaskScreen() {
     const [isDone, setIsDone] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchAllData = useCallback(async () => {
-        if (!id) return;
+    useFocusEffect(
+        useCallback(() => {
+            const fetchData = async () => {
+                if (!id) return;
 
-        const { data: subtaskData, error } = await supabase.from("subtasks").select("*").eq("id", id).single();
-        if (error) {
-            console.error(error);
-            return;
-        }
-        setSubtask(subtaskData);
-        setIsDone(subtaskData?.is_done || false);
-
-    }, [id]);
-
-    useEffect(() => {
-        fetchAllData();
-    }, [fetchAllData]);
+                const subtaskData = await getSubtask(id as string);
+                if (subtaskData) {
+                    setSubtask(subtaskData);
+                    setIsDone(subtaskData.is_done || false);
+                } else {
+                    Alert.alert(t("home.subtask.subtaskNotFound"), t("home.subtask.subtaskNotFoundMessage"));
+                    router.back();
+                }
+            };
+            fetchData();
+        }, [id])
+    );
 
     const onRefresh = useCallback(async () => {
         setRefreshing(true);
-        await fetchAllData();
+
+        const subtaskData = await getSubtask(id as string);
+        if (subtaskData) {
+            setSubtask(subtaskData);
+            setIsDone(subtaskData.is_done || false);
+        } else {
+            Alert.alert(t("home.subtask.subtaskNotFound"), t("home.subtask.subtaskNotFoundMessage"));
+            router.back();
+        }
+
         setRefreshing(false);
-    }, [fetchAllData]);
+    }, [id]);
+
 
     const handleDeleteGoal = useCallback(async () => {
         setIsDeleting(true);
