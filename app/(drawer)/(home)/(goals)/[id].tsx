@@ -82,6 +82,7 @@ export default function GoalScreen() {
         event?.stopPropagation();
         setIsDone(!isDone);
         await supabase.from("goals").update({ is_done: !isDone }).eq("id", id);
+        await supabase.from("subtasks").update({ is_done: !isDone }).eq("goal_id", id);
     }, [id, isDone]);
 
     const handleRouter = useCallback(() => {
