@@ -13,6 +13,7 @@ export default function DrawerLayout() {
                 drawerContent={(props) => <DrawerContent {...props} />}
             >
                 <Drawer.Screen name="(home)" options={{ title: "Home" }} />
+                <Drawer.Screen name="(news)/news" options={{ title: "News" }} />
             </Drawer>
         </GestureHandlerRootView>
     )

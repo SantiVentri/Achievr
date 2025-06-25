@@ -39,6 +39,7 @@
     },
     "drawer": {
         "home": "Inicio",
+        "news": "Noticias",
         "support": "Soporte",
         "privacyPolicy": "Política de privacidad"
     },
