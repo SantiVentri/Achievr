@@ -42,7 +42,7 @@ export async function getSubtasks(goal_id: string): Promise<SubtaskType[]> {
 }
 
 export async function getNewsList(): Promise<NewsType[]> {
-    const { data, error } = await supabase.from("news").select();
+    const { data, error } = await supabase.from("news").select().eq("published", true);
     if (error) {
         console.log(error);
         return []
