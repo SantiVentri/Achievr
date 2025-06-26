@@ -7,7 +7,7 @@ import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Avatar from "./Avatar";
 
-export default function Header({ title }: { title: string }) {
+export default function Header() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const navigation = useNavigation<DrawerNavigationProp<any>>();
@@ -23,7 +23,7 @@ export default function Header({ title }: { title: string }) {
             <TouchableOpacity onPress={handleOpenDrawer} disabled={isLoading}>
                 <MaterialIcons name="menu" size={35} color="white" />
             </TouchableOpacity>
-            <Text style={styles.title}>{title}</Text>
+            <Text style={styles.title}>Dreamr</Text>
             <TouchableOpacity onPress={() => router.push("/account")}>
                 <Avatar size={35} />
             </TouchableOpacity>

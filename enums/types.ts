@@ -21,3 +21,24 @@ export interface SubtaskType {
     updated_at: string;
     created_at: string;
 }
+
+export interface NewsType {
+    id: string;
+    header_image: string;
+    title: string;
+    description: string;
+    author: string;
+    updated_at: string;
+    created_at: Date;
+    published: boolean;
+}
+
+export interface SectionType {
+    id: string;
+    news_id: string;
+    order: number;
+    title: string;
+    content: string;
+    updated_at: string;
+    created_at: string;
+}

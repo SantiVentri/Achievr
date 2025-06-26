@@ -29,7 +29,7 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
             id: 2,
             name: t("drawer.news"),
             icon: "newspaper" as const,
-            screen: "(news)/news",
+            screen: "(news)",
         },
     ]
 
