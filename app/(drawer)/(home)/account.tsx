@@ -1,4 +1,5 @@
 import Avatar from "@/components/Avatar";
+import DeleteAccountButton from "@/components/DeleteAccountButton";
 import LocaleSelect from "@/components/LocaleSelect";
 import SignOutButton from "@/components/SignOutButton";
 import { Colors } from "@/constants/palette";
@@ -28,7 +29,10 @@ export default function AccountScreen() {
                     <Text style={styles.subtitle}>{user?.email}</Text>
                 </View>
             </View>
-            <SignOutButton />
+            <View style={styles.redButtons}>
+                <SignOutButton />
+                <DeleteAccountButton />
+            </View>
         </View>
     )
 }
@@ -69,4 +73,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: "gray",
     },
+    redButtons: {
+        gap: 15
+    }
 })
