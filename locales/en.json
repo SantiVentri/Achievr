@@ -39,6 +39,7 @@
     },
     "drawer": {
         "home": "Home",
+        "news": "News",
         "support": "Support",
         "privacyPolicy": "Privacy Policy"
     },
@@ -133,5 +134,8 @@
             "success": "Success",
             "locale_changed_successfully": "The language has been changed successfully"
         }
+    },
+    "news": {
+        "noNews": "No news yet"
     }
 }

@@ -25,6 +25,12 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
             icon: "home" as const,
             screen: "(home)",
         },
+        {
+            id: 2,
+            name: t("drawer.news"),
+            icon: "newspaper" as const,
+            screen: "(news)",
+        },
     ]
 
     const extraLinks = [
