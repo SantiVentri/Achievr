@@ -134,5 +134,8 @@
             "success": "Éxito",
             "locale_changed_successfully": "El idioma se ha cambiado correctamente"
         }
+    },
+    "news": {
+        "noNews": "No se encontraron noticias"
     }
 }

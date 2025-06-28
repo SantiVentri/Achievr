@@ -1,13 +1,14 @@
 import { NewsType } from "@/enums/types";
-import { getLocales } from "expo-localization";
 import { useRouter } from "expo-router";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function News({ id, header_image, title, description, author, created_at }: NewsType) {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
-    const locale = getLocales()[0].languageTag;
+    const { i18n } = useTranslation();
+    const dateLocale = i18n.language === 'en' ? 'en-US' : 'es-ES';
 
     const handleRouter = () => {
         setIsLoading(true)
@@ -18,7 +19,7 @@ export default function News({ id, header_image, title, description, author, cre
         setIsLoading(false)
     }
 
-    const formattedDate = new Date(created_at).toLocaleDateString(locale, {
+    const formattedDate = new Date(created_at).toLocaleDateString(dateLocale, {
         day: "numeric",
         month: "numeric",
         year: "2-digit"

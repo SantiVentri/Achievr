@@ -1,29 +1,49 @@
-import { getNewsList } from "@/components/data";
+import { getNews } from "@/components/data";
 import News from "@/components/News";
 import { NewsType } from "@/enums/types";
-import { useEffect, useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FlatList, RefreshControl, StyleSheet, Text, View } from "react-native";
 
 export default function NewsListScreen() {
     const [news, setNews] = useState<NewsType[]>([])
-    const [isLoading, setIsLoading] = useState(false)
+    const [refreshing, setRefreshing] = useState(false)
+    const { i18n, t } = useTranslation();
+    const locale = i18n.language;
+
+    const fetchNews = useCallback(async () => {
+        const data = await getNews(locale as string);
+        setNews(data)
+    }, [locale]);
 
     useEffect(() => {
-        const fetchNews = async () => {
-            const data = await getNewsList();
-            setNews(data)
-        }
         fetchNews();
-    })
+    }, [fetchNews]);
+
+    useFocusEffect(
+        useCallback(() => {
+            fetchNews();
+        }, [fetchNews])
+    );
+
+    const onRefresh = useCallback(async () => {
+        setRefreshing(true);
+        await fetchNews();
+        setRefreshing(false);
+    }, [fetchNews]);
 
     return (
         <View style={styles.container}>
             <FlatList
                 data={news}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                }
                 contentContainerStyle={styles.newsList}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => <News {...item} />}
-                ListEmptyComponent={() => <Text>No news yet</Text>}
+                ListEmptyComponent={() => <Text>{t("news.noNews")}</Text>}
             />
         </View>
     )

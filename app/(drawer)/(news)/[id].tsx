@@ -1,28 +1,30 @@
-import { getNews, getSection } from "@/components/data";
+import { getNewsById, getNewsSections } from "@/components/data";
 import { Colors } from "@/constants/palette";
 import { NewsType, SectionType } from "@/enums/types";
-import { getLocales } from "expo-localization";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FlatList, Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function NewsScreen() {
     const { id } = useLocalSearchParams();
     const [news, setNews] = useState<NewsType | null>(null)
     const [sections, setSections] = useState<SectionType[]>([])
-    const locale = getLocales()[0].languageTag;
+    const { i18n } = useTranslation();
+    const dbLocale = i18n.language;
+    const dateLocale = i18n.language === 'en' ? 'en-US' : 'es-ES';
 
     useEffect(() => {
         const fetchNews = async () => {
-            const newsData = await getNews(id as string);
-            const sectionData = await getSection(id as string);
+            const newsData = await getNewsById(id as string, dbLocale);
+            const sectionData = await getNewsSections(id as string, dbLocale);
             setNews(newsData)
             setSections(sectionData)
         }
         fetchNews();
-    }, []);
+    }, [id, dbLocale]);
 
-    const formattedDate = news?.created_at ? new Date(news.created_at).toLocaleDateString(locale, { day: "numeric", month: "numeric", year: "2-digit" }) : "";
+    const formattedDate = news?.created_at ? new Date(news.created_at).toLocaleDateString(dateLocale, { day: "numeric", month: "numeric", year: "2-digit" }) : "";
 
     return (
         <ScrollView>
