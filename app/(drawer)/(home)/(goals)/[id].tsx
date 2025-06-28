@@ -96,6 +96,10 @@ export default function GoalScreen() {
         setIsLoading(false);
     }, [id]);
 
+    const handleSubtaskDelete = useCallback((subtaskId: string) => {
+        setSubtasks(prevSubtasks => prevSubtasks.filter(subtask => subtask.id !== subtaskId));
+    }, []);
+
     return (
         <View style={styles.container}>
             <StatusBar style="light" />
@@ -139,7 +143,7 @@ export default function GoalScreen() {
                         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                     }
                     renderItem={({ item }) => (
-                        <Subtask {...item} header_image={goal?.header_image || ""} />
+                        <Subtask {...item} header_image={goal?.header_image || ""} onDelete={handleSubtaskDelete} />
                     )}
                 />
             </ScrollView>

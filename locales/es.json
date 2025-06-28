@@ -69,7 +69,7 @@
         "ai": "Crear con IA",
         "manual": "Crear manualmente",
         "form": {
-            "goal": "¿Cuál es tu objetivo?",
+          "goal": "¿Cuál es tu objetivo?",
           "goalPlaceholder": "e.g. 'Aprender Python', 'Perder 5kg', 'Iniciar un negocio'",
           "description": "Descripción",
           "descriptionPlaceholder": "e.g. 'Aprender Python requiere tiempo y práctica.'",
@@ -85,8 +85,8 @@
           "extraInfoMinLength": "La información extra debe tener al menos 10 caracteres"
         },
         "button": {
-            "create": "Crear objetivo",
-            "loading": "Creando..."
+          "create": "Crear objetivo",
+          "loading": "Creando..."
         },
         "error": "Error",
         "errorMessage": "Ocurrió un error al crear el objetivo. Por favor, intenta nuevamente.",
@@ -116,9 +116,9 @@
         "cancel": "Cancelar"
       },
       "subtask": {
-        "deleteSubtask": "Eliminar",
+        "delete": "Eliminar subtarea",
         "deleteSubtaskMessage": "¿Estás seguro de querer eliminar esta subtarea?",
-        "cancel": "Cancelar"
+        "errorDeleteSubtask": "Hubo un error al elimnar la subtarea. Intentar de nuevo."
       },
       "editGoal": {
         "headerImage": "Editar imagen",
