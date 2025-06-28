@@ -41,7 +41,7 @@
         "home": "Home",
         "news": "News",
         "support": "Support",
-        "privacyPolicy": "Privacy Policy"
+        "feedback": "Feedback"
     },
     "home": {
         "subtitle": "Hi, {{name}}",

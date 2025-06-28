@@ -42,9 +42,9 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
         },
         {
             id: 2,
-            name: t("drawer.privacyPolicy"),
-            icon: "privacy-tip" as const,
-            screen: "(privacy-policy)",
+            name: t("drawer.feedback"),
+            icon: "feedback" as const,
+            screen: "(feedback)",
         }
     ]
 

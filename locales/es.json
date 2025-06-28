@@ -41,7 +41,7 @@
         "home": "Inicio",
         "news": "Noticias",
         "support": "Soporte",
-        "privacyPolicy": "Política de privacidad"
+        "feedback": "Sugerencias"
     },
     "home": {
         "subtitle": "Hola, {{name}}",
