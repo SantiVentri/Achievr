@@ -100,6 +100,8 @@ export default function Subtask({ id, title, short_description, is_done, header_
     };
 
     const panGesture = Gesture.Pan()
+        .activeOffsetX(-20)
+        .failOffsetY(-15)
         .onUpdate((event) => {
             if (event.translationX < 0) {
                 const maxTranslation = -100;
@@ -108,7 +110,7 @@ export default function Subtask({ id, title, short_description, is_done, header_
             }
         })
         .onEnd((event) => {
-            if (event.translationX < -50) {
+            if (event.translationX < -80) {
                 translateX.value = withTiming(-100);
                 deleteOpacity.value = withTiming(1);
                 runOnJS(handleDelete)();
