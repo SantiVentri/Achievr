@@ -2,7 +2,7 @@ import { Colors } from "@/constants/palette";
 import { GoalType } from "@/enums/types";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { getProgress } from "./data";
 
 export default function Goal({ id, icon, title, short_description, is_done }: GoalType) {
@@ -33,7 +33,7 @@ export default function Goal({ id, icon, title, short_description, is_done }: Go
 
     return (
         <TouchableOpacity style={[styles.container, is_done && styles.is_done]} onPress={handlePress} disabled={isLoading}>
-            <Image source={{ uri: icon }} style={styles.image} />
+            <Text style={styles.icon}>{icon}</Text>
             <View style={styles.content}>
                 <View style={styles.text_container}>
                     <Text style={[styles.title, is_done && styles.is_done_text]}>{title}</Text>
@@ -67,12 +67,8 @@ const styles = StyleSheet.create({
     is_done_text: {
         textDecorationLine: "line-through",
     },
-    image: {
-        width: 55,
-        height: 55,
-        borderRadius: 10,
-        borderWidth: 1,
-        borderColor: "#E0E0E0",
+    icon: {
+        fontSize: 40,
     },
     content: {
         flex: 1,

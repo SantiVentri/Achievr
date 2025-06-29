@@ -1,33 +1,45 @@
 import { Colors } from "@/constants/palette";
+import { supabase } from "@/utils/supabase";
 import { Feather } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
-import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function EditGoalIcon({ link }: { link: string }) {
-    const handleChangeImage = async () => { }
-    const [image, setImage] = useState(link)
+export default function EditGoalIcon({ id, icon_name }: { id: string; icon_name: string; }) {
+    const router = useRouter();
+    const [icon, setIcon] = useState(icon_name)
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
+    const getIcon = async () => {
+        const { data, error } = await supabase.from("goals").select('icon').eq("id", id).single();
+        if (error) {
+            Alert.alert("Error", "Failed to get icon");
+        }
+        setIcon(data?.icon)
+    }
+
+    useFocusEffect(useCallback(() => {
         setIsLoading(true)
-        setImage(link)
+        getIcon()
         setIsLoading(false)
-    }, [link])
+    }, [icon_name]))
+
+    const handleChangeIcon = async () => {
+        setIsLoading(true)
+        router.push({
+            pathname: "/iconsModal",
+            params: {
+                id: id,
+                icon_name: icon_name,
+            }
+        })
+        setIsLoading(true)
+    }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={handleChangeImage}>
-            <View style={styles.imageWrapper}>
-                {isLoading ? (
-                    <View style={styles.image}>
-                        <ActivityIndicator size="large" color={Colors.primary} />
-                    </View>
-                ) : (
-                    <Image
-                        source={{ uri: image || 'https://placehold.co/50x50' }}
-                        style={styles.image}
-                        resizeMode="cover"
-                    />
-                )}
+        <TouchableOpacity style={styles.container} onPress={handleChangeIcon} disabled={isLoading}>
+            <View style={styles.iconWrapper}>
+                <Text style={styles.icon}>{icon}</Text>
             </View>
             <View style={styles.editIcon}>
                 <Feather name="edit" size={20} color="white" />
@@ -45,17 +57,13 @@ const styles = StyleSheet.create({
         borderColor: Colors.primary,
         width: 100,
         height: 100,
-        overflow: "hidden",
     },
-    image: {
-        width: "100%",
-        height: "100%",
-        backgroundColor: Colors.primary,
+    iconWrapper: {
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    imageWrapper: {
-        position: "relative",
-        width: "100%",
-        height: "100%",
+    icon: {
+        fontSize: 75
     },
     editIcon: {
         position: "absolute",

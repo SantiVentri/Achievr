@@ -75,7 +75,7 @@ export default function EditGoalScreen() {
                 </View>
                 <View style={styles.formEditHeader}>
                     <Text style={styles.formGroupLabel}>{t("home.editGoal.iconImage")}:</Text>
-                    <EditGoalIcon link={goal?.icon || ''} />
+                    <EditGoalIcon id={goal_id as string} icon_name={goal?.icon || ''} />
                 </View>
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupLabel}>{t("home.editGoal.title")}:</Text>
@@ -123,7 +123,7 @@ export default function EditGoalScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 70,
+        paddingTop: 50,
         paddingHorizontal: 25,
         gap: 30,
     },

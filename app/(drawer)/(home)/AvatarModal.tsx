@@ -18,7 +18,7 @@ export default function AvatarModal() {
     const getAvatar = async () => {
         const { data, error } = await supabase.from("avatars").select().eq("user_id", user?.id).single();
         if (error) {
-            Alert.alert("Error", "Failed to get avatar");
+            Alert.alert("Error", error.message);
         }
         setCurrentAvatar(data?.avatar)
     }

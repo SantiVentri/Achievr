@@ -119,6 +119,7 @@ export default function GoalScreen() {
                                 <Pressable onPress={handleCheckboxPress}>
                                     {isDone ? <MaterialCommunityIcons name="checkbox-marked-circle" size={28} color="green" /> : <MaterialCommunityIcons name="checkbox-blank-circle-outline" size={28} color="black" />}
                                 </Pressable>
+                                <Text style={styles.title}>{goal?.icon}</Text>
                                 <Text style={[styles.title, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.title}</Text>
                             </View>
                             <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.short_description}</Text>
