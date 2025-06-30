@@ -4,8 +4,8 @@ import EditGoalIcon from "@/components/EditGoalIcon";
 import { Colors } from "@/constants/palette";
 import { GoalType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect, useState } from "react";
+import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
@@ -37,7 +37,7 @@ export default function EditGoalScreen() {
         }
     }, [title, description, goal]);
 
-    useEffect(() => {
+    useFocusEffect(useCallback(() => {
         const fetchGoal = async () => {
             const goal = await getGoal(goal_id as string);
             if (goal) {
@@ -49,7 +49,7 @@ export default function EditGoalScreen() {
             }
         }
         fetchGoal();
-    }, [goal_id]);
+    }, [goal_id]));
 
     const handleSave = async () => {
         setLoading(true);
