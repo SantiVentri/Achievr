@@ -36,6 +36,7 @@ export default function HomeLayout() {
             <Stack.Screen name="(goals)/[id]" options={{ headerShown: false }} />
             <Stack.Screen name="(goals)/editGoal" options={{ headerShown: false, presentation: 'modal' }} />
             <Stack.Screen name="(goals)/iconsModal" options={{ headerShown: false, presentation: 'modal' }} />
+            <Stack.Screen name="(goals)/headerModal" options={{ headerShown: false, presentation: 'modal' }} />
 
             {/* Subtasks */}
             <Stack.Screen name="(subtasks)/createSubtask" options={{ headerShown: false, presentation: 'modal' }} />

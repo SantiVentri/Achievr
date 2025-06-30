@@ -1,33 +1,51 @@
 import { Colors } from "@/constants/palette";
+import { supabase } from "@/utils/supabase";
 import { Feather } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
-import { ActivityIndicator, Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { Alert, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
-export default function EditGoalHeader({ link }: { link: string }) {
-    const handleChangeImage = async () => { }
-    const [image, setImage] = useState(link)
+export default function EditGoalHeader({ id, header_image }: { id: string; header_image: string; }) {
+    const router = useRouter();
+    const { t } = useTranslation();
+    const [header, setHeader] = useState(header_image)
     const [isLoading, setIsLoading] = useState(false)
 
-    useEffect(() => {
+    const getHeader = async () => {
+        const { data, error } = await supabase.from("goals").select('header_image').eq("id", id).single();
+        if (error) {
+            Alert.alert(t('common.error'), t('home.editGoal.headerError')); // Checkear si esto existe
+        }
+        setHeader(data?.header_image)
+    }
+
+    useFocusEffect(useCallback(() => {
         setIsLoading(true)
-        setImage(link)
+        getHeader()
         setIsLoading(false)
-    }, [link])
+    }, [header_image]))
+
+    const handleChangeHeader = async () => {
+        setIsLoading(true)
+        router.push({
+            pathname: "/headerModal",
+            params: {
+                id: id,
+                header_image: header,
+            }
+        })
+        setIsLoading(true)
+    }
 
     return (
-        <TouchableOpacity style={styles.container} onPress={handleChangeImage}>
+        <TouchableOpacity style={styles.container} onPress={handleChangeHeader}>
             <View style={styles.imageWrapper}>
-                {isLoading ? (
-                    <View style={styles.image}>
-                        <ActivityIndicator size="large" color={Colors.primary} />
-                    </View>
-                ) : (
-                    <Image
-                        source={{ uri: image || 'https://placehold.co/600x400' }}
-                        style={styles.image}
-                        resizeMode="cover"
-                    />
-                )}
+                <Image
+                    source={{ uri: header }}
+                    style={styles.image}
+                    resizeMode="cover"
+                />
             </View>
             <View style={styles.editIcon}>
                 <Feather name="edit" size={20} color="white" />
@@ -50,7 +68,6 @@ const styles = StyleSheet.create({
     image: {
         width: "100%",
         height: 120,
-        backgroundColor: Colors.primary,
     },
     imageWrapper: {
         width: "100%",

@@ -1,8 +1,8 @@
 import { icons } from "@/constants/iconsList";
 import { supabase } from "@/utils/supabase";
 import Feather from "@expo/vector-icons/Feather";
-import { useLocalSearchParams } from "expo-router";
-import { useEffect, useState } from "react";
+import { useFocusEffect, useLocalSearchParams } from "expo-router";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
@@ -23,36 +23,6 @@ export default function IconsModal() {
 
     const handleChangeIcon = async (icon: string) => {
         setIsLoading(true);
-
-        const { data: currentData, error: fetchError } = await supabase
-            .from("goals")
-            .select("updated_at")
-            .eq("id", id)
-            .single();
-
-        if (fetchError) {
-            Alert.alert(t("goals.icon.error"), fetchError?.message);
-            setIsLoading(false);
-            return;
-        }
-
-        if (currentData?.updated_at) {
-            const lastUpdate = new Date(currentData.updated_at);
-            const now = new Date();
-            const timeDiff = now.getTime() - lastUpdate.getTime();
-            const minutesDiff = Math.floor(timeDiff / (1000 * 60));
-
-            if (minutesDiff < 3) {
-                const remainingMinutes = 3 - minutesDiff;
-                Alert.alert(
-                    t("home.editGoal.timeRestriction"),
-                    t("home.editGoal.timeRestrictionMessage", { remainingMinutes })
-                );
-                setIsLoading(false);
-                return;
-            }
-        }
-
         const { error } = await supabase.from("goals").update({ icon: icon, updated_at: new Date().toISOString() }).eq("id", id);
         if (error) {
             Alert.alert(t("common.error"), t("home.editGoal.changeIconError"));
@@ -64,9 +34,9 @@ export default function IconsModal() {
         setIsLoading(false);
     }
 
-    useEffect(() => {
+    useFocusEffect(useCallback(() => {
         getIcon();
-    }, []);
+    }, []));
 
     const filteredIcons = icons.filter((iconObj) =>
         `${iconObj.name} ${iconObj.emoji}`.toLowerCase().includes(search.toLowerCase())
