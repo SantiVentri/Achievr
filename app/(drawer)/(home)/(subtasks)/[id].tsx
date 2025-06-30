@@ -103,9 +103,9 @@ export default function SubtaskScreen() {
                                 <Pressable onPress={handleCheckboxPress}>
                                     {isDone ? <MaterialCommunityIcons name="checkbox-marked-circle" size={28} color="green" /> : <MaterialCommunityIcons name="checkbox-blank-circle-outline" size={28} color="black" />}
                                 </Pressable>
-                                <Text style={[styles.title, { textDecorationLine: isDone ? "line-through" : "none" }]}>{subtask?.title}</Text>
+                                <Text style={[styles.title, { textDecorationLine: isDone ? "line-through" : "none" }]} numberOfLines={1} ellipsizeMode="tail">{subtask?.title}</Text>
                             </View>
-                            <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]}>{subtask?.short_description}</Text>
+                            <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]} numberOfLines={3} ellipsizeMode="tail">{subtask?.short_description}</Text>
                         </View>
                         <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteGoal} disabled={isDeleting}>
                             <FontAwesome name="trash" size={30} color="red" />
@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
+        maxWidth: 350,
         fontWeight: "bold",
     },
     subtitle: {

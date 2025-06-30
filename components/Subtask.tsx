@@ -156,8 +156,8 @@ export default function Subtask({ id, title, short_description, is_done, header_
                         onPress={handlePress}
                         disabled={isLoading}
                     >
-                        <Text style={[styles.title, isDone && styles.is_done_text]}>{title}</Text>
-                        <Text style={[styles.description, isDone && styles.is_done_text]}>{short_description}</Text>
+                        <Text style={[styles.title, isDone && styles.is_done_text]} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
+                        <Text style={[styles.description, isDone && styles.is_done_text]} numberOfLines={2} ellipsizeMode="tail">{short_description}</Text>
                     </TouchableOpacity>
                 </Animated.View>
             </GestureDetector>
@@ -179,14 +179,6 @@ const styles = StyleSheet.create({
         padding: 14,
         gap: 10,
         zIndex: 1,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
-        elevation: 5,
     },
     content: {
         flex: 1,
@@ -200,7 +192,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     is_done: {
-        backgroundColor: "rgba(52, 84, 209, 0.3)",
+        backgroundColor: "#BCC6EB",
     },
     is_done_text: {
         textDecorationLine: "line-through",

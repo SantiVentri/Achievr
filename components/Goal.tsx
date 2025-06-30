@@ -36,8 +36,8 @@ export default function Goal({ id, icon, title, short_description, is_done }: Go
             <Text style={styles.icon}>{icon}</Text>
             <View style={styles.content}>
                 <View style={styles.text_container}>
-                    <Text style={[styles.title, is_done && styles.is_done_text]}>{title}</Text>
-                    <Text style={[styles.description, is_done && styles.is_done_text]} numberOfLines={3}>{short_description}</Text>
+                    <Text style={[styles.title, is_done && styles.is_done_text]} numberOfLines={1} ellipsizeMode="tail">{title}</Text>
+                    <Text style={[styles.description, is_done && styles.is_done_text]} numberOfLines={3} ellipsizeMode="tail">{short_description}</Text>
                 </View>
                 <View style={styles.progress}>
                     <View style={styles.progressBar}>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     is_done: {
-        backgroundColor: "rgba(52, 84, 209, 0.3)",
+        backgroundColor: "#BCC6EB",
     },
     is_done_text: {
         textDecorationLine: "line-through",
