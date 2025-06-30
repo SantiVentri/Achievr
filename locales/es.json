@@ -96,7 +96,9 @@
         "subtaskPlaceholder": "e.g. '¿Qué es Python?', 'Organizar una dieta'.",
         "subtaskMinLength": "La subtarea debe tener al menos 4 caracteres",
         "descriptionPlaceholder": "e.g. 'Aprender los conceptos básicos de programación en Python'",
-        "createSubtask": "Crear subtarea"
+        "createSubtask": "Crear subtarea",
+        "errorMessage": "Ocurrió un error al crear la subtarea. Por favor, intenta nuevamente.",
+        "successMessage": "La subtarea se ha creado correctamente"
       }
     },
     "goal": {

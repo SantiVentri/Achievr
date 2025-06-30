@@ -5,6 +5,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { getSubtasks } from "./data";
 
 export default function FormSubtask({ goal_id }: { goal_id: string }) {
     const { user } = useUser();
@@ -24,14 +25,17 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
             setIsLoading(false);
             return;
         }
+        const subtasks = await getSubtasks(goal_id);
+        const maxStep = subtasks.length > 0 ? Math.max(...subtasks.map(s => s.step)) : 0;
         const { error } = await supabase.from("subtasks").insert({
             title: subtask,
             short_description: description || null,
             creator_id: user?.id,
+            step: maxStep + 1,
             goal_id: goal_id,
         });
         if (error) {
-            Alert.alert(t("common.error"), t("home.createSubtask.errorMessage"));
+            Alert.alert(t("common.error"), t('home.createSubtask.errorMessage'));
         } else {
             Alert.alert(t("common.success"), t("home.createSubtask.successMessage"));
         }

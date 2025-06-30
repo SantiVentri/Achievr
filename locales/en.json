@@ -96,7 +96,9 @@
         "subtaskPlaceholder": "e.g. 'What is Python?', 'Plan a diet.'",
         "subtaskMinLength": "The subtask must be at least 4 characters long",
         "descriptionPlaceholder": "e.g. 'Learn the basics of programming in Python'",
-        "createSubtask": "Create subtask"
+        "createSubtask": "Create subtask",
+        "errorMessage": "An error occurred while creating the subtask. Please try again.",
+        "successMessage": "Subtask created successfully"
       }
     },
     "goal": {

@@ -1,6 +1,7 @@
 import CreateGoalButton from "@/components/createGoalButton";
 import { getGoal, getSubtasks } from "@/components/data";
 import Subtask from "@/components/Subtask";
+import { Colors } from "@/constants/palette";
 import { GoalType, SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
     image: {
         height: 250,
         width: "100%",
-        filter: "brightness(0.7)",
+        backgroundColor: Colors.primary
     },
     headerTitle: {
         flexDirection: "row",
