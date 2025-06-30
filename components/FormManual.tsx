@@ -31,9 +31,9 @@ export default function FormManual() {
             ai: false,
         });
         if (error) {
-            Alert.alert(t("home.createGoal.error"), t("home.createGoal.errorMessage"));
+            Alert.alert(t("common.error"), t("home.createGoal.errorMessage"));
         } else {
-            Alert.alert(t("home.createGoal.success"), t("home.createGoal.successMessage"));
+            Alert.alert(t("common.success"), t("home.createGoal.successMessage"));
         }
         resetForm();
         router.back();
@@ -80,7 +80,7 @@ export default function FormManual() {
                 </View>
             </View>
             <TouchableOpacity style={[styles.button, { backgroundColor: !title || isLoading ? 'gray' : Colors.primary }]} onPress={handleCreateGoal} disabled={!title || isLoading}>
-                <Text style={styles.buttonText}>{isLoading ? t("home.createGoal.button.loading") : t("home.createGoal.button.create")}</Text>
+                <Text style={styles.buttonText}>{isLoading ? t("common.loading") : t("home.createGoal.createGoal")}</Text>
             </TouchableOpacity>
         </View>
     )

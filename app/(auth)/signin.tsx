@@ -24,7 +24,7 @@ export default function SignInScreen() {
             password,
         })
         if (error) {
-            Alert.alert(t("common.error"), t("common.errorMessage"));
+            Alert.alert(t("common.error"), t("auth.signin.errorMessage"));
         } else {
             router.replace("/");
         }

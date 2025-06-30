@@ -17,7 +17,7 @@ export default function IconsModal() {
     const getIcon = async () => {
         const { data, error } = await supabase.from("goals").select('icon').eq("id", id).single();
         if (error) {
-            Alert.alert("Error", "Failed to get icon");
+            Alert.alert(t('common.error'), t('home.editGoal.getIconError'));
         }
         setCurrentIcon(data?.icon)
     }
@@ -43,11 +43,11 @@ export default function IconsModal() {
             const timeDiff = now.getTime() - lastUpdate.getTime();
             const minutesDiff = Math.floor(timeDiff / (1000 * 60));
 
-            if (minutesDiff < 0) {
-                const remainingMinutes = 0 - minutesDiff;
+            if (minutesDiff < 3) {
+                const remainingMinutes = 3 - minutesDiff;
                 Alert.alert(
-                    t("goals.icon.timeRestriction"),
-                    t("goals.icon.timeRestrictionMessage", { remainingMinutes })
+                    t("home.editGoal.timeRestriction"),
+                    t("home.editGoal.timeRestrictionMessage", { remainingMinutes })
                 );
                 setIsLoading(false);
                 return;
@@ -56,10 +56,10 @@ export default function IconsModal() {
 
         const { error } = await supabase.from("goals").update({ icon: icon, updated_at: new Date().toISOString() }).eq("id", id);
         if (error) {
-            Alert.alert("Error", "Failed to change icon");
+            Alert.alert(t("common.error"), t("home.editGoal.changeIconError"));
             return;
         } else {
-            Alert.alert("Success", "Icon changed successfully");
+            Alert.alert(t("common.success"), t("home.editGoal.changeIconSuccess"));
         }
         setCurrentIcon(icon);
         setIsLoading(false);

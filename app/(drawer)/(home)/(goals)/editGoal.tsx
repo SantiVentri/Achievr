@@ -57,9 +57,9 @@ export default function EditGoalScreen() {
         setLoading(false);
 
         if (error) {
-            Alert.alert(t("home.editGoal.error"), t("home.editGoal.errorMessage"));
+            Alert.alert(t("common.error"), t("home.editGoal.errorMessage"));
         } else {
-            Alert.alert(t("home.editGoal.success"), t("home.editGoal.successMessage"), [
+            Alert.alert(t("common.success"), t("home.editGoal.successMessage"), [
                 { text: t("common.ok"), onPress: () => router.back() }
             ]);
         }
@@ -112,7 +112,7 @@ export default function EditGoalScreen() {
                     disabled={isLoading || !isTitleValid || !isDescriptionValid || !hasChanges}
                 >
                     <Text style={styles.saveButtonText}>
-                        {isLoading ? t("home.editGoal.loading") : t("home.editGoal.save")}
+                        {isLoading ? t("common.loading") : t("common.save")}
                     </Text>
                 </TouchableOpacity>
             </View>

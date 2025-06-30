@@ -125,7 +125,7 @@ export default function FormAI() {
                 onPress={handleCreateGoal}
                 disabled={!goal || steps === null || hours === null || isLoading}
             >
-                <Text style={styles.buttonText}>{isLoading ? t("home.createGoal.button.loading") : t("home.createGoal.button.create")}</Text>
+                <Text style={styles.buttonText}>{isLoading ? t("common.loading") : t("home.createGoal.createGoal")}</Text>
             </TouchableOpacity>
         </View>
     )

@@ -55,10 +55,10 @@ export default function EditSubtaskScreen() {
         setLoading(false);
 
         if (error) {
-            Alert.alert(t("home.editSubtask.error"), t("home.editSubtask.errorMessage"));
+            Alert.alert(t("common.error"), t("home.editSubtask.errorMessage"));
         } else {
-            Alert.alert(t("home.editSubtask.success"), t("home.editSubtask.successMessage"), [
-                { text: t("home.editSubtask.ok"), onPress: () => router.back() }
+            Alert.alert(t("common.success"), t("home.editSubtask.successMessage"), [
+                { text: t("common.ok"), onPress: () => router.back() }
             ]);
         }
     }
@@ -78,7 +78,7 @@ export default function EditSubtaskScreen() {
                     />
                 </View>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupLabel}>{t("home.editSubtask.description")}:</Text>
+                    <Text style={styles.formGroupLabel}>{t("common.description")}:</Text>
                     <TextInput
                         style={styles.input}
                         value={description}
@@ -102,7 +102,7 @@ export default function EditSubtaskScreen() {
                     disabled={isLoading || !isTitleValid || !isDescriptionValid || !hasChanges}
                 >
                     <Text style={styles.saveButtonText}>
-                        {isLoading ? t("home.editSubtask.loading") : t("home.editSubtask.save")}
+                        {isLoading ? t("home.editSubtask.loading") : t("common.save")}
                     </Text>
                 </TouchableOpacity>
             </View>

@@ -44,8 +44,8 @@ export default function AvatarModal() {
             const timeDiff = now.getTime() - lastUpdate.getTime();
             const minutesDiff = Math.floor(timeDiff / (1000 * 60));
 
-            if (minutesDiff < 5) {
-                const remainingMinutes = 5 - minutesDiff;
+            if (minutesDiff < 3) {
+                const remainingMinutes = 3 - minutesDiff;
                 Alert.alert(
                     t("account.avatar.timeRestriction"),
                     t("account.avatar.timeRestrictionMessage", { remainingMinutes })
@@ -57,9 +57,10 @@ export default function AvatarModal() {
 
         const { error } = await supabase.from("avatars").update({ avatar: avatar, updated_at: new Date().toISOString() }).eq("user_id", user?.id);
         if (error) {
-            Alert.alert("Error", "Failed to change avatar");
+            Alert.alert(t("common.error"), t("account.avatar.changeError"));
+            return;
         } else {
-            Alert.alert("Success", "Avatar changed successfully");
+            Alert.alert(t("common.success"), t("account.avatar.changeSuccess"));
             updateAvatar();
         }
         setCurrentAvatar(avatar);

@@ -28,7 +28,7 @@ export default function SubtaskScreen() {
                     setSubtask(subtaskData);
                     setIsDone(subtaskData.is_done || false);
                 } else {
-                    Alert.alert(t("home.subtask.subtaskNotFound"), t("home.subtask.subtaskNotFoundMessage"));
+                    Alert.alert(t("common.notFound"), t("common.notFoundMessage"));
                     router.back();
                 }
             };
@@ -44,7 +44,7 @@ export default function SubtaskScreen() {
             setSubtask(subtaskData);
             setIsDone(subtaskData.is_done || false);
         } else {
-            Alert.alert(t("home.subtask.subtaskNotFound"), t("home.subtask.subtaskNotFoundMessage"));
+            Alert.alert(t("common.notFound"), t("common.notFoundMessage"));
             router.back();
         }
 
@@ -54,9 +54,9 @@ export default function SubtaskScreen() {
 
     const handleDeleteGoal = useCallback(async () => {
         setIsDeleting(true);
-        Alert.alert(t("home.subtask.deleteSubtask"), t("home.subtask.deleteSubtaskMessage"), [
+        Alert.alert(t("home.subtask.delete"), t("home.subtask.deleteSubtaskMessage"), [
             {
-                text: t("home.subtask.deleteSubtask"), onPress: async () => {
+                text: t("common.delete"), onPress: async () => {
                     await supabase.from("subtasks").delete().eq("id", id);
                     router.back();
                 },

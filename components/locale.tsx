@@ -13,7 +13,7 @@ export default function ChangeLocale({ locale, text, size }: { locale: string, t
     const handleChangeLocale = (locale: string) => {
         setIsLoading(true);
         i18n.changeLanguage(locale);
-        Alert.alert(t("account.locale.success"), t("account.locale.locale_changed_successfully"));
+        Alert.alert(t("common.success"), t("account.locale.locale_changed_successfully"));
         setIsLoading(false);
     }
     return (

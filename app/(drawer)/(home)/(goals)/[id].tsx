@@ -34,7 +34,7 @@ export default function GoalScreen() {
                     const subtasksData = await getSubtasks(goalData.id);
                     setSubtasks(subtasksData);
                 } else {
-                    Alert.alert(t("home.goal.goalNotFound"), t("home.goal.goalNotFoundMessage"));
+                    Alert.alert(t("common.notFound"), t("common.notFoundMessage"));
                 }
             };
 
@@ -55,7 +55,7 @@ export default function GoalScreen() {
             const subtasksData = await getSubtasks(goalData.id);
             setSubtasks(subtasksData);
         } else {
-            Alert.alert(t("home.goal.goalNotFound"), t("home.goal.goalNotFoundMessage"));
+            Alert.alert(t("common.notFound"), t("common.notFoundMessage"));
             router.back();
         }
 
@@ -67,13 +67,13 @@ export default function GoalScreen() {
         setIsDeleting(true);
         Alert.alert(t("home.goal.deleteGoal"), t("home.goal.deleteGoalMessage"), [
             {
-                text: t("home.goal.deleteGoal"), onPress: async () => {
+                text: t("common.delete"), onPress: async () => {
                     await supabase.from("goals").delete().eq("id", id);
                     router.back();
                 },
                 style: "destructive"
             },
-            { text: t("home.goal.cancel") }
+            { text: t("common.cancel") }
         ]);
         setIsDeleting(false);
     }, [id]);

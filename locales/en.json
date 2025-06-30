@@ -3,23 +3,23 @@
     "email": "Email",
     "emailPlaceholder": "e.g: juanperez@gmail.com",
     "password": "Password",
-    "passwordPlaceholder": "e.g: Juancito123",
+    "passwordPlaceholder": "e.g: JuanPerez123",
     "confirmPassword": "Confirm password",
-    "confirmPasswordPlaceholder": "e.g: MyDogBirthday123",
+    "confirmPasswordPlaceholder": "e.g: Juancito123",
     "username": "Username",
     "usernamePlaceholder": "e.g: Juan Perez",
-    "description": "Description",
-    "descriptionPlaceholder": "e.g: 'Learning Python requires time and practice.'",
     "error": "Error",
-    "errorMessage": "An error occurred. Please try again.",
+    "success": "Success",
     "loading": "Loading...",
-    "save": "Save",
-    "cancel": "Cancel",
     "ok": "OK",
     "create": "Create",
-    "edit": "Edit",
+    "save": "Save",
     "delete": "Delete",
-    "success": "Success"
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "description": "Description",
+    "notFound": "Oops...",
+    "notFoundMessage": "What you were looking for was not found. Please try again."
   },
   "auth": {
     "signin": {
@@ -27,7 +27,7 @@
       "description": "Enter your email and password to sign in",
       "signin": "Sign in",
       "signup": "Sign up",
-      "forgotPassword": "Forgot password?",
+      "forgotPassword": "Forgot your password?",
       "dontHaveAccount": "Don't have an account?",
       "signupLink": "Sign up",
       "loading": "Signing in...",
@@ -35,7 +35,7 @@
     },
     "signup": {
       "title": "Sign up",
-      "description": "Enter your email and password to sign up",
+      "description": "Enter your email and password to create an account",
       "signup": "Sign up",
       "signin": "Sign in",
       "alreadyHaveAccount": "Already have an account?",
@@ -65,14 +65,14 @@
     },
     "createGoal": {
       "title": "Set your next goal",
-      "subtitle": "Complete the form and start your journey!",
+      "subtitle": "Fill out the form and start your journey!",
       "ai": "Create with AI",
       "manual": "Create manually",
       "form": {
-          "goal": "What is your goal?",
+        "goal": "What is your goal?",
         "goalPlaceholder": "e.g. 'Learn Python', 'Lose 5kg', 'Start a business'",
         "description": "Description",
-        "descriptionPlaceholder": "e.g. 'Learning Python requires time and practice.'",
+        "descriptionPlaceholder": "e.g. 'Learning Python takes time and practice.'",
         "stepsTitle": "How many steps to achieve it?",
         "steps": "Steps",
         "stepsPlaceholder": "e.g. '10', '20', '30'",
@@ -80,45 +80,36 @@
         "hours": "Hours",
         "hoursPlaceholder": "e.g. '10', '20', '30'",
         "extraInfoTitle": "Extra information to help the AI:",
-        "extraInfoPlaceholder": "e.g. 'Sé que ya conozco los conceptos básicos', 'Tengo un presupuesto ajustado', 'Solo los fines de semana'",
-        "goalMinLength": "The goal must have at least 4 characters",
-        "extraInfoMinLength": "The extra information must have at least 10 characters"
+        "extraInfoPlaceholder": "e.g. 'I already know the basics', 'I have a tight budget', 'Only available on weekends'",
+        "goalMinLength": "The goal must be at least 4 characters long",
+        "extraInfoMinLength": "The extra info must be at least 10 characters long"
       },
-      "button": {
-          "create": "Create goal",
-          "loading": "Creating..."
-      },
-      "error": "Error",
+      "createGoal": "Create goal",
       "errorMessage": "An error occurred while creating the goal. Please try again.",
-      "success": "Success",
-      "successMessage": "The goal has been created successfully"
+      "successMessage": "Goal created successfully"
     },
     "createSubtask": {
       "title": "Create subtask",
-      "subtitle": "Complete the form and start your journey!",
+      "subtitle": "Fill out the form and start your journey!",
       "form": {
         "subtask": "What is your subtask?",
-        "subtaskPlaceholder": "e.g. 'What is Python?', 'Organize a diet'.",
-        "subtaskMinLength": "The subtask must have at least 4 characters",
-        "description": "Description",
-        "descriptionPlaceholder": "e.g. 'Learn the basic concepts of programming in Python'",
-        "button": {
-          "create": "Create subtask",
-          "loading": "Creating..."
-        }
+        "subtaskPlaceholder": "e.g. 'What is Python?', 'Plan a diet.'",
+        "subtaskMinLength": "The subtask must be at least 4 characters long",
+        "descriptionPlaceholder": "e.g. 'Learn the basics of programming in Python'",
+        "createSubtask": "Create subtask"
       }
     },
     "goal": {
       "subtasks": "Subtasks",
       "noSubtasks": "No subtasks",
-      "deleteGoal": "Delete",
+      "deleteGoal": "Delete goal",
       "deleteGoalMessage": "Are you sure you want to delete this goal?",
-      "cancel": "Cancel"
+      "errorDeleteGoal": "An error occurred while deleting the goal. Please try again."
     },
     "subtask": {
-      "delete": "Eliminar subtarea",
-      "deleteSubtaskMessage": "¿Estás seguro de querer eliminar esta subtarea?",
-      "errorDeleteSubtask": "Hubo un error al elimnar la subtarea. Intentar de nuevo."
+      "delete": "Delete subtask",
+      "deleteSubtaskMessage": "Are you sure you want to delete this subtask?",
+      "errorDeleteSubtask": "An error occurred while deleting the subtask. Please try again."
     },
     "editGoal": {
       "headerImage": "Edit image",
@@ -127,26 +118,19 @@
       "titlePlaceholder": "e.g. 'Learn Python'",
       "description": "Description",
       "descriptionPlaceholder": "e.g. 'Learn programming in Python from scratch'",
-      "success": "Success",
-      "successMessage": "The goal has been edited successfully",
-      "error": "Error",
+      "successMessage": "Goal edited successfully",
       "errorMessage": "An error occurred while editing the goal. Please try again.",
-      "loading": "Saving...",
-      "save": "Save",
-      "ok": "OK"
+      "timeRestriction": "Time restriction",
+      "timeRestrictionMessage": "You need to wait {{remainingMinutes}} minutes before changing your avatar again.",
+      "changeIconError": "An error occurred while changing the icon. Please try again.",
+      "changeIconSuccess": "Icon changed successfully."
     },
     "editSubtask": {
       "title": "Edit subtask",
       "titlePlaceholder": "e.g. 'Learn Python'",
-      "description": "Description",
-      "descriptionPlaceholder": "e.g. 'Learn the basic concepts of programming in Python'",
-      "success": "Success",
-      "successMessage": "The subtask has been edited successfully",
-      "error": "Error",
-      "errorMessage": "An error occurred while editing the subtask. Please try again.",
-      "loading": "Saving...",
-      "save": "Save",
-      "ok": "OK"
+      "descriptionPlaceholder": "e.g. 'Learn the basics of programming in Python'",
+      "successMessage": "Subtask edited successfully",
+      "errorMessage": "An error occurred while editing the subtask. Please try again."
     }
   },
   "account": {
@@ -155,23 +139,20 @@
       "avatar": "Your avatar",
       "username": "Username",
       "usernamePlaceholder": "e.g. Juan Perez",
-      "success": "Success",
-      "successMessage": "The account has been edited successfully",
-      "error": "Error",
-      "errorMessage": "An error occurred while editing the account. Please try again.",
-      "loading": "Saving...",
-      "save": "Save"
+      "successMessage": "Account edited successfully",
+      "errorMessage": "An error occurred while editing the account. Please try again."
     },
     "avatar": {
       "select": "Select your avatar",
       "timeRestriction": "Time restriction",
       "timeRestrictionMessage": "You need to wait {{remainingMinutes}} minutes before changing your avatar again.",
-      "errorMessage": "An error occurred while getting the avatar. Please try again."
+      "errorMessage": "An error occurred while fetching the avatar. Please try again.",
+      "changeAvatarError": "An error occurred while changing the avatar. Please try again.",
+      "changeAvatarSuccess": "Avatar changed successfully."
     },
     "locale": {
       "languages": "Languages",
-      "locale_changed_successfully": "The language has been changed successfully",
-      "success": "Success"
+      "locale_changed_successfully": "Language changed successfully"
     }
   }
 }

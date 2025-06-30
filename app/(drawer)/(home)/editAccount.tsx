@@ -28,9 +28,9 @@ export default function EditAccountScreen() {
             }
         })
         if (error) {
-            Alert.alert(t("account.editAccount.error"), t("account.editAccount.errorMessage"));
+            Alert.alert(t("common.error"), t("account.editAccount.errorMessage"));
         } else {
-            Alert.alert(t("account.editAccount.success"), t("account.editAccount.successMessage"));
+            Alert.alert(t("common.success"), t("account.editAccount.successMessage"));
             router.back();
         }
         setLoading(false);
@@ -58,7 +58,7 @@ export default function EditAccountScreen() {
                     />
                 </View>
                 <TouchableOpacity style={[styles.saveButton, { backgroundColor: isLoading || !isUsernameValid ? "gray" : Colors.primary }]} onPress={handleSave} disabled={isLoading || !isUsernameValid}>
-                    <Text style={styles.saveButtonText}>{isLoading ? t("account.editAccount.loading") : t("account.editAccount.save")}</Text>
+                    <Text style={styles.saveButtonText}>{isLoading ? t("common.loading") : t("common.save")}</Text>
                 </TouchableOpacity>
             </View>
         </View>

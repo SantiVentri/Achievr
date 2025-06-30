@@ -31,9 +31,9 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
             goal_id: goal_id,
         });
         if (error) {
-            Alert.alert(t("home.createGoal.error"), t("home.createGoal.errorMessage"));
+            Alert.alert(t("common.error"), t("home.createSubtask.errorMessage"));
         } else {
-            Alert.alert(t("home.createGoal.success"), t("home.createGoal.successMessage"));
+            Alert.alert(t("common.success"), t("home.createSubtask.successMessage"));
         }
         resetForm();
         router.back();
@@ -66,7 +66,7 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
                     {errors.subtask && <Text style={styles.error}>{errors.subtask}</Text>}
                 </View>
                 <View style={styles.formGroup}>
-                    <Text style={styles.formGroupTitle}>{t("home.createSubtask.form.description")}</Text>
+                    <Text style={styles.formGroupTitle}>{t("common.description")}</Text>
                     <TextInput
                         style={styles.input}
                         placeholder={t("home.createSubtask.form.descriptionPlaceholder")}
@@ -78,7 +78,7 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
                 </View>
             </View>
             <TouchableOpacity style={[styles.button, { backgroundColor: !subtask || isLoading ? 'gray' : Colors.primary }]} onPress={handleCreateGoal} disabled={!subtask || isLoading}>
-                <Text style={styles.buttonText}>{isLoading ? t("home.createSubtask.form.button.loading") : t("home.createSubtask.form.button.create")}</Text>
+                <Text style={styles.buttonText}>{isLoading ? t("common.loading") : t("common.create")}</Text>
             </TouchableOpacity>
         </View>
     )
