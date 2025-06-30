@@ -21,7 +21,7 @@ const UserContext = createContext<UserContextType>({
 
 export const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [session, setSession] = useState<Session | null>(null)
-    const [loading, setLoading] = useState(true)
+    const [loading, setIsLoading] = useState(true)
     const [avatar, setAvatar] = useState<string | null>(null)
 
     const getAvatar = async () => {
@@ -43,13 +43,13 @@ export const UserContextProvider = ({ children }: { children: React.ReactNode })
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (mounted) {
                 setSession(session);
-                setLoading(false);
+                setIsLoading(false);
             }
         });
 
         const { data: subscription } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
-            setLoading(false);
+            setIsLoading(false);
         });
 
         return () => {

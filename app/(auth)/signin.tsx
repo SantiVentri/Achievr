@@ -12,13 +12,13 @@ export default function SignInScreen() {
     const { t } = useTranslation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
     const disabled = !email || !password;
 
     const handleSignIn = async () => {
-        setLoading(true);
+        setIsLoading(true);
         const { error } = await supabase.auth.signInWithPassword({
             email,
             password,
@@ -28,7 +28,7 @@ export default function SignInScreen() {
         } else {
             router.replace("/");
         }
-        setLoading(false);
+        setIsLoading(false);
     }
 
     return (

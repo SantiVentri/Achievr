@@ -13,7 +13,7 @@ export default function EditSubtaskScreen() {
     const { t } = useTranslation();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [isTitleValid, setIsTitleValid] = useState(false);
     const [isDescriptionValid, setIsDescriptionValid] = useState(false);
     const [hasChanges, setHasChanges] = useState(false);
@@ -50,9 +50,9 @@ export default function EditSubtaskScreen() {
     }, [subtask_id]);
 
     const handleSave = async () => {
-        setLoading(true);
+        setIsLoading(true);
         const { error } = await supabase.from("subtasks").update({ title, short_description: description }).eq("id", subtask_id);
-        setLoading(false);
+        setIsLoading(false);
 
         if (error) {
             Alert.alert(t("common.error"), t("home.editSubtask.errorMessage"));

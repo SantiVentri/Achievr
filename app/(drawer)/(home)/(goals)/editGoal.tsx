@@ -15,7 +15,7 @@ export default function EditGoalScreen() {
     const { t } = useTranslation();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [isTitleValid, setIsTitleValid] = useState(false);
     const [isDescriptionValid, setIsDescriptionValid] = useState(false);
     const [hasChanges, setHasChanges] = useState(false);
@@ -52,9 +52,9 @@ export default function EditGoalScreen() {
     }, [goal_id]));
 
     const handleSave = async () => {
-        setLoading(true);
+        setIsLoading(true);
         const { error } = await supabase.from("goals").update({ title, short_description: description }).eq("id", goal_id);
-        setLoading(false);
+        setIsLoading(false);
 
         if (error) {
             Alert.alert(t("common.error"), t("home.editGoal.errorMessage"));
@@ -71,7 +71,7 @@ export default function EditGoalScreen() {
             <View style={styles.form}>
                 <View style={styles.formEditHeader}>
                     <Text style={styles.formGroupLabel}>{t("home.editGoal.headerImage")}:</Text>
-                    <EditGoalHeader link={goal?.header_image || ''} />
+                    <EditGoalHeader id={goal_id as string} header_image={goal?.header_image || ''} />
                 </View>
                 <View style={styles.formEditHeader}>
                     <Text style={styles.formGroupLabel}>{t("home.editGoal.iconImage")}:</Text>

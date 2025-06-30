@@ -13,7 +13,7 @@ export default function EditAccountScreen() {
     const { t } = useTranslation();
     const { user } = useUser();
     const [username, setUsername] = useState(user?.user_metadata?.display_name || '');
-    const [isLoading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [isUsernameValid, setIsUsernameValid] = useState(false);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function EditAccountScreen() {
     }, [username]);
 
     const handleSave = async () => {
-        setLoading(true);
+        setIsLoading(true);
         const { error } = await supabase.auth.updateUser({
             data: {
                 display_name: username,
@@ -33,7 +33,7 @@ export default function EditAccountScreen() {
             Alert.alert(t("common.success"), t("account.editAccount.successMessage"));
             router.back();
         }
-        setLoading(false);
+        setIsLoading(false);
     }
 
     return (
