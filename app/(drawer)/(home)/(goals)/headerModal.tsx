@@ -24,10 +24,10 @@ export default function HeaderModal() {
         setIsLoading(true);
         const { error } = await supabase.from("goals").update({ header_image: header, updated_at: new Date().toISOString() }).eq("id", id);
         if (error) {
-            Alert.alert(t("common.error"), t("home.editGoal.changeHeaderError"));
+            Alert.alert(t("common.error"), t("home.editGoal.errorMessage"));
             return;
         } else {
-            Alert.alert(t("common.success"), t("home.editGoal.changeHeaderSuccess"));
+            Alert.alert(t("common.success"), t("home.editGoal.successMessage"));
         }
         setCurrentHeader(header);
         setIsLoading(false);

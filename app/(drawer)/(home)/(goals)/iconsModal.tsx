@@ -25,10 +25,10 @@ export default function IconsModal() {
         setIsLoading(true);
         const { error } = await supabase.from("goals").update({ icon: icon, updated_at: new Date().toISOString() }).eq("id", id);
         if (error) {
-            Alert.alert(t("common.error"), t("home.editGoal.changeIconError"));
+            Alert.alert(t("common.error"), t("home.editGoal.successMessage"));
             return;
         } else {
-            Alert.alert(t("common.success"), t("home.editGoal.changeIconSuccess"));
+            Alert.alert(t("common.success"), t("home.editGoal.errorMessage"));
         }
         setCurrentIcon(icon);
         setIsLoading(false);

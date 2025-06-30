@@ -102,7 +102,7 @@ export default function EditSubtaskScreen() {
                     disabled={isLoading || !isTitleValid || !isDescriptionValid || !hasChanges}
                 >
                     <Text style={styles.saveButtonText}>
-                        {isLoading ? t("home.editSubtask.loading") : t("common.save")}
+                        {isLoading ? t("common.loading") : t("common.save")}
                     </Text>
                 </TouchableOpacity>
             </View>

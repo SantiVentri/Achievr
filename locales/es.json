@@ -115,7 +115,7 @@
       "errorDeleteSubtask": "Hubo un error al elimnar la subtarea. Intentar de nuevo."
     },
     "editGoal": {
-      "headerImage": "Editar imagen",
+      "headerImage": "Editar portada",
       "iconImage": "Editar icono",
       "title": "Editar objetivo",
       "titlePlaceholder": "e.g. 'Aprender Python'",
@@ -124,10 +124,7 @@
       "successMessage": "El objetivo se ha editado correctamente",
       "errorMessage": "Ocurrió un error al editar el objetivo. Por favor, intenta nuevamente.",
       "getIconError": "Ocurrió un error al obtener el icono. Por favor, intenta nuevamente.",
-      "timeRestriction": "Tiempo de restricción",
-      "timeRestrictionMessage": "Necesitas esperar {{remainingMinutes}} minutos antes de cambiar tu avatar nuevamente.",
-      "changeIconError": "Ocurrió un error al cambiar el icono. Por favor, intenta nuevamente.",
-      "changeIconSuccess": "Icono cambiado con correctamente."
+      "getHeaderError": "Ocurrió un error al obtener la portada. Por favor, intenta nuevamente."
     },
     "editSubtask": {
       "title": "Editar subtarea",

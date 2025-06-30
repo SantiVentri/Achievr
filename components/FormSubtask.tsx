@@ -35,9 +35,9 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
             goal_id: goal_id,
         });
         if (error) {
-            Alert.alert(t("common.error"), t('home.createSubtask.errorMessage'));
+            Alert.alert(t("common.error"), t('home.createSubtask.form.errorMessage'));
         } else {
-            Alert.alert(t("common.success"), t("home.createSubtask.successMessage"));
+            Alert.alert(t("common.success"), t("home.createSubtask.form.successMessage"));
         }
         resetForm();
         router.back();

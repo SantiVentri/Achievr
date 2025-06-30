@@ -3,17 +3,19 @@ import { supabase } from "@/utils/supabase";
 import { Feather } from "@expo/vector-icons";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function EditGoalIcon({ id, icon_name }: { id: string; icon_name: string; }) {
     const router = useRouter();
+    const { t } = useTranslation();
     const [icon, setIcon] = useState(icon_name)
     const [isLoading, setIsLoading] = useState(false)
 
     const getIcon = async () => {
         const { data, error } = await supabase.from("goals").select('icon').eq("id", id).single();
         if (error) {
-            Alert.alert("Error", "Failed to get icon");
+            Alert.alert(t('common.error'), t('home.editGoal.iconError')); // Checkear si esto existe
         }
         setIcon(data?.icon)
     }

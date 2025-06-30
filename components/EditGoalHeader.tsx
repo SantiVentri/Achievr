@@ -15,7 +15,7 @@ export default function EditGoalHeader({ id, header_image }: { id: string; heade
     const getHeader = async () => {
         const { data, error } = await supabase.from("goals").select('header_image').eq("id", id).single();
         if (error) {
-            Alert.alert(t('common.error'), t('home.editGoal.headerError')); // Checkear si esto existe
+            Alert.alert(t('common.error'), t('home.editGoal.getHeaderError')); // Checkear si esto existe
         }
         setHeader(data?.header_image)
     }

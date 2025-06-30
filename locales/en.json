@@ -123,11 +123,8 @@
       "descriptionPlaceholder": "e.g. 'Learn programming in Python from scratch'",
       "successMessage": "Goal edited successfully",
       "errorMessage": "An error occurred while editing the goal. Please try again.",
-      "getIconError": "An error occurred while fetching the icon. Please try again.",
-      "timeRestriction": "Time restriction",
-      "timeRestrictionMessage": "You need to wait {{remainingMinutes}} minutes before changing your avatar again.",
-      "changeIconError": "An error occurred while changing the icon. Please try again.",
-      "changeIconSuccess": "Icon changed successfully."
+      "getHeaderError": "An error occurred while fetching the header image. Please try again.",
+      "getIconError": "An error occurred while fetching the icon. Please try again."
     },
     "editSubtask": {
       "title": "Edit subtask",
