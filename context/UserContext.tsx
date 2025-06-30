@@ -17,59 +17,52 @@ const UserContext = createContext<UserContextType>({
     loading: true,
     avatar: null,
     updateAvatar: () => { },
-})
+});
 
 export const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const [session, setSession] = useState<Session | null>(null)
-    const [loading, setIsLoading] = useState(true)
-    const [avatar, setAvatar] = useState<string | null>(null)
+    const [session, setSession] = useState<Session | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [avatar, setAvatar] = useState<string | null>(null);
 
     const getAvatar = async () => {
         if (!session?.user) return;
-        const { data, error } = await supabase.from('users').select('avatar').eq('user_id', session.user.id).single();
+        const { data, error } = await supabase
+            .from('users')
+            .select('avatar')
+            .eq('user_id', session.user.id)
+            .single();
+
         if (error) {
             console.error(error);
+        } else if (data) {
+            setAvatar(data.avatar || null);
         }
-        setAvatar(data?.avatar || null);
-    }
+    };
 
     const updateAvatar = () => {
         getAvatar();
-    }
+    };
 
     useEffect(() => {
-        let mounted = true;
-
-        supabase.auth.getSession().then(({ data: { session } }) => {
-            if (mounted) {
-                setSession(session);
-                setIsLoading(false);
-            }
-        });
-
         const { data: subscription } = supabase.auth.onAuthStateChange((_event, session) => {
             setSession(session);
-            setIsLoading(false);
+            setLoading(false);
         });
 
-        return () => {
-            mounted = false;
-            subscription?.subscription?.unsubscribe();
-        };
+        return () => subscription?.subscription?.unsubscribe();
     }, []);
 
     useEffect(() => {
-        getAvatar();
+        if (session?.user) getAvatar();
     }, [session?.user]);
 
-    // Espera a que termine la carga inicial antes de renderizar los hijos
     if (loading) return null;
 
     return (
         <UserContext.Provider value={{ session, user: session?.user ?? null, loading, avatar, updateAvatar }}>
             {children}
         </UserContext.Provider>
-    )
-}
+    );
+};
 
-export const useUser = () => useContext(UserContext)
+export const useUser = () => useContext(UserContext);
