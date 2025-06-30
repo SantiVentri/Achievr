@@ -16,7 +16,7 @@ export default function AvatarModal() {
     const router = useRouter();
 
     const getAvatar = async () => {
-        const { data, error } = await supabase.from("avatars").select().eq("user_id", user?.id).single();
+        const { data, error } = await supabase.from("users").select('avatar').eq("user_id", user?.id).single();
         if (error) {
             Alert.alert("Error", error.message);
         }
@@ -26,41 +26,12 @@ export default function AvatarModal() {
     const handleChangeAvatar = async (avatar: string) => {
         setIsLoading(true);
 
-        const { data: currentData, error: fetchError } = await supabase
-            .from("avatars")
-            .select("updated_at")
-            .eq("user_id", user?.id)
-            .single();
-
-        if (fetchError) {
-            Alert.alert(t("account.avatar.error"), t("account.avatar.errorMessage"));
-            setIsLoading(false);
-            return;
-        }
-
-        if (currentData?.updated_at) {
-            const lastUpdate = new Date(currentData.updated_at);
-            const now = new Date();
-            const timeDiff = now.getTime() - lastUpdate.getTime();
-            const minutesDiff = Math.floor(timeDiff / (1000 * 60));
-
-            if (minutesDiff < 3) {
-                const remainingMinutes = 3 - minutesDiff;
-                Alert.alert(
-                    t("account.avatar.timeRestriction"),
-                    t("account.avatar.timeRestrictionMessage", { remainingMinutes })
-                );
-                setIsLoading(false);
-                return;
-            }
-        }
-
-        const { error } = await supabase.from("avatars").update({ avatar: avatar, updated_at: new Date().toISOString() }).eq("user_id", user?.id);
+        const { error } = await supabase.from("users").update({ avatar: avatar, updated_at: new Date().toISOString() }).eq("user_id", user?.id);
         if (error) {
-            Alert.alert(t("common.error"), t("account.avatar.changeError"));
+            Alert.alert(t("common.error"), t("account.avatar.changeAvatarError"));
             return;
         } else {
-            Alert.alert(t("common.success"), t("account.avatar.changeSuccess"));
+            Alert.alert(t("common.success"), t("account.avatar.changeAvatarSuccess"));
             updateAvatar();
         }
         setCurrentAvatar(avatar);

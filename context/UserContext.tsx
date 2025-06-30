@@ -26,7 +26,7 @@ export const UserContextProvider = ({ children }: { children: React.ReactNode })
 
     const getAvatar = async () => {
         if (!session?.user) return;
-        const { data, error } = await supabase.from('avatars').select('avatar').eq('user_id', session.user.id).single();
+        const { data, error } = await supabase.from('users').select('avatar').eq('user_id', session.user.id).single();
         if (error) {
             console.error(error);
         }
