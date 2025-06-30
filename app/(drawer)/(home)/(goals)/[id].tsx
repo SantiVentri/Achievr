@@ -121,7 +121,7 @@ export default function GoalScreen() {
                                     {isDone ? <MaterialCommunityIcons name="checkbox-marked-circle" size={28} color="green" /> : <MaterialCommunityIcons name="checkbox-blank-circle-outline" size={28} color="black" />}
                                 </Pressable>
                                 <Text style={styles.title}>{goal?.icon}</Text>
-                                <Text style={[styles.title, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.title}</Text>
+                                <Text style={[styles.title, { textDecorationLine: isDone ? "line-through" : "none" }]} numberOfLines={1} ellipsizeMode="tail">{goal?.title}</Text>
                             </View>
                             <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.short_description}</Text>
                         </View>
@@ -185,18 +185,19 @@ const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: Colors.primary
     },
+    headerTitles: {
+        padding: 15,
+        gap: 5,
+    },
     headerTitle: {
         flexDirection: "row",
         alignItems: "center",
         gap: 10,
     },
-    headerTitles: {
-        padding: 15,
-        gap: 5,
-    },
     title: {
         fontSize: 24,
         fontWeight: "bold",
+        maxWidth: 310,
     },
     subtitle: {
         fontSize: 16,
