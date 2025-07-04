@@ -51,16 +51,6 @@ export default function SignUpScreen() {
                 </View>
                 <View style={styles.formBody}>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>{t("common.username")}:</Text>
-                        <TextInput
-                            style={styles.input}
-                            value={username}
-                            onChangeText={setUsername}
-                            placeholder={t("common.usernamePlaceholder")}
-                            placeholderTextColor="gray"
-                        />
-                    </View>
-                    <View style={styles.formGroup}>
                         <Text style={styles.formGroupLabel}>{t("common.email")}:</Text>
                         <TextInput
                             style={styles.input}

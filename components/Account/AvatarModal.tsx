@@ -63,7 +63,7 @@ export default function AvatarModal() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        width: '100%',
         gap: 30,
     },
     title: {

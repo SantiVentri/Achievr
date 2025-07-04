@@ -172,6 +172,10 @@
     "welcome": {
       "title": "Convertite en tu mejor versión",
       "coloredTitle": "con un paso a la vez"
+    },
+    "setUsername": {
+      "title": "Configura tu cuenta",
+      "description": "Elige el nombre con el que quieras que te llamemos. Puedes cambiarlo luego."
     }
   }
 }

@@ -172,6 +172,10 @@
     "welcome": {
       "title": "Become your best version",
       "coloredTitle": "one step at a time"
+    },
+    "setUsername": {
+      "title": "Finish setup",
+      "description": "Choose the name you'd like us to call you. You can change it later."
     }
   }
 }

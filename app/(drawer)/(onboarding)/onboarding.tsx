@@ -1,5 +1,6 @@
 import AvatarModal from "@/components/AvatarModal";
 import ContinueButton from "@/components/onboarding/continueButton";
+import SetUsernameModal from "@/components/onboarding/SetUsername";
 import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
 import { router } from "expo-router";
@@ -31,6 +32,7 @@ export default function Onboarding() {
 
     return (
         <View style={styles.container}>
+            {step == 0 && <SetUsernameModal />}
             {step == 1 && <AvatarModal />}
             <ContinueButton text={step == 1 ? "onboarding.button.finishSetup" : "onboarding.button.continue"} onPress={step == 1 ? handleFinish : handlePress} disabled={isLoading} />
         </View>
