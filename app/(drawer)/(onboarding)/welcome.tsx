@@ -1,11 +1,27 @@
 import ContinueButton from "@/components/onboarding/continueButton";
+import { Colors } from "@/constants/palette";
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function Welcome() {
     const router = useRouter();
     return (
         <View style={styles.container}>
+            <LinearGradient
+                colors={['#3454d1', 'rgba(255, 255, 255, 1)']}
+                start={{ x: -0.1, y: 0.1 }}
+                end={{ x: 0.5, y: 0.5 }}
+                style={styles.gradient}
+            />
+            <View style={styles.imageContainer}>
+                <Image
+                    source={require('@/assets/images/onboarding/play_guitar_noBG.png')}
+                    style={styles.image}
+                    resizeMode="contain"
+                />
+            </View>
+            <Text style={styles.title}>Become your best version, {"\n"} <Text style={styles.titleColored}>one step at a time</Text></Text>
             <ContinueButton text="onboarding.button.continue" onPress={() => router.push("/onboarding")} />
         </View>
     );
@@ -18,4 +34,29 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingHorizontal: 25
     },
+    gradient: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: -1,
+    },
+    imageContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        width: '100%',
+    },
+    image: {
+        width: '100%',
+        aspectRatio: 1,
+    },
+    title: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontSize: 24,
+    },
+    titleColored: {
+        color: Colors.primary
+    }
 });
