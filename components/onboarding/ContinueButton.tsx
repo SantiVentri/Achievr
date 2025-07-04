@@ -19,14 +19,16 @@ export default function ContinueButton({ onPress, text, disabled }: ContinueButt
 
 const styles = StyleSheet.create({
     container: {
+        position: 'absolute',
+        bottom: 70,
         backgroundColor: Colors.primary,
-        paddingVertical: 14,
+        paddingVertical: 16,
         width: "100%",
-        borderRadius: 5,
+        borderRadius: 10,
     },
     text: {
         color: "white",
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: "bold",
         textAlign: "center",
     },
