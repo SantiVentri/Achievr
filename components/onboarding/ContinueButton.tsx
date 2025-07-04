@@ -1,0 +1,33 @@
+import { Colors } from "@/constants/palette";
+import { useTranslation } from "react-i18next";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+
+interface ContinueButtonProps {
+    onPress: () => void;
+    text: "onboarding.button.continue" | "onboarding.button.finishSetup";
+    disabled?: boolean;
+}
+
+export default function ContinueButton({ onPress, text, disabled }: ContinueButtonProps) {
+    const { t } = useTranslation();
+    return (
+        <TouchableOpacity style={styles.container} onPress={onPress} disabled={disabled}>
+            <Text style={styles.text}>{t(text)}</Text>
+        </TouchableOpacity>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: Colors.primary,
+        paddingVertical: 14,
+        width: "100%",
+        borderRadius: 5,
+    },
+    text: {
+        color: "white",
+        fontSize: 16,
+        fontWeight: "bold",
+        textAlign: "center",
+    },
+});
