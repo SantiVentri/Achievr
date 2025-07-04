@@ -161,5 +161,17 @@
       "success": "Éxito",
       "locale_changed_successfully": "El idioma se ha cambiado correctamente"
     }
+  },
+  "onboarding": {
+    "getOnboardingStateError": "Hubo un error al obtener el progreso de inicialización. Intentar de nuevo.",
+    "updateOnboardingStateError": "Hubo un error al finalizar el progreso de inicialización. Intentar de nuevo.",
+    "button": {
+      "continue": "Continuar",
+      "finishSetup": "Finalizar"
+    },
+    "welcome": {
+      "title": "Convertite en tu mejor versión",
+      "coloredTitle": "con un paso a la vez"
+    }
   }
 }

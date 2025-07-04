@@ -2,10 +2,12 @@ import ContinueButton from "@/components/onboarding/continueButton";
 import { Colors } from "@/constants/palette";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function Welcome() {
     const router = useRouter();
+    const { t } = useTranslation();
     return (
         <View style={styles.container}>
             <LinearGradient
@@ -21,7 +23,7 @@ export default function Welcome() {
                     resizeMode="contain"
                 />
             </View>
-            <Text style={styles.title}>Become your best version, {"\n"} <Text style={styles.titleColored}>one step at a time</Text></Text>
+            <Text style={styles.title}>{t('onboarding.welcome.title')}, {"\n"} <Text style={styles.titleColored}>{t('onboarding.welcome.coloredTitle')}.</Text></Text>
             <ContinueButton text="onboarding.button.continue" onPress={() => router.push("/onboarding")} />
         </View>
     );
