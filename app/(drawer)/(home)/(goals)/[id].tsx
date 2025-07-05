@@ -4,7 +4,7 @@ import Subtask from "@/components/Subtask";
 import { Colors } from "@/constants/palette";
 import { GoalType, SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
-import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
@@ -21,6 +21,11 @@ export default function GoalScreen() {
     const [isDeleting, setIsDeleting] = useState(false);
     const [isDone, setIsDone] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [showSettingsModal, setShowSettingsModal] = useState(false);
+
+    const handleSettings = () => {
+        setShowSettingsModal(true);
+    };
 
     useFocusEffect(
         useCallback(() => {
@@ -125,8 +130,8 @@ export default function GoalScreen() {
                             </View>
                             <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.short_description}</Text>
                         </View>
-                        <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteGoal} disabled={isDeleting}>
-                            <FontAwesome name="trash" size={30} color="red" />
+                        <TouchableOpacity style={styles.settingsButton} onPress={handleSettings} disabled={isDeleting}>
+                            <Entypo name="dots-three-horizontal" size={28} color="white" />
                         </TouchableOpacity>
                     </Pressable>
                 </View>
@@ -150,7 +155,30 @@ export default function GoalScreen() {
                 />
             </ScrollView>
             <CreateGoalButton route={`/createSubtask?goal_id=${id}`} />
+
+            {/* Settings Dropdown */}
+            {showSettingsModal && (
+                <Pressable
+                    style={styles.modalOverlay}
+                    onPress={() => setShowSettingsModal(false)}
+                >
+                    <View style={styles.dropdownContent}>
+                        <TouchableOpacity
+                            style={styles.dropdownOption}
+                        >
+                            <Text style={styles.dropdownOptionText}>{t('home.editGoal.reorder')}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.dropdownOption}
+                            onPress={handleDeleteGoal}
+                        >
+                            <Text style={styles.deleteOptionText}>{t('home.goal.deleteGoal')}</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Pressable>
+            )}
         </View>
+
     )
 }
 
@@ -167,15 +195,13 @@ const styles = StyleSheet.create({
     header: {
         position: "relative",
     },
-    deleteButton: {
+    settingsButton: {
         position: "absolute",
         top: 55,
         right: 25,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#FBD6D3",
-        borderWidth: 3,
-        borderColor: "red",
+        backgroundColor: Colors.primary,
         borderRadius: 8,
         height: 42,
         width: 42,
@@ -213,5 +239,35 @@ const styles = StyleSheet.create({
     },
     subtaskItem: {
         fontSize: 16,
+    },
+    modalOverlay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1000,
+    },
+    dropdownContent: {
+        position: 'absolute',
+        top: 97,
+        right: 25,
+        backgroundColor: 'white',
+        borderRadius: 8,
+        padding: 8,
+        zIndex: 1001,
+    },
+    dropdownOption: {
+        paddingVertical: 8,
+        paddingHorizontal: 12,
+        borderRadius: 4,
+    },
+    dropdownOptionText: {
+        fontSize: 16,
+        color: '#333',
+    },
+    deleteOptionText: {
+        fontSize: 16,
+        color: '#ff4444',
     },
 })

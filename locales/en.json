@@ -115,6 +115,7 @@
       "errorDeleteSubtask": "An error occurred while deleting the subtask. Please try again."
     },
     "editGoal": {
+      "reorder": "Reorder tasks",
       "headerImage": "Edit image",
       "iconImage": "Edit icon",
       "title": "Edit goal",

@@ -115,6 +115,7 @@
       "errorDeleteSubtask": "Hubo un error al elimnar la subtarea. Intentar de nuevo."
     },
     "editGoal": {
+      "reorder": "Reordenar",
       "headerImage": "Editar portada",
       "iconImage": "Editar icono",
       "title": "Editar objetivo",
