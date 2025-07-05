@@ -2,14 +2,15 @@ import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function FormManual() {
     const { user } = useUser();
     const { t } = useTranslation();
     const router = useRouter();
+    const scrollViewRef = useRef<ScrollView>(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -48,45 +49,80 @@ export default function FormManual() {
         });
     }
 
+    const handleInputFocus = () => {
+        // Scroll to bottom when description input is focused, but not too much
+        setTimeout(() => {
+            scrollViewRef.current?.scrollToEnd({ animated: true });
+        }, 200);
+    };
+
     return (
-        <View style={styles.container}>
-            <View style={styles.form}>
-                <View style={styles.formGroup}>
-                    <Text style={styles.formGroupTitle}>{t("home.createGoal.form.goal")}</Text>
-                    <TextInput
-                        style={[styles.input, errors.title && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
-                        placeholder={t("home.createGoal.form.goalPlaceholder")}
-                        placeholderTextColor="gray"
-                        value={title}
-                        onChangeText={(text) => {
-                            setTitle(text);
-                            setErrors({ ...errors, title: "" });
-                        }}
-                    />
-                    {errors.title && <Text style={styles.error}>{errors.title}</Text>}
+        <KeyboardAvoidingView
+            style={styles.keyboardAvoidingView}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 50 : 20}
+        >
+            <ScrollView
+                ref={scrollViewRef}
+                style={styles.scrollView}
+                contentContainerStyle={styles.scrollContent}
+                showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
+                keyboardDismissMode="interactive"
+            >
+                <View style={styles.container}>
+                    <View style={styles.form}>
+                        <View style={styles.formGroup}>
+                            <Text style={styles.formGroupTitle}>{t("home.createGoal.form.goal")}</Text>
+                            <TextInput
+                                style={[styles.input, errors.title && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
+                                placeholder={t("home.createGoal.form.goalPlaceholder")}
+                                placeholderTextColor="gray"
+                                value={title}
+                                onChangeText={(text) => {
+                                    setTitle(text);
+                                    setErrors({ ...errors, title: "" });
+                                }}
+                            />
+                            {errors.title && <Text style={styles.error}>{errors.title}</Text>}
+                        </View>
+                        <View style={styles.formGroup}>
+                            <Text style={styles.formGroupTitle}>{t("home.createGoal.form.description")}</Text>
+                            <TextInput
+                                style={[styles.input, styles.multilineInput]}
+                                placeholder={t("home.createGoal.form.descriptionPlaceholder")}
+                                placeholderTextColor="gray"
+                                multiline
+                                numberOfLines={4}
+                                textAlignVertical="top"
+                                value={description}
+                                onFocus={handleInputFocus}
+                                onChangeText={(text) => {
+                                    setDescription(text);
+                                }}
+                            />
+                        </View>
+                    </View>
+                    <TouchableOpacity style={[styles.button, { backgroundColor: !title || isLoading ? 'gray' : Colors.primary }]} onPress={handleCreateGoal} disabled={!title || isLoading}>
+                        <Text style={styles.buttonText}>{isLoading ? t("common.loading") : t("home.createGoal.createGoal")}</Text>
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.formGroup}>
-                    <Text style={styles.formGroupTitle}>{t("home.createGoal.form.description")}</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t("home.createGoal.form.descriptionPlaceholder")}
-                        placeholderTextColor="gray"
-                        multiline
-                        value={description}
-                        onChangeText={(text) => {
-                            setDescription(text);
-                        }}
-                    />
-                </View>
-            </View>
-            <TouchableOpacity style={[styles.button, { backgroundColor: !title || isLoading ? 'gray' : Colors.primary }]} onPress={handleCreateGoal} disabled={!title || isLoading}>
-                <Text style={styles.buttonText}>{isLoading ? t("common.loading") : t("home.createGoal.createGoal")}</Text>
-            </TouchableOpacity>
-        </View>
+            </ScrollView>
+        </KeyboardAvoidingView>
     )
 }
 
 const styles = StyleSheet.create({
+    keyboardAvoidingView: {
+        flex: 1,
+    },
+    scrollView: {
+        flex: 1,
+    },
+    scrollContent: {
+        flexGrow: 1,
+        paddingBottom: 50,
+    },
     container: {
         flex: 1,
         gap: 25,
@@ -107,6 +143,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#f4f4f4",
         borderRadius: 10,
         padding: 10,
+        minHeight: 45,
+    },
+    multilineInput: {
+        minHeight: 100,
     },
     button: {
         paddingVertical: 15,
