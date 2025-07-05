@@ -10,24 +10,18 @@ import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } fro
 export default function SignUpScreen() {
     const router = useRouter();
     const { t } = useTranslation();
-    const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    const disabled = !username || !email || !password;
+    const disabled = !email || !password;
 
     const handleSignIn = async () => {
         setIsLoading(true);
         const { error } = await supabase.auth.signUp({
             email,
             password,
-            options: {
-                data: {
-                    display_name: username,
-                }
-            }
         })
         if (error) {
             Alert.alert(t("common.error"), t("auth.signup.errorMessage"));
