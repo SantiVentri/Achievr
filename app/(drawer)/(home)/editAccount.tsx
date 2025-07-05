@@ -36,6 +36,17 @@ export default function EditAccountScreen() {
         setIsLoading(false);
     }
 
+    const handleResetOnboarding = async () => {
+        setIsLoading(true);
+        const { error } = await supabase.from('users').update({ 'onboarding_done': false }).eq('user_id', user?.id)
+        if (error) {
+            Alert.alert(t("common.error"), t("account.editAccount.errorMessage"));
+        } else {
+            Alert.alert(t("common.success"), t("account.editAccount.successMessage"));
+        }
+        setIsLoading(false);
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.formTitle}>{t("account.editAccount.title")}</Text>
@@ -49,18 +60,15 @@ export default function EditAccountScreen() {
                 </TouchableOpacity>
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupLabel}>{t("account.editAccount.username")}</Text>
-                    <TextInput
-                        style={styles.input}
-                        value={username}
-                        onChangeText={setUsername}
-                        placeholder={t("account.editAccount.usernamePlaceholder")}
-                        placeholderTextColor="gray"
-                    />
+                    <TextInput style={styles.input} value={username} onChangeText={setUsername} placeholder={t("account.editAccount.usernamePlaceholder")} placeholderTextColor="gray" />
                 </View>
                 <TouchableOpacity style={[styles.saveButton, { backgroundColor: isLoading || !isUsernameValid ? "gray" : Colors.primary }]} onPress={handleSave} disabled={isLoading || !isUsernameValid}>
                     <Text style={styles.saveButtonText}>{isLoading ? t("common.loading") : t("common.save")}</Text>
                 </TouchableOpacity>
             </View>
+            <TouchableOpacity onPress={handleResetOnboarding} disabled={isLoading}>
+                <Text>{t('account.editAccount.resetOnboardingState')}</Text>
+            </TouchableOpacity>
         </View>
     )
 }

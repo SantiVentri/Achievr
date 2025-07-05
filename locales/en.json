@@ -141,13 +141,10 @@
       "title": "Edit account",
       "avatar": "Your avatar",
       "username": "Username",
-      "usernamePlaceholder": "e.g: Juan Perez",
-      "save": "Save",
-      "error": "Error",
+      "usernamePlaceholder": "e.g. Juan Perez",
+      "successMessage": "Account edited successfully",
       "errorMessage": "An error occurred while editing the account. Please try again.",
-      "success": "Account edited successfully",
-      "successMessage": "The account has been edited successfully",
-      "loading": "Saving..."
+      "resetOnboardingState": "Reset onboarding screens"
     },
     "avatar": {
       "select": "Select your avatar",

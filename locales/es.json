@@ -68,6 +68,7 @@
     "createGoal": {
       "title": "Establece tu próximo objetivo",
       "subtitle": "Completa el formulario y comienza tu viaje!",
+      "descriptiveSubtitle": "Llená el formulario, usaremos IA para crear un mapa de metas para ayudarte a alcanzar tu objetivo.",
       "ai": "Crear con IA",
       "manual": "Crear manualmente",
       "form": {
@@ -147,7 +148,7 @@
       "errorMessage": "Ocurrió un error al editar la cuenta. Por favor, intenta nuevamente.",
       "success": "Cuenta editada correctamente",
       "successMessage": "La cuenta se ha editado correctamente",
-      "loading": "Guardando..."
+      "resetOnboardingState": "Restablecer pantallas de bienvenida"
     },
     "avatar": {
       "select": "Selecciona tu avatar",

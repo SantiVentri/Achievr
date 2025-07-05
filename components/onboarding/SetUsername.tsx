@@ -2,9 +2,20 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 
-export default function SetUsernameModal() {
+interface SetUsernameModalProps {
+    onUsernameChange: (username: string) => void;
+    initialUsername?: string;
+}
+
+export default function SetUsernameModal({ onUsernameChange, initialUsername = "" }: SetUsernameModalProps) {
     const { t } = useTranslation();
-    const [username, setUsername] = useState<string | "">("")
+    const [username, setUsername] = useState<string>(initialUsername);
+
+    const handleUsernameChange = (text: string) => {
+        setUsername(text);
+        onUsernameChange(text);
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.titles}>
@@ -16,7 +27,7 @@ export default function SetUsernameModal() {
                 <TextInput
                     style={styles.input}
                     value={username}
-                    onChangeText={setUsername}
+                    onChangeText={handleUsernameChange}
                     placeholder={t("common.usernamePlaceholder")}
                     placeholderTextColor="gray"
                 />

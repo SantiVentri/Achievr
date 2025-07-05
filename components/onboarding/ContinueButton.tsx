@@ -11,7 +11,7 @@ interface ContinueButtonProps {
 export default function ContinueButton({ onPress, text, disabled }: ContinueButtonProps) {
     const { t } = useTranslation();
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress} disabled={disabled}>
+        <TouchableOpacity style={[styles.container, { backgroundColor: disabled ? "#d9d9d9" : Colors.primary, }]} onPress={onPress} disabled={disabled}>
             <Text style={styles.text}>{t(text)}</Text>
         </TouchableOpacity>
     );
@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     container: {
         position: 'absolute',
         bottom: 70,
-        backgroundColor: Colors.primary,
         paddingVertical: 16,
         width: "100%",
         borderRadius: 10,
