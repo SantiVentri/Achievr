@@ -1,4 +1,4 @@
-import ContinueButton from "@/components/onboarding/continueButton";
+import ContinueButton from "@/components/onboarding/ContinueButton";
 import { Colors } from "@/constants/palette";
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from "expo-router";

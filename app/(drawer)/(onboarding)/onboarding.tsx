@@ -1,5 +1,5 @@
 import AvatarModal from "@/components/AvatarModal";
-import ContinueButton from "@/components/onboarding/continueButton";
+import ContinueButton from "@/components/onboarding/ContinueButton";
 import SetUsernameModal from "@/components/onboarding/SetUsername";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
