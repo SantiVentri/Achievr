@@ -23,7 +23,7 @@ export default function Header() {
             <TouchableOpacity onPress={handleOpenDrawer} disabled={isLoading}>
                 <MaterialIcons name="menu" size={35} color="white" />
             </TouchableOpacity>
-            <Text style={styles.title}>Dreamr</Text>
+            <Text style={styles.title}>Achievr</Text>
             <TouchableOpacity onPress={() => router.push("/account")}>
                 <Avatar size={35} />
             </TouchableOpacity>
