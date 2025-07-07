@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Dreamr",
-    "slug": "Dreamr",
+    "name": "Achievr",
+    "slug": "Achievr",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "dreamr",
+    "scheme": "achievr",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
