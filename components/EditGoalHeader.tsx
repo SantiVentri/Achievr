@@ -41,11 +41,15 @@ export default function EditGoalHeader({ id, header_image }: { id: string; heade
     return (
         <TouchableOpacity style={styles.container} onPress={handleChangeHeader}>
             <View style={styles.imageWrapper}>
-                <Image
-                    source={{ uri: header }}
-                    style={styles.image}
-                    resizeMode="cover"
-                />
+                {header ? (
+                    <Image
+                        source={{ uri: header }}
+                        style={styles.image}
+                        resizeMode="cover"
+                    />
+                ) : (
+                    <View style={[styles.image, { backgroundColor: Colors.primary }]} />
+                )}
             </View>
             <View style={styles.editIcon}>
                 <Feather name="edit" size={20} color="white" />
@@ -70,9 +74,9 @@ const styles = StyleSheet.create({
         height: 120,
     },
     imageWrapper: {
-        width: "100%",
-        height: 120,
         position: "relative",
+        height: 120,
+        width: "100%",
     },
     editIcon: {
         position: "absolute",
