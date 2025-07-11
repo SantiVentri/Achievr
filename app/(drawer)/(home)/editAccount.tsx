@@ -44,6 +44,7 @@ export default function EditAccountScreen() {
         } else {
             Alert.alert(t("common.success"), t("account.editAccount.successMessage"));
         }
+        router.push('/welcome')
         setIsLoading(false);
     }
 

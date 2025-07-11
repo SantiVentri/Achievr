@@ -1,6 +1,6 @@
 import ContinueButton from "@/components/onboarding/ContinueButton";
 import { Colors } from "@/constants/palette";
-import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Image, StyleSheet, Text, View } from "react-native";
