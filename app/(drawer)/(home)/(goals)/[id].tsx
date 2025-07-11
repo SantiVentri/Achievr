@@ -2,9 +2,10 @@ import CreateGoalButton from "@/components/createGoalButton";
 import { getGoal, getSubtasks } from "@/components/data";
 import Subtask from "@/components/Subtask";
 import { Colors } from "@/constants/palette";
+import { useUser } from "@/context/UserContext";
 import { GoalType, SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
-import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useState } from "react";
@@ -15,11 +16,13 @@ export default function GoalScreen() {
     const { id } = useLocalSearchParams();
     const { t } = useTranslation();
     const router = useRouter();
+    const { user } = useUser();
     const [goal, setGoal] = useState<GoalType>();
     const [subtasks, setSubtasks] = useState<SubtaskType[]>([]);
     const [refreshing, setRefreshing] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isDone, setIsDone] = useState(false);
+    const [isStarred, setIsStarred] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showSettingsModal, setShowSettingsModal] = useState(false);
 
@@ -35,7 +38,8 @@ export default function GoalScreen() {
                 const goalData = await getGoal(id as string);
                 if (goalData) {
                     setGoal(goalData);
-                    setIsDone(goalData?.is_done || false);
+                    setIsDone(goalData?.is_done);
+                    setIsStarred(goalData?.is_starred)
 
                     const subtasksData = await getSubtasks(goalData.id);
                     setSubtasks(subtasksData);
@@ -56,7 +60,8 @@ export default function GoalScreen() {
 
         if (goalData) {
             setGoal(goalData);
-            setIsDone(goalData?.is_done || false);
+            setIsDone(goalData?.is_done);
+            setIsStarred(goalData?.is_starred)
 
             const subtasksData = await getSubtasks(goalData.id);
             setSubtasks(subtasksData);
@@ -83,6 +88,12 @@ export default function GoalScreen() {
         ]);
         setIsDeleting(false);
     }, [id]);
+
+    const handleStarGoal = useCallback(async () => {
+        setIsStarred(!isStarred)
+        await supabase.from('goals').update({ is_starred: false }).eq("creator_id", user?.id)
+        await supabase.from('goals').update({ is_starred: !isStarred }).eq("id", id);
+    }, [id, isStarred])
 
     const handleCheckboxPress = useCallback(async (event: GestureResponderEvent) => {
         event?.stopPropagation();
@@ -130,9 +141,16 @@ export default function GoalScreen() {
                             </View>
                             <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.short_description}</Text>
                         </View>
-                        <TouchableOpacity style={styles.settingsButton} onPress={handleSettings} disabled={isDeleting}>
-                            <Entypo name="dots-three-horizontal" size={28} color="white" />
-                        </TouchableOpacity>
+                        <View style={styles.buttons}>
+                            <TouchableOpacity style={[styles.button, styles.starButton]} onPress={handleStarGoal} disabled={isLoading}>
+                                {isStarred ?
+                                    <AntDesign name="star" size={28} color={Colors.golden} /> :
+                                    <AntDesign name="staro" size={28} color={Colors.primary} />}
+                            </TouchableOpacity>
+                            <TouchableOpacity style={[styles.button, styles.settingsButton]} onPress={handleSettings} disabled={isDeleting}>
+                                <Entypo name="dots-three-horizontal" size={28} color="white" />
+                            </TouchableOpacity>
+                        </View>
                     </Pressable>
                 </View>
                 <FlatList
@@ -195,16 +213,25 @@ const styles = StyleSheet.create({
     header: {
         position: "relative",
     },
-    settingsButton: {
+    buttons: {
         position: "absolute",
         top: 55,
         right: 25,
+        flexDirection: 'row',
+        gap: 10
+    },
+    button: {
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: Colors.primary,
         borderRadius: 8,
         height: 42,
         width: 42,
+    },
+    starButton: {
+        backgroundColor: 'white'
+    },
+    settingsButton: {
+        backgroundColor: Colors.primary,
     },
     image: {
         height: 250,
