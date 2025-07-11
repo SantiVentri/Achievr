@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         margin: 8,
         height: 60,
         width: 100,
-        borderRadius: 100,
+        borderRadius: 80,
     },
     header: {
         borderRadius: 10,
