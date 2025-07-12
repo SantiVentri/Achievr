@@ -37,7 +37,7 @@ export default function Goal({ id, header_image, icon, title, short_description,
                 <View style={styles.imageContainer}>
                     <Image
                         source={{ uri: header_image }}
-                        height={120}
+                        height={140}
                     />
                 </View>
             )}

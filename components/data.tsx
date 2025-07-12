@@ -6,6 +6,7 @@ export async function getGoals(user: User | null, is_done: boolean): Promise<Goa
     const { data, error } = await supabase
         .from("goals")
         .select("*")
+        .order("is_starred", { ascending: false })
         .order("created_at", { ascending: true })
         .eq("creator_id", user?.id)
         .eq("is_done", is_done);
