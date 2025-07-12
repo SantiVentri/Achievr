@@ -2,13 +2,13 @@ import { GoalType, SubtaskType } from "@/enums/types";
 import { supabase } from "@/utils/supabase";
 import { User } from "@supabase/supabase-js";
 
-export async function getGoals(user: User | null, is_done: boolean): Promise<GoalType[]> {
+export async function getGoals(user: User | null): Promise<GoalType[]> {
     const { data, error } = await supabase
         .from("goals")
         .select("*")
+        .order("is_done", { ascending: true })
         .order("created_at", { ascending: true })
         .eq("creator_id", user?.id)
-        .eq("is_done", is_done);
 
     if (error) {
         console.error(error);
