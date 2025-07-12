@@ -1,8 +1,9 @@
 import { Colors } from "@/constants/palette";
 import { GoalType } from "@/enums/types";
+import { AntDesign } from "@expo/vector-icons";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { getProgress } from "./data";
 
 export default function Goal({ id, header_image, icon, title, short_description, is_done, is_starred }: GoalType) {
@@ -34,11 +35,13 @@ export default function Goal({ id, header_image, icon, title, short_description,
     return (
         <TouchableOpacity style={[styles.container, is_done && styles.is_done]} onPress={handlePress} disabled={isLoading}>
             {is_starred && (
-                <View style={styles.imageContainer}>
-                    <Image
-                        source={{ uri: header_image }}
-                        height={140}
-                    />
+                <View>
+                    <View style={styles.imageContainer}>
+                        <Image
+                            source={{ uri: header_image }}
+                            height={140}
+                        />
+                    </View>
                 </View>
             )}
             <View style={styles.itemContent}>
@@ -56,12 +59,18 @@ export default function Goal({ id, header_image, icon, title, short_description,
                     </View>
                 </View>
             </View>
+            {is_starred && (
+                <Pressable style={styles.star}>
+                    <AntDesign name="star" size={28} color={Colors.golden} />
+                </Pressable>
+            )}
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
+        position: 'relative',
         backgroundColor: "#F4F4F4",
         borderWidth: 4,
         borderColor: Colors.primary,
@@ -78,6 +87,14 @@ const styles = StyleSheet.create({
     imageContainer: {
         borderRadius: 10,
         overflow: 'hidden'
+    },
+    star: {
+        position: 'absolute',
+        top: 15,
+        right: 15,
+        backgroundColor: 'white',
+        borderRadius: 200,
+        padding: 8,
     },
     is_done: {
         backgroundColor: "#BCC6EB",
