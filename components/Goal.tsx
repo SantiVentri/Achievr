@@ -26,7 +26,8 @@ export default function Goal({ id, header_image, icon, title, short_description,
             const progress = await getProgress(id);
             if (progress) {
                 setTotalTasks(progress.total);
-                setProgress(Math.round((progress.completed / progress.total) * 100));
+                const percentage = progress.total === 0 ? 0 : Math.round((progress.completed / progress.total) * 100);
+                setProgress(percentage);
             }
         }
         fetchProgress();

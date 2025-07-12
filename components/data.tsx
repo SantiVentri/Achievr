@@ -82,9 +82,12 @@ export async function getProgress(goal_id: string): Promise<{ total: number, com
         return null;
     }
 
+    const total = data.length;
+    const completed = data.filter(subtask => subtask.is_done).length;
+
     return {
-        total: data.length,
-        completed: data.filter(subtask => subtask.is_done).length,
+        total: total,
+        completed: completed,
     };
 }
 
