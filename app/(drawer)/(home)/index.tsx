@@ -6,7 +6,7 @@ import { GoalType } from '@/enums/types';
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native';
 
 const getGreeting = () => {
   const { t } = useTranslation();
@@ -20,62 +20,48 @@ export default function Page() {
   const { t } = useTranslation();
   const { user } = useUser();
   const [goals, setGoals] = useState<GoalType[]>([]);
-  const [doneGoals, setDoneGoals] = useState<GoalType[]>([]);
   const [refreshing, setRefreshing] = useState(false);
 
-  const fetchAllGoals = useCallback(async () => {
+  const fetchGoals = useCallback(async () => {
     if (!user) return;
-    const [goals, doneGoals] = await Promise.all([
-      getGoals(user, false),
-      getGoals(user, true),
+    const [goals] = await Promise.all([
+      getGoals(user),
     ]);
     setGoals(goals);
-    setDoneGoals(doneGoals);
   }, [user]);
 
   useFocusEffect(
     useCallback(() => {
-      fetchAllGoals();
-    }, [fetchAllGoals])
+      fetchGoals();
+    }, [fetchGoals])
   );
 
   const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    await fetchAllGoals();
+    await fetchGoals();
     setRefreshing(false);
-  }, [fetchAllGoals]);
+  }, [fetchGoals]);
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        contentContainerStyle={styles.scrollView}
+      <FlatList
+        data={goals}
+        keyExtractor={(goal) => goal.id}
+        renderItem={({ item }) => <Goal {...item} />}
+        ListHeaderComponent={
+          <View>
+            <View style={styles.header}>
+              <Text style={styles.subtitle}>{t("home.subtitle", { name: user?.user_metadata?.display_name })}</Text>
+              <Text style={styles.title}>{getGreeting()}</Text>
+            </View>
+            <Text style={styles.listTitle}>{t("home.goalsLists.goals")}</Text>
+          </View>
+        }
+        ListEmptyComponent={<Text>{t("home.goalsLists.noGoals")}</Text>}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
-      >
-        <View style={styles.header}>
-          <Text style={styles.subtitle}>{t("home.subtitle", { name: user?.user_metadata?.display_name })}</Text>
-          <Text style={styles.title}>{getGreeting()}</Text>
-        </View>
-        <View style={styles.goalsContainer}>
-          <FlatList
-            data={goals}
-            keyExtractor={(goal) => goal.id}
-            renderItem={({ item }) => <Goal {...item} />}
-            ListHeaderComponent={<Text style={styles.listTitle}>{t("home.goalsLists.goals")}</Text>}
-            scrollEnabled={false}
-            ListEmptyComponent={<Text>{t("home.goalsLists.noGoals")}</Text>}
-          />
-          <FlatList
-            data={doneGoals}
-            keyExtractor={(goal) => goal.id}
-            renderItem={({ item }) => <Goal {...item} />}
-            ListHeaderComponent={<Text style={styles.listTitle}>{t("home.goalsLists.doneGoals")}</Text>}
-            scrollEnabled={false}
-            ListEmptyComponent={<Text>{t("home.goalsLists.noDoneGoals")}</Text>}
-          />
-        </View>
-      </ScrollView>
+      />
       <CreateGoalButton route="/createGoal" />
     </View>
   );
@@ -84,14 +70,11 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-    paddingTop: 25,
     paddingHorizontal: 25,
     gap: 20,
   },
   header: {
+    paddingVertical: 20,
     gap: 5,
   },
   title: {
@@ -106,8 +89,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
-  },
-  goalsContainer: {
-    gap: 10,
   },
 });

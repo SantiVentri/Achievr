@@ -26,12 +26,20 @@ export default function HomeLayout() {
         <Stack screenOptions={{ contentStyle: { backgroundColor: "white" } }}>
             <Stack.Screen name="index" options={{ header: () => <Header /> }} />
             <Stack.Screen name="account" options={{ headerShown: false }} />
-            <Stack.Screen name="createGoal" options={{ headerShown: false, presentation: 'modal' }} />
             <Stack.Screen name="editAccount" options={{ headerShown: false }} />
             <Stack.Screen name="AvatarModal" options={{ headerShown: false, presentation: 'modal' }} />
+
+            {/* Goals */}
+            <Stack.Screen name="createGoal" options={{ headerShown: false, presentation: 'modal' }} />
             <Stack.Screen name="(goals)/[id]" options={{ headerShown: false }} />
-            <Stack.Screen name="(subtasks)/[id]" options={{ headerShown: false }} />
+            <Stack.Screen name="(goals)/editGoal" options={{ headerShown: false, presentation: 'modal' }} />
+            <Stack.Screen name="(goals)/iconsModal" options={{ headerShown: false, presentation: 'modal' }} />
+            <Stack.Screen name="(goals)/headerModal" options={{ headerShown: false, presentation: 'modal' }} />
+
+            {/* Subtasks */}
             <Stack.Screen name="(subtasks)/createSubtask" options={{ headerShown: false, presentation: 'modal' }} />
+            <Stack.Screen name="(subtasks)/[id]" options={{ headerShown: false, }} />
+            <Stack.Screen name="(subtasks)/editSubtask" options={{ headerShown: false, presentation: 'modal' }} />
         </Stack>
     )
 }
