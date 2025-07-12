@@ -6,6 +6,7 @@ export interface GoalType {
     short_description: string;
     creator_id: string;
     is_done: boolean;
+    is_starred: boolean;
     updated_at: string;
     created_at: string;
 }
