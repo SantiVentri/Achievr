@@ -3,7 +3,8 @@ import { SubtaskType } from "@/enums/types";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from "react-native";
+import { Pressable, RefreshControl, StyleSheet, Text, View } from "react-native";
+import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
 import { getSubtasks } from "./data";
 
 export default function ReorderSubtasksModal(props: { goal_id: string }) {
@@ -31,7 +32,7 @@ export default function ReorderSubtasksModal(props: { goal_id: string }) {
 
     return (
         <View style={styles.container}>
-            <FlatList
+            <DraggableFlatList
                 data={subtasks}
                 keyExtractor={(item) => item.id}
                 contentContainerStyle={styles.listContainer}
@@ -41,8 +42,13 @@ export default function ReorderSubtasksModal(props: { goal_id: string }) {
                 ListEmptyComponent={() => (
                     <Text>{!isLoading && (!subtasks || subtasks.length == 0) && t('home.goal.noSubtasks')}</Text>
                 )}
-                renderItem={({ item }) => (
-                    <Pressable style={styles.item}>
+                onDragEnd={({ data }) => setSubtasks(data)}
+                renderItem={({ item, drag, isActive }: RenderItemParams<SubtaskType>) => (
+                    <Pressable
+                        style={[styles.item, isActive && { backgroundColor: Colors.primary_light }]}
+                        onLongPress={drag}
+                        disabled={isActive}
+                    >
                         <Text style={{ color: '#000' }}>{item.title}</Text>
                         <MaterialCommunityIcons name="drag-horizontal" size={24} color={Colors.primary} />
                     </Pressable>
