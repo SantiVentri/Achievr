@@ -1,5 +1,6 @@
 import CreateGoalButton from "@/components/createGoalButton";
 import { getGoal, getSubtasks } from "@/components/data";
+import ReorderSubtasksModal from "@/components/ReorderSubtasksModal";
 import Subtask from "@/components/Subtask";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
@@ -25,6 +26,7 @@ export default function GoalScreen() {
     const [isStarred, setIsStarred] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [showSettingsModal, setShowSettingsModal] = useState(false);
+    const [showReorderModal, setShowReorderModal] = useState(false);
 
     const handleSettings = () => {
         setShowSettingsModal(true);
@@ -147,7 +149,7 @@ export default function GoalScreen() {
                                     <AntDesign name="star" size={28} color={Colors.golden} /> :
                                     <AntDesign name="staro" size={28} color={Colors.primary} />}
                             </TouchableOpacity>
-                            <TouchableOpacity style={[styles.button, styles.settingsButton]} onPress={handleSettings} disabled={isDeleting}>
+                            <TouchableOpacity style={[styles.button, styles.settingsButton]} onPress={() => setShowSettingsModal(!showSettingsModal)} disabled={isDeleting}>
                                 <Entypo name="dots-three-horizontal" size={28} color="white" />
                             </TouchableOpacity>
                         </View>
@@ -183,6 +185,7 @@ export default function GoalScreen() {
                     <View style={styles.dropdownContent}>
                         <TouchableOpacity
                             style={styles.dropdownOption}
+                            onPress={() => setShowReorderModal(true)}
                         >
                             <Text style={styles.dropdownOptionText}>{t('home.editGoal.reorder')}</Text>
                         </TouchableOpacity>
@@ -193,6 +196,13 @@ export default function GoalScreen() {
                             <Text style={styles.deleteOptionText}>{t('home.goal.deleteGoal')}</Text>
                         </TouchableOpacity>
                     </View>
+                </Pressable>
+            )}
+            {showReorderModal && (
+                <Pressable style={[styles.modalOverlay, { alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0, 0, 0, 0.4)' }]} onPress={() => setShowReorderModal(false)}>
+                    <Pressable>
+                        <ReorderSubtasksModal goal_id={id as string} />
+                    </Pressable>
                 </Pressable>
             )}
         </View>
