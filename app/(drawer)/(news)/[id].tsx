@@ -1,6 +1,6 @@
-import { getNewsById, getNewsSections } from "@/components/data";
 import { Colors } from "@/constants/palette";
 import { NewsType, SectionType } from "@/enums/types";
+import { getNewsById, getNewsSections } from "@/utils/data";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";

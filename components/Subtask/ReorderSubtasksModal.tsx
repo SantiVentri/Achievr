@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, RefreshControl, StyleSheet, Text, View } from "react-native";
 import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
-import { getSubtasks } from "./data";
+import { getSubtasks } from "../../utils/data";
 
 export default function ReorderSubtasksModal(props: { goal_id: string }) {
     const { t } = useTranslation();

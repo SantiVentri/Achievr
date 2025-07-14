@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { getSubtasks } from "./data";
+import { getSubtasks } from "../../utils/data";
 
 export default function FormSubtask({ goal_id }: { goal_id: string }) {
     const { user } = useUser();

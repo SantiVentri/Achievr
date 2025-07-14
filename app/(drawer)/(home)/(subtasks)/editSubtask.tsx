@@ -1,6 +1,6 @@
-import { getSubtask } from "@/components/data";
 import { Colors } from "@/constants/palette";
 import { SubtaskType } from "@/enums/types";
+import { getSubtask } from "@/utils/data";
 import { supabase } from "@/utils/supabase";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";

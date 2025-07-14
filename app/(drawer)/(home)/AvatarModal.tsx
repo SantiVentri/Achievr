@@ -1,4 +1,4 @@
-import AvatarModal from '@/components/AvatarModal';
+import AvatarModal from '@/components/Account/AvatarModal';
 import { StyleSheet, View } from 'react-native';
 
 export default function AvatarModalPage() {

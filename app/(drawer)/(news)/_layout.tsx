@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/Common/Header";
 import { Stack } from "expo-router";
 
 export default function NewsLayout() {

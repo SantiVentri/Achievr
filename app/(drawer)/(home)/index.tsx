@@ -1,8 +1,8 @@
-import CreateGoalButton from '@/components/createGoalButton';
-import { getGoals } from '@/components/data';
-import Goal from '@/components/Goal';
+import CreateGoalButton from '@/components/Goal/createGoalButton';
+import Goal from '@/components/Goal/Goal';
 import { useUser } from '@/context/UserContext';
 import { GoalType } from '@/enums/types';
+import { getGoals } from '@/utils/data';
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';

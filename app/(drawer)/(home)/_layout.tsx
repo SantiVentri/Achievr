@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/Common/Header";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import { Stack, useRouter } from "expo-router";

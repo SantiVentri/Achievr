@@ -4,7 +4,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useFocusEffect, useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { getProgress } from "./data";
+import { getProgress } from "../../utils/data";
 
 export default function Goal({ id, header_image, icon, title, short_description, is_done, is_starred }: GoalType) {
     const router = useRouter();

@@ -1,8 +1,8 @@
-import { getGoal } from "@/components/data";
-import EditGoalHeader from "@/components/EditGoalHeader";
-import EditGoalIcon from "@/components/EditGoalIcon";
+import EditGoalHeader from "@/components/Goal/EditGoalHeader";
+import EditGoalIcon from "@/components/Goal/EditGoalIcon";
 import { Colors } from "@/constants/palette";
 import { GoalType } from "@/enums/types";
+import { getGoal } from "@/utils/data";
 import { supabase } from "@/utils/supabase";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";

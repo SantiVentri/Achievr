@@ -1,6 +1,6 @@
-import { getNews } from "@/components/data";
-import News from "@/components/News";
+import News from "@/components/News/News";
 import { NewsType } from "@/enums/types";
+import { getNews } from "@/utils/data";
 import { useFocusEffect } from "@react-navigation/native";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";

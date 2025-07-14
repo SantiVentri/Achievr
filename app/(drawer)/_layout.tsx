@@ -1,4 +1,4 @@
-import DrawerContent from "@/components/DrawerContent";
+import DrawerContent from "@/components/Drawer/DrawerContent";
 import { Drawer } from "expo-router/drawer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 

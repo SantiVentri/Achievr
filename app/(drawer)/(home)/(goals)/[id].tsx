@@ -1,10 +1,10 @@
-import CreateGoalButton from "@/components/createGoalButton";
-import { getGoal, getSubtasks } from "@/components/data";
-import ReorderSubtasksModal from "@/components/ReorderSubtasksModal";
-import Subtask from "@/components/Subtask";
+import CreateGoalButton from "@/components/Goal/createGoalButton";
+import ReorderSubtasksModal from "@/components/Subtask/ReorderSubtasksModal";
+import Subtask from "@/components/Subtask/Subtask";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import { GoalType, SubtaskType } from "@/enums/types";
+import { getGoal, getSubtasks } from "@/utils/data";
 import { supabase } from "@/utils/supabase";
 import { AntDesign, Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";

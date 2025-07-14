@@ -1,5 +1,5 @@
-import { getSubtask } from "@/components/data";
 import { SubtaskType } from "@/enums/types";
+import { getSubtask } from "@/utils/data";
 import { supabase } from "@/utils/supabase";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";

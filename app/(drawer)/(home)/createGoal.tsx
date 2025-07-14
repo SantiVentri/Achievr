@@ -1,5 +1,5 @@
-import FormAI from "@/components/FormAI";
-import FormManual from "@/components/FormManual";
+import FormAI from "@/components/Goal/FormAI";
+import FormManual from "@/components/Goal/FormManual";
 import { Colors } from "@/constants/palette";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";

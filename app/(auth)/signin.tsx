@@ -1,4 +1,4 @@
-import AuthLocaleSelect from '@/components/AuthLocaleSelect';
+import AuthLocaleSelect from '@/components/Locale/AuthLocaleSelect';
 import { Colors } from '@/constants/palette';
 import { supabase } from '@/utils/supabase';
 import Feather from '@expo/vector-icons/Feather';

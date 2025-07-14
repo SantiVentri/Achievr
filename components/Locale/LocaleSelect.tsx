@@ -3,7 +3,7 @@ import Feather from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import ChangeLocale from "./locale";
+import ChangeLocale from "../Locale/locale";
 
 export default function LocaleSelect() {
     const [isOpen, setIsOpen] = useState(false);

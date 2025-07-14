@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 import { Alert, Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const enFlag = require("../assets/icons/enFlag.png");
+const enFlag = require("@/assets/icons/enFlag.png");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const esFlag = require("../assets/icons/esFlag.png");
+const esFlag = require("@/assets/icons/esFlag.png");
 
 export default function ChangeLocale({ locale, text, size }: { locale: string, text?: boolean, size: number }) {
     const { i18n, t } = useTranslation();

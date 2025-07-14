@@ -6,8 +6,8 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import Avatar from "./Avatar";
-import SignOutButton from "./SignOutButton";
+import Avatar from "../Account/Avatar";
+import SignOutButton from "../Account/SignOutButton";
 
 export default function DrawerContent(props: DrawerContentComponentProps) {
     const { user } = useUser();

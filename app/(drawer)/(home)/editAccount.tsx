@@ -1,4 +1,4 @@
-import Avatar from "@/components/Avatar";
+import Avatar from "@/components/Account/Avatar";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";

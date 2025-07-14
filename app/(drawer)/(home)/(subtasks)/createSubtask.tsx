@@ -1,4 +1,4 @@
-import FormSubtask from "@/components/FormSubtask";
+import FormSubtask from "@/components/Subtask/FormSubtask";
 import { Colors } from "@/constants/palette";
 import { useLocalSearchParams } from "expo-router";
 import { useTranslation } from "react-i18next";

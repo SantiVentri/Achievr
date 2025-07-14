@@ -1,6 +1,6 @@
-import Avatar from "@/components/Avatar";
-import DeleteAccountButton from "@/components/DeleteAccountButton";
-import LocaleSelect from "@/components/LocaleSelect";
+import Avatar from "@/components/Account/Avatar";
+import DeleteAccountButton from "@/components/Account/DeleteAccountButton";
+import LocaleSelect from "@/components/Locale/LocaleSelect";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import Feather from '@expo/vector-icons/Feather';

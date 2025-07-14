@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Avatar from "./Avatar";
+import Avatar from "../Account/Avatar";
 
 export default function Header() {
     const router = useRouter();
