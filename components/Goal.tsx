@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         padding: 8,
     },
     is_done: {
-        backgroundColor: "#BCC6EB",
+        backgroundColor: Colors.primary_light,
     },
     is_done_text: {
         textDecorationLine: "line-through",
