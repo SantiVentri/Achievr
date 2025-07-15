@@ -1,4 +1,5 @@
-import AvatarModal from "@/components/AvatarModal";
+import AvatarModal from "@/components/Account/AvatarModal";
+import FormAI from "@/components/Goal/FormAI";
 import ContinueButton from "@/components/onboarding/ContinueButton";
 import SetUsernameModal from "@/components/onboarding/SetUsername";
 import { Colors } from "@/constants/palette";
