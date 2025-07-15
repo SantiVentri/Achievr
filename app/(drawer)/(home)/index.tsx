@@ -1,3 +1,4 @@
+import EmptyList from '@/components/Common/EmptyList';
 import CreateGoalButton from '@/components/Goal/createGoalButton';
 import Goal from '@/components/Goal/Goal';
 import { useUser } from '@/context/UserContext';
@@ -18,16 +19,16 @@ const getGreeting = () => {
 
 export default function Page() {
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = useUser();
   const [goals, setGoals] = useState<GoalType[]>([]);
   const [refreshing, setRefreshing] = useState(false);
 
   const fetchGoals = useCallback(async () => {
-    if (!user) return;
-    const [goals] = await Promise.all([
-      getGoals(user),
-    ]);
+    setIsLoading(true);
+    const goals = await getGoals(user)
     setGoals(goals);
+    setIsLoading(false);
   }, [user]);
 
   useFocusEffect(
@@ -57,9 +58,17 @@ export default function Page() {
             <Text style={styles.listTitle}>{t("home.goalsLists.goals")}</Text>
           </View>
         }
-        ListEmptyComponent={<Text>{t("home.goalsLists.noGoals")}</Text>}
+        ListEmptyComponent={
+          !isLoading && goals?.length === 0 ?
+            <EmptyList
+              image="https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/images/notFound.png"
+              title={t('home.goalsLists.noGoalsTitle')}
+              description={t('home.goalsLists.noGoalsDescription')}
+            />
+            : null
+        }
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl tintColor="grey" refreshing={refreshing} onRefresh={onRefresh} />
         }
       />
       <CreateGoalButton route="/createGoal" />

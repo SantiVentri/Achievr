@@ -1,3 +1,4 @@
+import EmptyList from "@/components/Common/EmptyList";
 import CreateGoalButton from "@/components/Goal/createGoalButton";
 import ReorderSubtasksModal from "@/components/Subtask/ReorderSubtasksModal";
 import Subtask from "@/components/Subtask/Subtask";
@@ -125,7 +126,7 @@ export default function GoalScreen() {
             <ScrollView
                 style={styles.scrollView}
                 refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                    <RefreshControl tintColor="grey" refreshing={refreshing} onRefresh={onRefresh} />
                 }>
                 <View style={styles.headerContainer}>
                     <Pressable style={styles.header} onPress={handleRouter} disabled={isLoading}>
@@ -164,10 +165,13 @@ export default function GoalScreen() {
                         <Text style={styles.listTitle}>{t("home.goal.subtasks")}:</Text>
                     }
                     ListEmptyComponent={
-                        <Text>{t("home.goal.noSubtasks")}</Text>
-                    }
-                    refreshControl={
-                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                        !isLoading && subtasks?.length === 0 ?
+                            <EmptyList
+                                image="https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/images/notFound.png"
+                                title={t('home.goal.noSubtasksTitle')}
+                                description={t('home.goal.noSubtasksDescription')}
+                            />
+                            : null
                     }
                     renderItem={({ item }) => (
                         <Subtask {...item} header_image={goal?.header_image || ""} onDelete={handleSubtaskDelete} />

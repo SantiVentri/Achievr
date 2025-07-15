@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Pressable, RefreshControl, StyleSheet, Text, View } from "react-native";
 import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
 import { getSubtasks } from "../../utils/data";
+import EmptyList from "../Common/EmptyList";
 
 export default function ReorderSubtasksModal(props: { goal_id: string }) {
     const { t } = useTranslation();
@@ -39,9 +40,15 @@ export default function ReorderSubtasksModal(props: { goal_id: string }) {
                 ListHeaderComponent={() => (
                     <Text style={styles.title}>{t('home.goal.subtasks')}</Text>
                 )}
-                ListEmptyComponent={() => (
-                    <Text>{!isLoading && (!subtasks || subtasks.length == 0) && t('home.goal.noSubtasks')}</Text>
-                )}
+                ListEmptyComponent={
+                    !isLoading && subtasks?.length === 0 ?
+                        <EmptyList
+                            image="https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/images/notFound.png"
+                            title={t('home.goal.noSubtasksTitle')}
+                            description={t('home.goal.noSubtasksDescription')}
+                        />
+                        : null
+                }
                 onDragEnd={({ data }) => setSubtasks(data)}
                 renderItem={({ item, drag, isActive }: RenderItemParams<SubtaskType>) => (
                     <Pressable
@@ -67,9 +74,12 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         maxHeight: 550,
         minWidth: '90%',
+        width: '90%',
     },
     listContainer: {
         padding: 20,
+        height: '100%',
+        maxHeight: 550,
         gap: 10,
     },
     title: {

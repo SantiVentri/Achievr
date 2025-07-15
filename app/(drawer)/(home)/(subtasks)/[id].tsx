@@ -90,7 +90,7 @@ export default function SubtaskScreen() {
             <ScrollView
                 style={styles.scrollView}
                 refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                    <RefreshControl tintColor="grey" refreshing={refreshing} onRefresh={onRefresh} />
                 }>
                 <View style={styles.headerContainer}>
                     <Pressable style={styles.header} onPress={handleRouter} disabled={isLoading}>

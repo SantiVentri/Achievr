@@ -62,8 +62,8 @@
     "goalsLists": {
       "goals": "Objetivos",
       "doneGoals": "Objetivos completados",
-      "noGoals": "No hay objetivos",
-      "noDoneGoals": "No hay objetivos completados"
+      "noGoalsTitle": "¡Ups! No se encontraron objetivos.",
+      "noGoalsDescription": "Refresca la página o crea un objetivo"
     },
     "createGoal": {
       "title": "Establece tu próximo objetivo",
@@ -105,7 +105,8 @@
     },
     "goal": {
       "subtasks": "Subtareas",
-      "noSubtasks": "No hay subtareas",
+      "noSubtasksTitle": "¡Ups! No se encontraron subtareas.",
+      "noSubtasksDescription": "Refresca la página o crea una tarea",
       "deleteGoal": "Eliminar objetivo",
       "deleteGoalMessage": "¿Estás seguro de querer eliminar este objetivo?",
       "errorDeleteGoal": "Hubo un error al elimnar el objetivo. Intentar de nuevo."
@@ -161,5 +162,9 @@
       "success": "Éxito",
       "locale_changed_successfully": "El idioma se ha cambiado correctamente"
     }
+  },
+  "news": {
+    "noNewsTitle": "¡Ups! No se encontraron noticias.",
+    "noNewsDescription": "Refresca la página o vuelve a intentar luego"
   }
 }

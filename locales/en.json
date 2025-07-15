@@ -62,8 +62,8 @@
     "goalsLists": {
       "goals": "Goals",
       "doneGoals": "Completed goals",
-      "noGoals": "No goals",
-      "noDoneGoals": "No completed goals"
+      "noGoalsTitle": "Oops! No goals were found.",
+      "noGoalsDescription": "Refresh the page or create a goal"
     },
     "createGoal": {
       "title": "Set your next goal",
@@ -105,7 +105,8 @@
     },
     "goal": {
       "subtasks": "Subtasks",
-      "noSubtasks": "No subtasks",
+      "noSubtasksTitle": "Oops! No subtasks were found.",
+      "noSubtasksDescription": "Refresh the page or create a subtask",
       "deleteGoal": "Delete goal",
       "deleteGoalMessage": "Are you sure you want to delete this goal?",
       "errorDeleteGoal": "There was an error deleting the goal. Try again."
@@ -161,5 +162,9 @@
       "success": "Success",
       "locale_changed_successfully": "The language has been changed successfully"
     }
+  },
+  "news": {
+    "noNewsTitle": "Oops! No news were found.",
+    "noNewsDescription": "Refresh the page or try again later"
   }
 }
