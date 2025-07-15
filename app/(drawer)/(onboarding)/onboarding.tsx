@@ -1,5 +1,4 @@
 import AvatarModal from "@/components/Account/AvatarModal";
-import FormAI from "@/components/Goal/FormAI";
 import ContinueButton from "@/components/onboarding/ContinueButton";
 import SetUsernameModal from "@/components/onboarding/SetUsername";
 import { Colors } from "@/constants/palette";
@@ -37,9 +36,6 @@ export default function Onboarding() {
             setStep(step + 1);
         }
         else if (step == 2) {
-            setStep(step + 1);
-        }
-        else if (step == 3) {
             const { error } = await supabase.from('users').update({ 'onboarding_done': true }).eq('user_id', user?.id)
 
             if (error) {
@@ -67,7 +63,7 @@ export default function Onboarding() {
     };
 
     useEffect(() => {
-        setProgress((step / 3) * 100)
+        setProgress((step / 2) * 100)
     }, [step])
 
     return (
@@ -81,13 +77,13 @@ export default function Onboarding() {
                         <View style={[styles.progress, { width: `${progress}%` }]} />
                     </View>
                 </View>
-                <Text style={styles.headerTitle}>{step}/3</Text>
+                <Text style={styles.headerTitle}>{step}/2</Text>
             </View>
 
             {step == 1 && <SetUsernameModal onUsernameChange={handleUsernameChange} initialUsername={username} />}
             {step == 2 && <AvatarModal />}
             <ContinueButton
-                text={step == 3 ? "onboarding.button.finishSetup" : "onboarding.button.continue"}
+                text={step == 2 ? "onboarding.button.finishSetup" : "onboarding.button.continue"}
                 onPress={handlePress}
                 disabled={isLoading || !username}
             />
