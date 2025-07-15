@@ -142,13 +142,10 @@
       "title": "Edit account",
       "avatar": "Your avatar",
       "username": "Username",
-      "usernamePlaceholder": "e.g: Juan Perez",
-      "save": "Save",
-      "error": "Error",
+      "usernamePlaceholder": "e.g. Juan Perez",
+      "successMessage": "Account edited successfully",
       "errorMessage": "An error occurred while editing the account. Please try again.",
-      "success": "Account edited successfully",
-      "successMessage": "The account has been edited successfully",
-      "loading": "Saving..."
+      "resetOnboardingState": "Reset onboarding screens"
     },
     "avatar": {
       "select": "Select your avatar",
@@ -166,5 +163,21 @@
   "news": {
     "noNewsTitle": "Oops! No news were found.",
     "noNewsDescription": "Refresh the page or try again later"
+  },
+  "onboarding": {
+    "getOnboardingStateError": "An error occurred while fetching the onboarding state. Try again.",
+    "updateOnboardingStateError": "An error occurred while finalizing the onboarding. Try again.",
+    "button": {
+      "continue": "Continue",
+      "finishSetup": "Finish setup"
+    },
+    "welcome": {
+      "title": "Become your best version",
+      "coloredTitle": "one step at a time"
+    },
+    "setUsername": {
+      "title": "Finish setup",
+      "description": "Choose the name you'd like us to call you. You can change it later."
+    }
   }
 }

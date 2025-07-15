@@ -49,13 +49,7 @@ export default function EditAccountScreen() {
                 </TouchableOpacity>
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupLabel}>{t("account.editAccount.username")}</Text>
-                    <TextInput
-                        style={styles.input}
-                        value={username}
-                        onChangeText={setUsername}
-                        placeholder={t("account.editAccount.usernamePlaceholder")}
-                        placeholderTextColor="gray"
-                    />
+                    <TextInput style={styles.input} value={username} onChangeText={setUsername} placeholder={t("account.editAccount.usernamePlaceholder")} placeholderTextColor="gray" />
                 </View>
                 <TouchableOpacity style={[styles.saveButton, { backgroundColor: isLoading || !isUsernameValid ? "gray" : Colors.primary }]} onPress={handleSave} disabled={isLoading || !isUsernameValid}>
                     <Text style={styles.saveButtonText}>{isLoading ? t("common.loading") : t("common.save")}</Text>
