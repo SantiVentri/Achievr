@@ -78,8 +78,6 @@ const styles = StyleSheet.create({
     },
     listContainer: {
         padding: 20,
-        height: '100%',
-        maxHeight: 550,
         gap: 10,
     },
     title: {
