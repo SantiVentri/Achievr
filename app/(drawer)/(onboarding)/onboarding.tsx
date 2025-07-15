@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function Onboarding() {
-    const { user } = useUser();
+    const { user, avatar } = useUser();
     const { t } = useTranslation();
     const [step, setStep] = useState<number>(1);
     const [isLoading, setIsLoading] = useState(false);
@@ -85,7 +85,7 @@ export default function Onboarding() {
             <ContinueButton
                 text={step == 2 ? "onboarding.button.finishSetup" : "onboarding.button.continue"}
                 onPress={handlePress}
-                disabled={isLoading || !username}
+                disabled={isLoading || (step == 1 && !username) || (step == 2 && !avatar)}
             />
         </View>
     );
