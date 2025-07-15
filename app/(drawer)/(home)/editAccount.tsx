@@ -36,18 +36,6 @@ export default function EditAccountScreen() {
         setIsLoading(false);
     }
 
-    const handleResetOnboarding = async () => {
-        setIsLoading(true);
-        const { error } = await supabase.from('users').update({ 'onboarding_done': false }).eq('user_id', user?.id)
-        if (error) {
-            Alert.alert(t("common.error"), t("account.editAccount.errorMessage"));
-        } else {
-            Alert.alert(t("common.success"), t("account.editAccount.successMessage"));
-        }
-        router.push('/welcome')
-        setIsLoading(false);
-    }
-
     return (
         <View style={styles.container}>
             <Text style={styles.formTitle}>{t("account.editAccount.title")}</Text>
@@ -67,9 +55,6 @@ export default function EditAccountScreen() {
                     <Text style={styles.saveButtonText}>{isLoading ? t("common.loading") : t("common.save")}</Text>
                 </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={handleResetOnboarding} disabled={isLoading}>
-                <Text>{t('account.editAccount.resetOnboardingState')}</Text>
-            </TouchableOpacity>
         </View>
     )
 }
