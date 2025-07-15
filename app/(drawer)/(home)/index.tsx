@@ -48,6 +48,7 @@ export default function Page() {
       <FlatList
         data={goals}
         keyExtractor={(goal) => goal.id}
+        contentContainerStyle={styles.list}
         renderItem={({ item }) => <Goal {...item} />}
         ListHeaderComponent={
           <View>
@@ -85,6 +86,9 @@ const styles = StyleSheet.create({
   header: {
     paddingVertical: 20,
     gap: 5,
+  },
+  list: {
+    paddingBottom: 200
   },
   title: {
     fontSize: 24,

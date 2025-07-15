@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/palette";
 import { NewsType } from "@/enums/types";
 import { useRouter } from "expo-router";
 import { useState } from "react";
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     imageContainer: {
+        backgroundColor: Colors.primary,
         height: 200,
         width: '100%',
     },

@@ -126,9 +126,9 @@ export default function GoalScreen() {
             <ScrollView
                 style={styles.scrollView}
                 refreshControl={
-                    <RefreshControl tintColor="grey" refreshing={refreshing} onRefresh={onRefresh} />
+                    <RefreshControl tintColor="grey" refreshing={refreshing} onRefresh={onRefresh} progressViewOffset={50} />
                 }>
-                <View style={styles.headerContainer}>
+                <View>
                     <Pressable style={styles.header} onPress={handleRouter} disabled={isLoading}>
                         <Image
                             source={{ uri: goal?.header_image }}
@@ -142,7 +142,9 @@ export default function GoalScreen() {
                                 <Text style={styles.title}>{goal?.icon}</Text>
                                 <Text style={[styles.title, { textDecorationLine: isDone ? "line-through" : "none" }]} numberOfLines={1} ellipsizeMode="tail">{goal?.title}</Text>
                             </View>
-                            <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.short_description}</Text>
+                            {goal?.short_description.length != 0 &&
+                                <Text style={[styles.subtitle, { textDecorationLine: isDone ? "line-through" : "none" }]}>{goal?.short_description}</Text>
+                            }
                         </View>
                         <View style={styles.buttons}>
                             <TouchableOpacity style={[styles.button, styles.starButton]} onPress={handleStarGoal} disabled={isLoading}>
@@ -221,9 +223,6 @@ const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
     },
-    headerContainer: {
-        gap: 15,
-    },
     header: {
         position: "relative",
     },
@@ -275,8 +274,8 @@ const styles = StyleSheet.create({
     },
     subtasksListContainer: {
         padding: 15,
-        paddingBottom: 100,
-        gap: 15,
+        paddingBottom: 200,
+        gap: 5,
     },
     subtaskItem: {
         fontSize: 16,

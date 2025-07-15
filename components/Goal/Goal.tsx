@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         borderRadius: 10,
+        backgroundColor: Colors.primary,
         overflow: 'hidden'
     },
     star: {
