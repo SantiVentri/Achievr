@@ -138,14 +138,10 @@
     }
   },
   "account": {
-    "editAccount": {
-      "title": "Edit account",
-      "avatar": "Your avatar",
-      "username": "Username",
-      "usernamePlaceholder": "e.g. Juan Perez",
-      "successMessage": "Account edited successfully",
-      "errorMessage": "An error occurred while editing the account. Please try again.",
-      "resetOnboardingState": "Reset onboarding screens"
+    "locale": {
+      "languages": "Languages",
+      "success": "Success",
+      "locale_changed_successfully": "The language has been changed successfully"
     },
     "avatar": {
       "select": "Select your avatar",
@@ -154,10 +150,6 @@
       "error": "Error",
       "errorMessage": "An error occurred while getting the avatar. Please try again."
     },
-    "locale": {
-      "languages": "Languages",
-      "success": "Success",
-      "locale_changed_successfully": "The language has been changed successfully"
     }
   },
   "news": {

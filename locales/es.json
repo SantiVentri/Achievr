@@ -139,17 +139,10 @@
     }
   },
   "account": {
-    "editAccount": {
-      "title": "Editar cuenta",
-      "avatar": "Tu avatar",
-      "username": "Nombre de usuario",
-      "usernamePlaceholder": "e.g: Juan Perez",
-      "save": "Guardar",
-      "error": "Error",
-      "errorMessage": "Ocurrió un error al editar la cuenta. Por favor, intenta nuevamente.",
-      "success": "Cuenta editada correctamente",
-      "successMessage": "La cuenta se ha editado correctamente",
-      "resetOnboardingState": "Restablecer pantallas de bienvenida"
+    "locale": {
+      "languages": "Idiomas",
+      "success": "Éxito",
+      "locale_changed_successfully": "El idioma se ha cambiado correctamente"
     },
     "avatar": {
       "select": "Selecciona tu avatar",
@@ -158,10 +151,6 @@
       "error": "Error",
       "errorMessage": "Ocurrió un error al obtener el avatar. Por favor, intenta nuevamente."
     },
-    "locale": {
-      "languages": "Idiomas",
-      "success": "Éxito",
-      "locale_changed_successfully": "El idioma se ha cambiado correctamente"
     }
   },
   "news": {
