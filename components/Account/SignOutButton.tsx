@@ -21,7 +21,7 @@ export default function SignOutButton() {
 const styles = StyleSheet.create({
     button: {
         alignItems: "center",
-        backgroundColor: "rgba(255, 0, 0, 0.1)",
+        backgroundColor: "red",
         borderWidth: 2,
         borderColor: "red",
         borderRadius: 10,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     buttonText: {
-        color: "red",
+        color: "white",
         fontSize: 16,
         fontWeight: "bold",
     },

@@ -1,5 +1,5 @@
 import Avatar from "@/components/Account/Avatar";
-import DeleteAccountButton from "@/components/Account/DeleteAccountButton";
+import DangerActionButton from "@/components/Account/DangerActionButton";
 import LocaleSelect from "@/components/Locale/LocaleSelect";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
@@ -28,7 +28,8 @@ export default function AccountScreen() {
                     <Text style={styles.subtitle}>{user?.email}</Text>
                 </View>
             </View>
-            <DeleteAccountButton />
+            <DangerActionButton type="reset" />
+            <DangerActionButton type="delete" />
         </View>
     )
 }

@@ -3,9 +3,16 @@ import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { Alert, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export default function DeleteAccountButton() {
+type DangerActionType = 'delete' | 'reset';
+
+interface DangerActionButtonProps {
+    type: DangerActionType;
+}
+
+export default function DangerActionButton({ type }: DangerActionButtonProps) {
     const { t } = useTranslation();
     const router = useRouter();
+
     const handleDeleteUser = async () => {
         Alert.alert(
             'Eliminar cuenta',
@@ -31,11 +38,37 @@ export default function DeleteAccountButton() {
                 },
             ]
         );
+    };
+
+    const handleResetUser = async () => {
+        Alert.alert(
+            'Reiniciar cuenta',
+            '¿Estás seguro de que querés reiniciar tu cuenta? Esta acción no se puede deshacer.',
+            [
+                {
+                    text: 'Eliminar',
+                    style: 'destructive',
+                    onPress: async () => {
+                        const { error } = await supabase.rpc('reset_user');
+
+                        if (error) {
+                            Alert.alert('Error', 'Hubo un error al reiniciar tu cuenta.');
+                        } else {
+                            Alert.alert('Cuenta reiniciada', 'Tu cuenta fue reiniciada con éxito.');
+                            await supabase.auth.signOut();
+                        }
+                    },
+                },
+                {
+                    text: 'Cancelar',
+                },
+            ]
+        );
     }
 
     return (
-        <TouchableOpacity onPress={handleDeleteUser} style={styles.button}>
-            <Text style={styles.buttonText}>Eliminar cuenta</Text>
+        <TouchableOpacity onPress={type == 'delete' ? handleDeleteUser : handleResetUser} style={styles.button}>
+            <Text style={styles.buttonText}>{type == 'delete' ? 'Eliminar cuenta' : 'Reiniciar cuenta'}</Text>
         </TouchableOpacity>
     )
 }
@@ -43,7 +76,7 @@ export default function DeleteAccountButton() {
 const styles = StyleSheet.create({
     button: {
         alignItems: "center",
-        backgroundColor: "rgba(255, 0, 0, 0.1)",
+        backgroundColor: "red",
         borderWidth: 2,
         borderColor: "red",
         borderRadius: 10,
@@ -51,7 +84,7 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     buttonText: {
-        color: "red",
+        color: "white",
         fontSize: 16,
         fontWeight: "bold",
     },
