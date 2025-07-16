@@ -82,7 +82,7 @@ export default function AccountSection({ type, onInputFocus }: AccountSectionPro
                         onEndEditing={handleChangeUsername}
                         onFocus={handleFocus}
                         maxLength={20}
-                        placeholder={t('account.sections.username.placeholder')}
+                        placeholder={isLoading ? t('common.loading') : t('account.sections.username.placeholder')}
                         placeholderTextColor='grey'
                     />
                 )}
@@ -95,7 +95,7 @@ export default function AccountSection({ type, onInputFocus }: AccountSectionPro
                         onEndEditing={handleChangeEmail}
                         onFocus={handleFocus}
                         maxLength={200}
-                        placeholder={t('account.sections.email.placeholder')}
+                        placeholder={isLoading ? t('common.loading') : t('account.sections.email.placeholder')}
                         placeholderTextColor='grey'
                     />
                 )}
@@ -109,10 +109,11 @@ export default function AccountSection({ type, onInputFocus }: AccountSectionPro
 const styles = StyleSheet.create({
     container: {
         borderWidth: 2,
-        borderRadius: 12,
+        borderRadius: 15,
         borderColor: "#BDBDBD",
         backgroundColor: "#F7F7F7",
-        gap: 5
+        gap: 5,
+        overflow: 'hidden'
     },
     header: {
         padding: 12,
