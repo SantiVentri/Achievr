@@ -3,7 +3,7 @@ import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Image, Keyboard, Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Image, Keyboard, KeyboardAvoidingView, Modal, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function FeedbackForm({ visible, onClose }: { visible: boolean, onClose: () => void }) {
     const { t } = useTranslation();
@@ -52,51 +52,59 @@ export default function FeedbackForm({ visible, onClose }: { visible: boolean, o
             onRequestClose={onClose}
         >
             <Pressable style={styles.overlay} onPress={onClose}>
-                <Pressable
-                    style={styles.form}
-                    onPress={() => Keyboard.dismiss()}
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
+                    style={{ width: '100%', alignItems: 'center', justifyContent: 'center' }}
                 >
-                    <View style={styles.header}>
-                        <View style={styles.imageContainer}>
-                            <Image
-                                source={{ uri: 'https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/images//feedback.png' }}
-                                style={styles.image}
-                            />
+                    <Pressable
+                        style={styles.form}
+                        onPress={() => Keyboard.dismiss()}
+                    >
+                        <View style={styles.header}>
+                            <View style={styles.imageContainer}>
+                                <Image
+                                    source={{ uri: 'https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/images//feedback.png' }}
+                                    style={styles.image}
+                                />
+                            </View>
+                            <View style={styles.headerTitles}>
+                                <Text style={styles.title}>{t('feedback.title')}</Text>
+                                <Text style={styles.description}>{t('feedback.description')}</Text>
+                            </View>
                         </View>
-                        <View style={styles.headerTitles}>
-                            <Text style={styles.title}>{t('feedback.title')}</Text>
-                            <Text style={styles.description}>{t('feedback.description')}</Text>
-                        </View>
-                    </View>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t('feedback.subjectPlaceholder')}
-                        placeholderTextColor="grey"
-                        value={subject}
-                        onChangeText={setSubject}
-                        numberOfLines={1}
-                        maxLength={40}
-                    />
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t('feedback.messagePlaceholder')}
-                        placeholderTextColor="grey"
-                        value={message}
-                        onChangeText={setMessage}
-                        numberOfLines={4}
-                        maxLength={240}
-                        multiline
-                    />
-                    <TouchableOpacity style={[styles.button, { backgroundColor: !isValid ? 'grey' : Colors.primary }]} onPress={handleSend} disabled={!isValid || isLoading}>
-                        <Text style={styles.buttonText}>{isLoading ? t('common.loading') : t('feedback.send')}</Text>
-                    </TouchableOpacity>
-                </Pressable>
+                        <TextInput
+                            style={styles.input}
+                            placeholder={t('feedback.subjectPlaceholder')}
+                            placeholderTextColor="grey"
+                            value={subject}
+                            onChangeText={setSubject}
+                            numberOfLines={1}
+                            maxLength={40}
+                        />
+                        <TextInput
+                            style={[styles.input, { minHeight: 100 }]}
+                            placeholder={t('feedback.messagePlaceholder')}
+                            placeholderTextColor="grey"
+                            value={message}
+                            onChangeText={setMessage}
+                            numberOfLines={4}
+                            maxLength={240}
+                            multiline
+                        />
+                        <TouchableOpacity style={[styles.button, { backgroundColor: !isValid || isLoading ? 'grey' : Colors.primary }]} onPress={handleSend} disabled={!isValid || isLoading}>
+                            <Text style={styles.buttonText}>{isLoading ? t('common.loading') : t('feedback.send')}</Text>
+                        </TouchableOpacity>
+                    </Pressable>
+                </KeyboardAvoidingView>
             </Pressable>
         </Modal >
     )
 }
 
 const styles = StyleSheet.create({
+    keyboardAvoidingView: {
+        flex: 1,
+    },
     overlay: {
         flex: 1,
         alignItems: 'center',
