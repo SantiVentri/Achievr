@@ -5,7 +5,7 @@ import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from "expo-router";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function AccountScreen() {
     const { user } = useUser();
@@ -13,16 +13,16 @@ export default function AccountScreen() {
     const router = useRouter();
     return (
         <View style={styles.container}>
-            <View style={styles.buttonsContainer}>
+            <View style={styles.locales}>
                 <LocaleSelect />
-                <TouchableOpacity onPress={() => router.push("/editAccount")}>
-                    <Feather name="edit" size={24} color="black" />
-                </TouchableOpacity>
             </View>
             <View style={styles.accountHeader}>
-                <View style={styles.avatarContainer}>
+                <Pressable style={styles.avatarContainer} onPress={() => router.push("/AvatarModal")}>
                     <Avatar size={120} />
-                </View>
+                    <View style={styles.editAvatar}>
+                        <Feather name="edit" size={22} color="white" />
+                    </View>
+                </Pressable>
                 <View style={styles.accountInfo}>
                     <Text style={styles.title}>{username}</Text>
                     <Text style={styles.subtitle}>{user?.email}</Text>
@@ -40,9 +40,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 25,
         gap: 30,
     },
-    buttonsContainer: {
-        flexDirection: "row",
-        justifyContent: "space-between",
+    locales: {
+        alignItems: 'flex-end'
     },
     accountHeader: {
         alignItems: "center",
@@ -50,11 +49,20 @@ const styles = StyleSheet.create({
         gap: 20,
     },
     avatarContainer: {
+        position: 'relative',
         borderWidth: 3,
         borderColor: Colors.primary,
         backgroundColor: Colors.primary,
         borderRadius: 100,
         padding: 3,
+    },
+    editAvatar: {
+        position: 'absolute',
+        right: -2,
+        bottom: -2,
+        backgroundColor: Colors.primary,
+        padding: 10,
+        borderRadius: 100
     },
     accountInfo: {
         alignItems: "center",
