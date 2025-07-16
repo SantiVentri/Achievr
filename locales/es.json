@@ -151,6 +151,10 @@
       "error": "Error",
       "errorMessage": "Ocurrió un error al obtener el avatar. Por favor, intenta nuevamente."
     },
+    "editAccount": {
+      "successMessage": "La cuenta se ha editado correctamente",
+      "errorMessage": "Ocurrió un error al editar la cuenta. Por favor, intenta nuevamente."
+    },
     "sections": {
       "username": {
         "title": "Cambiar nombre de usuario",

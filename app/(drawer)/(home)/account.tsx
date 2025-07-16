@@ -5,35 +5,53 @@ import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from "expo-router";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useRef } from "react";
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function AccountScreen() {
     const { user } = useUser();
     const username = user?.user_metadata.display_name;
     const router = useRouter();
+    const scrollViewRef = useRef<ScrollView | null>(null);
+
+    const scrollToInput = (inputY: number) => {
+        scrollViewRef.current?.scrollTo({ y: inputY - 30, animated: true });
+    };
+
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            <View style={styles.locales}>
-                <LocaleSelect />
-            </View>
-            <View style={styles.accountHeader}>
-                <Pressable style={styles.avatarContainer} onPress={() => router.push("/AvatarModal")}>
-                    <Avatar size={120} />
-                    <View style={styles.editAvatar}>
-                        <Feather name="edit" size={22} color="white" />
-                    </View>
-                </Pressable>
-                <View style={styles.accountInfo}>
-                    <Text style={styles.title}>{username}</Text>
-                    <Text style={styles.subtitle}>{user?.email}</Text>
+        <KeyboardAvoidingView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 20 : 20}
+        >
+            <ScrollView
+                ref={scrollViewRef}
+                contentContainerStyle={styles.container}
+                keyboardShouldPersistTaps="handled"
+                keyboardDismissMode="interactive"
+            >
+                <View style={styles.locales}>
+                    <LocaleSelect />
                 </View>
-            </View>
-            <View style={styles.sectionContainer}>
-                <AccountSection type="username" />
-                <AccountSection type="email" />
-                <AccountSection type="danger" />
-            </View>
-        </ScrollView>
+                <View style={styles.accountHeader}>
+                    <Pressable style={styles.avatarContainer} onPress={() => router.push("/AvatarModal")}>
+                        <Avatar size={120} />
+                        <View style={styles.editAvatar}>
+                            <Feather name="edit" size={22} color="white" />
+                        </View>
+                    </Pressable>
+                    <View style={styles.accountInfo}>
+                        <Text style={styles.title}>{username}</Text>
+                        <Text style={styles.subtitle}>{user?.email}</Text>
+                    </View>
+                </View>
+                <View style={styles.sectionContainer}>
+                    <AccountSection type="username" onInputFocus={scrollToInput} />
+                    <AccountSection type="email" onInputFocus={scrollToInput} />
+                    <AccountSection type="danger" />
+                </View>
+            </ScrollView>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -42,7 +60,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         paddingTop: 70,
         paddingHorizontal: 25,
-        paddingBottom: 30, // Reducido para evitar problemas de scroll
+        paddingBottom: 30,
         gap: 30,
     },
     locales: {

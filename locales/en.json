@@ -150,6 +150,10 @@
       "error": "Error",
       "errorMessage": "An error occurred while getting the avatar. Please try again."
     },
+    "editAccount": {
+      "successMessage": "Account edited successfully",
+      "errorMessage": "An error occurred while editing the account. Please try again."
+    },
     "sections": {
       "username": {
         "title": "Set Username",
