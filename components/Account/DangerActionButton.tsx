@@ -15,26 +15,26 @@ export default function DangerActionButton({ type }: DangerActionButtonProps) {
 
     const handleDeleteUser = async () => {
         Alert.alert(
-            'Eliminar cuenta',
-            '¿Estás seguro de que querés eliminar tu cuenta? Esta acción no se puede deshacer.',
+            t('account.sections.danger.deleteTitle'),
+            t('account.sections.danger.deleteMessage'),
             [
                 {
-                    text: 'Eliminar',
+                    text: t('account.sections.danger.delete'),
                     style: 'destructive',
                     onPress: async () => {
                         const { error } = await supabase.rpc('delete_user');
 
                         if (error) {
                             console.error('Error al eliminar usuario:', error.message);
-                            Alert.alert('Error', 'Hubo un error al eliminar tu cuenta.');
+                            Alert.alert(t('common.error'), t('account.sections.danger.deleteError'));
                         } else {
-                            Alert.alert('Cuenta eliminada', 'Tu cuenta fue eliminada con éxito.');
+                            Alert.alert(t('account.sections.danger.deleteTitle'), t('account.sections.danger.deleteSuccess'));
                             await supabase.auth.signOut();
                         }
                     },
                 },
                 {
-                    text: 'Cancelar',
+                    text: t('common.cancel'),
                 },
             ]
         );
@@ -42,25 +42,25 @@ export default function DangerActionButton({ type }: DangerActionButtonProps) {
 
     const handleResetUser = async () => {
         Alert.alert(
-            'Reiniciar cuenta',
-            '¿Estás seguro de que querés reiniciar tu cuenta? Esta acción no se puede deshacer.',
+            t('account.sections.danger.resetTitle'),
+            t('account.sections.danger.resetMessage'),
             [
                 {
-                    text: 'Eliminar',
+                    text: t('account.sections.danger.reset'),
                     style: 'destructive',
                     onPress: async () => {
                         const { error } = await supabase.rpc('reset_user');
 
                         if (error) {
-                            Alert.alert('Error', 'Hubo un error al reiniciar tu cuenta.');
+                            Alert.alert(t('common.error'), t('account.sections.danger.resetError'));
                         } else {
-                            Alert.alert('Cuenta reiniciada', 'Tu cuenta fue reiniciada con éxito.');
+                            Alert.alert(t('account.sections.danger.resetTitle'), t('account.sections.danger.resetSuccess'));
                             await supabase.auth.signOut();
                         }
                     },
                 },
                 {
-                    text: 'Cancelar',
+                    text: t('common.cancel'),
                 },
             ]
         );
@@ -68,7 +68,7 @@ export default function DangerActionButton({ type }: DangerActionButtonProps) {
 
     return (
         <TouchableOpacity onPress={type == 'delete' ? handleDeleteUser : handleResetUser} style={styles.button}>
-            <Text style={styles.buttonText}>{type == 'delete' ? 'Eliminar cuenta' : 'Reiniciar cuenta'}</Text>
+            <Text style={styles.buttonText}>{type == 'delete' ? t('account.sections.danger.deleteTitle') : t('account.sections.danger.resetTitle')}</Text>
         </TouchableOpacity>
     )
 }

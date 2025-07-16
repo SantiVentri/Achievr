@@ -151,6 +151,15 @@
       "error": "Error",
       "errorMessage": "Ocurrió un error al obtener el avatar. Por favor, intenta nuevamente."
     },
+    "sections": {
+      "danger": {
+        "delete": "Eliminar cuenta",
+        "deleteSuccess": "Tu cuenta fue eliminada con éxito.",
+        "deleteError": "Hubo un error al eliminar tu cuenta.",
+        "reset": "Reiniciar cuenta",
+        "resetSuccess": "Tu cuenta fue reiniciada con éxito.",
+        "resetError": "Hubo un error al reiniciar tu cuenta."
+      }
     }
   },
   "news": {

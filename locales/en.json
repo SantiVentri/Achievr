@@ -150,6 +150,15 @@
       "error": "Error",
       "errorMessage": "An error occurred while getting the avatar. Please try again."
     },
+    "sections": {
+      "danger": {
+        "delete": "Delete account",
+        "deleteSuccess": "Your account was successfully deleted.",
+        "deleteError": "There was an error deleting your account.",
+        "reset": "Reset account",
+        "resetSuccess": "Your account was successfully reset.",
+        "resetError": "There was an error resetting your account."
+      }
     }
   },
   "news": {
