@@ -3,7 +3,7 @@ import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Keyboard, Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, Image, Keyboard, Modal, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function FeedbackForm({ visible, onClose }: { visible: boolean, onClose: () => void }) {
     const { t } = useTranslation();
@@ -57,8 +57,16 @@ export default function FeedbackForm({ visible, onClose }: { visible: boolean, o
                     onPress={() => Keyboard.dismiss()}
                 >
                     <View style={styles.header}>
-                        <Text style={styles.title}>{t('feedback.title')}</Text>
-                        <Text style={styles.description}>{t('feedback.description')}</Text>
+                        <View style={styles.imageContainer}>
+                            <Image
+                                source={{ uri: 'https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/images//feedback.png' }}
+                                style={styles.image}
+                            />
+                        </View>
+                        <View style={styles.headerTitles}>
+                            <Text style={styles.title}>{t('feedback.title')}</Text>
+                            <Text style={styles.description}>{t('feedback.description')}</Text>
+                        </View>
                     </View>
                     <TextInput
                         style={styles.input}
@@ -103,6 +111,20 @@ const styles = StyleSheet.create({
         gap: 15,
     },
     header: {
+        gap: 15
+    },
+    imageContainer: {
+        backgroundColor: 'grey',
+        borderRadius: 10,
+        height: 180,
+        width: '100%',
+        overflow: 'hidden'
+    },
+    image: {
+        height: 180,
+        objectFit: 'cover',
+    },
+    headerTitles: {
         gap: 5
     },
     title: {
