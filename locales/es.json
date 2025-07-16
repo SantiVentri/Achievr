@@ -152,11 +152,27 @@
       "errorMessage": "Ocurrió un error al obtener el avatar. Por favor, intenta nuevamente."
     },
     "sections": {
+      "username": {
+        "title": "Cambiar nombre de usuario",
+        "description": "Ingresa tu nombre completo o el nombre por el que quieres que te llamemos.",
+        "placeholder": "ej:  Juan"
+      },
+      "email": {
+        "title": "Cambiar Email",
+        "description": "Ingresa y cambia tu email.",
+        "placeholder": "e.g:  juanperez@ejemplo.com"
+      },
       "danger": {
+        "title": "Zona de peligro",
+        "description": "Las acciones en esta sección son irreversibles. Continúa con precaución.",
         "delete": "Eliminar cuenta",
+        "deleteTitle": "Eliminar cuenta",
+        "deleteMessage": "¿Estás seguro de que querés eliminar tu cuenta? Esta acción no se puede deshacer.",
         "deleteSuccess": "Tu cuenta fue eliminada con éxito.",
         "deleteError": "Hubo un error al eliminar tu cuenta.",
         "reset": "Reiniciar cuenta",
+        "resetTitle": "Reiniciar cuenta",
+        "resetMessage": "¿Estás seguro de que querés reiniciar tu cuenta? Esta acción no se puede deshacer.",
         "resetSuccess": "Tu cuenta fue reiniciada con éxito.",
         "resetError": "Hubo un error al reiniciar tu cuenta."
       }

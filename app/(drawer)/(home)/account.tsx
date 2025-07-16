@@ -1,18 +1,18 @@
 import Avatar from "@/components/Account/Avatar";
-import DangerActionButton from "@/components/Account/DangerActionButton";
+import AccountSection from "@/components/Account/Section";
 import LocaleSelect from "@/components/Locale/LocaleSelect";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
 import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function AccountScreen() {
     const { user } = useUser();
     const username = user?.user_metadata.display_name;
     const router = useRouter();
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.locales}>
                 <LocaleSelect />
             </View>
@@ -28,17 +28,21 @@ export default function AccountScreen() {
                     <Text style={styles.subtitle}>{user?.email}</Text>
                 </View>
             </View>
-            <DangerActionButton type="reset" />
-            <DangerActionButton type="delete" />
-        </View>
+            <View style={styles.sectionContainer}>
+                <AccountSection type="username" />
+                <AccountSection type="email" />
+                <AccountSection type="danger" />
+            </View>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
         paddingTop: 70,
         paddingHorizontal: 25,
+        paddingBottom: 30, // Reducido para evitar problemas de scroll
         gap: 30,
     },
     locales: {
@@ -77,5 +81,8 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 16,
         color: "gray",
+    },
+    sectionContainer: {
+        gap: 15
     },
 })

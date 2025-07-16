@@ -151,11 +151,27 @@
       "errorMessage": "An error occurred while getting the avatar. Please try again."
     },
     "sections": {
+      "username": {
+        "title": "Set Username",
+        "description": "Enter your full name or the name you want us to call you.",
+        "placeholder": "e.g:  John Doe"
+      },
+      "email": {
+        "title": "Set Email",
+        "description": "Enter and change your email.",
+        "placeholder": "e.g:  johndoe@example.com"
+      },
       "danger": {
+        "title": "Danger Zone",
+        "description": "The actions in this section are irreversible. Continue with precaution.",
         "delete": "Delete account",
+        "deleteTitle": "Delete account",
+        "deleteMessage": "Are you sure you want to delete your account? This action cannot be undone.",
         "deleteSuccess": "Your account was successfully deleted.",
         "deleteError": "There was an error deleting your account.",
         "reset": "Reset account",
+        "resetTitle": "Reset account",
+        "resetMessage": "Are you sure you want to reset your account? This action cannot be undone.",
         "resetSuccess": "Your account was successfully reset.",
         "resetError": "There was an error resetting your account."
       }
