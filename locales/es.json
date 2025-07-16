@@ -201,5 +201,14 @@
       "title": "Configura tu cuenta",
       "description": "Elige el nombre con el que quieras que te llamemos. Puedes cambiarlo luego."
     }
+  },
+  "feedback": {
+    "title": "Sugerencias",
+    "description": "Cuentanos sobre tu experiencia o sobre lo que quisieras ver en el futuro.",
+    "subjectPlaceholder": "Asunto",
+    "messagePlaceholder": "Mensaje",
+    "send": "Enviar comentarios",
+    "successMessage": "Se enviaron los comentarios. ¡Gracias por ayudarnos a mejorar!",
+    "errorMessage": "No se pudieron enviar los comentarios. Intentalo de nuevo más tarde."
   }
 }

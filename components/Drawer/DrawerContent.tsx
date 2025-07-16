@@ -9,7 +9,11 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import Avatar from "../Account/Avatar";
 import SignOutButton from "../Account/SignOutButton";
 
-export default function DrawerContent(props: DrawerContentComponentProps) {
+type DrawerContentProps = DrawerContentComponentProps & {
+    onFeedbackPress?: () => void;
+};
+
+export default function DrawerContent(props: DrawerContentProps) {
     const { user } = useUser();
     const router = useRouter();
     const { t } = useTranslation();
@@ -33,27 +37,18 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
         },
     ]
 
-    const extraLinks = [
-        {
-            id: 1,
-            name: t("drawer.support"),
-            icon: "help" as const,
-            screen: "(support)",
-        },
-        {
-            id: 2,
-            name: t("drawer.feedback"),
-            icon: "feedback" as const,
-            screen: "(feedback)",
-        }
-    ]
-
     const handleRouterPress = (path: string) => {
         setIsLoading(true);
         router.push(path as any);
         props.navigation.closeDrawer();
         setIsLoading(false);
     }
+
+    const handleFeedbackPress = () => {
+        if (props.onFeedbackPress) {
+            props.onFeedbackPress();
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -87,22 +82,12 @@ export default function DrawerContent(props: DrawerContentComponentProps) {
                 </View>
                 <View style={styles.drawerFooter}>
                     <View style={styles.divider} />
-                    <View>
-                        {extraLinks.map((link) => {
-                            const isActive = activeScreen === link.screen;
-                            return (
-                                <DrawerItem
-                                    key={link.id}
-                                    label={link.name}
-                                    onPress={() => props.navigation.navigate(link.screen)}
-                                    labelStyle={[styles.menuItemText, { color: isActive ? Colors.primary : "#2a2a2a" }]}
-                                    activeTintColor={Colors.primary}
-                                    inactiveTintColor="#2a2a2a"
-                                    icon={() => <MaterialIcons name={link.icon} size={30} color={isActive ? Colors.primary : "#2a2a2a"} />}
-                                />
-                            )
-                        })}
-                    </View>
+                    <DrawerItem
+                        label={t('drawer.feedback')}
+                        onPress={handleFeedbackPress}
+                        labelStyle={[styles.menuItemText, { color: "#2a2a2a" }]}
+                        icon={() => <MaterialIcons name="feedback" size={30} />}
+                    />
                     <SignOutButton />
                 </View>
             </View>
