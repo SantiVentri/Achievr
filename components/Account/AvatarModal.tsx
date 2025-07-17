@@ -26,10 +26,10 @@ export default function AvatarModal() {
 
         const { error } = await supabase.from("users").update({ avatar: avatar, updated_at: new Date().toISOString() }).eq("user_id", user?.id);
         if (error) {
-            Alert.alert(t("common.error"), t("account.avatar.changeAvatarError"));
+            Alert.alert(t("common.error"), t("account.editAccount.errorMessage"));
             return;
         } else {
-            Alert.alert(t("common.success"), t("account.avatar.changeAvatarSuccess"));
+            Alert.alert(t("common.success"), t("account.editAccount.successMessage"));
             updateAvatar();
         }
         setCurrentAvatar(avatar);
