@@ -206,6 +206,8 @@
     "description": "Let us know about your experience or what you’d like to see in the future.",
     "subjectPlaceholder": "Subject",
     "messagePlaceholder": "Message",
-    "send": "Send feedback"
+    "send": "Send feedback",
+    "successMessage": "Feedback sent. Thanks for helping us improve!",
+    "errorMessage": "Feedback could not be sent. Please try again later."
   }
 }
