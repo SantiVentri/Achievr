@@ -1,4 +1,4 @@
-import AuthLocaleSelect from '@/components/Locale/AuthLocaleSelect';
+import LocaleSelect from '@/components/Locale/LocaleSelect';
 import { Colors } from '@/constants/palette';
 import { supabase } from '@/utils/supabase';
 import Feather from '@expo/vector-icons/Feather';
@@ -34,7 +34,7 @@ export default function SignInScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.form}>
-                <AuthLocaleSelect />
+                <LocaleSelect />
                 <View style={styles.formHeader}>
                     <Image
                         source={require("@/assets/images/splash-icon.png")}
