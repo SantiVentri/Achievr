@@ -125,6 +125,7 @@ export default function GoalScreen() {
             <StatusBar style="light" />
             <ScrollView
                 style={styles.scrollView}
+                showsVerticalScrollIndicator={false}
                 refreshControl={
                     <RefreshControl tintColor="grey" refreshing={refreshing} onRefresh={onRefresh} progressViewOffset={50} />
                 }>

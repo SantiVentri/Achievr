@@ -50,6 +50,7 @@ export default function Page() {
         keyExtractor={(goal) => goal.id}
         contentContainerStyle={styles.list}
         renderItem={({ item }) => <Goal {...item} />}
+        showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <View>
             <View style={styles.header}>
