@@ -17,7 +17,7 @@ export default function SignUpScreen() {
 
     const disabled = !email || !password;
 
-    const handleSignIn = async () => {
+    const handleSignUp = async () => {
         setIsLoading(true);
         const { error } = await supabase.auth.signUp({
             email,
@@ -71,7 +71,7 @@ export default function SignUpScreen() {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignIn} disabled={loading || disabled}>
+                    <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignUp} disabled={loading || disabled}>
                         <Text style={styles.buttonText}>{loading ? t("common.loading") : t("auth.signup.signup")}</Text>
                     </TouchableOpacity>
                 </View>
