@@ -1,5 +1,5 @@
-import FeedbackForm from "@/components/Account/Feedback";
 import DrawerContent from "@/components/Drawer/DrawerContent";
+import FeedbackForm from "@/components/Drawer/Feedback";
 import OnboardingRedirect from "@/components/onboarding/OnboardingRedirect";
 import { Drawer } from "expo-router/drawer";
 import { useState } from "react";

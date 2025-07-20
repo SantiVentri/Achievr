@@ -1,6 +1,6 @@
 import Avatar from "@/components/Account/Avatar";
-import FeedbackForm from "@/components/Account/Feedback";
 import AccountSection from "@/components/Account/Section";
+import FeedbackForm from "@/components/Drawer/Feedback";
 import LocaleSelect from "@/components/Locale/LocaleSelect";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
