@@ -50,7 +50,8 @@
     "home": "Inicio",
     "news": "Noticias",
     "support": "Soporte",
-    "feedback": "Sugerencias"
+    "feedback": "Sugerencias",
+    "report": "Reportes"
   },
   "home": {
     "subtitle": "Hola, {{name}}",
@@ -210,5 +211,15 @@
     "send": "Enviar comentarios",
     "successMessage": "Se enviaron los comentarios. ¡Gracias por ayudarnos a mejorar!",
     "errorMessage": "No se pudieron enviar los comentarios. Intentalo de nuevo más tarde."
+  },
+  "report": {
+    "errorMessage": "No se pudo enviar el reporte. Inténtalo de nuevo más tarde.",
+    "successMessage": "¡Reporte enviado correctamente! Gracias por ayudarnos a mejorar.",
+    "other": "Otro",
+    "title": "Reportar un problema",
+    "description": "Cuéntanos sobre el problema o sugerencia que encontraste.",
+    "subjectPlaceholder": "Asunto",
+    "messagePlaceholder": "Mensaje",
+    "send": "Enviar reporte"
   }
 }

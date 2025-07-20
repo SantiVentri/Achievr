@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, Image, Keyboard, KeyboardAvoidingView, Modal, Platform, Pressable, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-export default function FeedbackForm({ visible, onClose }: { visible: boolean, onClose: () => void }) {
+export default function ReportForm({ visible, onClose }: { visible: boolean, onClose: () => void }) {
     const { t } = useTranslation();
     const { user } = useUser();
     const [isLoading, setIsLoading] = useState(false);
     const [subject, setSubject] = useState<string>();
     const [message, setMessage] = useState<string>();
+    const [type, setType] = useState<string>('Bug');
     const [isValid, setIsValid] = useState(false);
 
     useEffect(() => {
@@ -25,15 +26,15 @@ export default function FeedbackForm({ visible, onClose }: { visible: boolean, o
             user_id: user?.id,
             subject: subject,
             message: message,
-            type: 'Feedback'
+            type: type
         }]);
         if (error) {
-            Alert.alert(t('common.error'), t('feedback.errorMessage'));
+            Alert.alert(t('common.error'), t('report.errorMessage'));
             onClose();
             return;
         };
         handleReset();
-        Alert.alert(t('common.success'), t('feedback.successMessage'));
+        Alert.alert(t('common.success'), t('report.successMessage'));
         onClose();
         setIsLoading(false);
     };
@@ -44,6 +45,8 @@ export default function FeedbackForm({ visible, onClose }: { visible: boolean, o
         setMessage("");
         setIsLoading(false);
     };
+
+    const types = ["Bug", "UX/UI", t('report.other')]
 
     return (
         <Modal
@@ -64,18 +67,29 @@ export default function FeedbackForm({ visible, onClose }: { visible: boolean, o
                         <View style={styles.header}>
                             <View style={styles.imageContainer}>
                                 <Image
-                                    source={{ uri: 'https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/images//feedback.png' }}
+                                    source={{ uri: 'https://odpjykyuzmfjeauhkwhw.supabase.co/storage/v1/object/public/images//report.png' }}
                                     style={styles.image}
                                 />
                             </View>
                             <View style={styles.headerTitles}>
-                                <Text style={styles.title}>{t('feedback.title')}</Text>
-                                <Text style={styles.description}>{t('feedback.description')}</Text>
+                                <Text style={styles.title}>{t('report.title')}</Text>
+                                <Text>{t('report.description')}</Text>
                             </View>
+                        </View>
+                        <View style={styles.types}>
+                            {types.map((item, index) => (
+                                <TouchableOpacity
+                                    key={index}
+                                    style={[styles.type, item === type && { backgroundColor: Colors.primary }]}
+                                    onPress={() => setType(item)}
+                                >
+                                    <Text style={[styles.typeText, item === type && { color: 'white' }]}>{item}</Text>
+                                </TouchableOpacity>
+                            ))}
                         </View>
                         <TextInput
                             style={styles.input}
-                            placeholder={t('feedback.subjectPlaceholder')}
+                            placeholder={t('report.subjectPlaceholder')}
                             placeholderTextColor="grey"
                             value={subject}
                             onChangeText={setSubject}
@@ -84,7 +98,7 @@ export default function FeedbackForm({ visible, onClose }: { visible: boolean, o
                         />
                         <TextInput
                             style={[styles.input, { minHeight: 100 }]}
-                            placeholder={t('feedback.messagePlaceholder')}
+                            placeholder={t('report.messagePlaceholder')}
                             placeholderTextColor="grey"
                             value={message}
                             onChangeText={setMessage}
@@ -93,7 +107,7 @@ export default function FeedbackForm({ visible, onClose }: { visible: boolean, o
                             multiline
                         />
                         <TouchableOpacity style={[styles.button, { backgroundColor: !isValid || isLoading ? 'grey' : Colors.primary }]} onPress={handleSend} disabled={!isValid || isLoading}>
-                            <Text style={styles.buttonText}>{isLoading ? t('common.loading') : t('feedback.send')}</Text>
+                            <Text style={styles.buttonText}>{isLoading ? t('common.loading') : t('report.send')}</Text>
                         </TouchableOpacity>
                     </Pressable>
                 </KeyboardAvoidingView>
@@ -140,7 +154,21 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     },
-    description: {},
+    types: {
+        flexDirection: 'row',
+        gap: 10
+    },
+    type: {
+        borderWidth: 3,
+        borderColor: Colors.primary,
+        borderRadius: 100,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+    },
+    typeText: {
+        color: Colors.primary,
+        fontWeight: 'bold'
+    },
     input: {
         padding: 10,
         borderWidth: 2,

@@ -11,6 +11,7 @@ import SignOutButton from "../Account/SignOutButton";
 
 type DrawerContentProps = DrawerContentComponentProps & {
     onFeedbackPress?: () => void;
+    onReportPress?: () => void;
 };
 
 export default function DrawerContent(props: DrawerContentProps) {
@@ -50,6 +51,12 @@ export default function DrawerContent(props: DrawerContentProps) {
         }
     };
 
+    const handleReportPress = () => {
+        if (props.onReportPress) {
+            props.onReportPress();
+        }
+    };
+
     return (
         <View style={styles.container}>
             <Pressable style={styles.header} onPress={() => handleRouterPress("(home)/account")} disabled={isLoading}>
@@ -82,12 +89,20 @@ export default function DrawerContent(props: DrawerContentProps) {
                 </View>
                 <View style={styles.drawerFooter}>
                     <View style={styles.divider} />
-                    <DrawerItem
-                        label={t('drawer.feedback')}
-                        onPress={handleFeedbackPress}
-                        labelStyle={[styles.menuItemText, { color: "#2a2a2a" }]}
-                        icon={() => <MaterialIcons name="feedback" size={30} />}
-                    />
+                    <View>
+                        <DrawerItem
+                            label={t('drawer.report')}
+                            onPress={handleReportPress}
+                            labelStyle={[styles.menuItemText, { color: "#2a2a2a" }]}
+                            icon={() => <MaterialIcons name="report" size={30} />}
+                        />
+                        <DrawerItem
+                            label={t('drawer.feedback')}
+                            onPress={handleFeedbackPress}
+                            labelStyle={[styles.menuItemText, { color: "#2a2a2a" }]}
+                            icon={() => <MaterialIcons name="feedback" size={30} />}
+                        />
+                    </View>
                     <SignOutButton />
                 </View>
             </View>

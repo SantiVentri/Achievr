@@ -50,7 +50,8 @@
     "home": "Home",
     "news": "News",
     "support": "Support",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "report": "Reports"
   },
   "home": {
     "subtitle": "Hello, {{name}}",
@@ -209,5 +210,15 @@
     "send": "Send feedback",
     "successMessage": "Feedback sent. Thanks for helping us improve!",
     "errorMessage": "Feedback could not be sent. Please try again later."
+  },
+  "report": {
+    "errorMessage": "Could not send the report. Please try again later.",
+    "successMessage": "Report sent successfully! Thanks for helping us improve.",
+    "other": "Other",
+    "title": "Report a problem",
+    "description": "Tell us about the problem or suggestion you found.",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Message",
+    "send": "Send report"
   }
 }
