@@ -26,7 +26,6 @@ export default function HomeLayout() {
         <Stack screenOptions={{ contentStyle: { backgroundColor: "white" } }}>
             <Stack.Screen name="index" options={{ header: () => <Header /> }} />
             <Stack.Screen name="account" options={{ headerShown: false }} />
-            <Stack.Screen name="AvatarModal" options={{ headerShown: false, presentation: 'modal' }} />
 
             {/* Goals */}
             <Stack.Screen name="createGoal" options={{ headerShown: false, presentation: 'modal' }} />

@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     },
     avatar: {
         position: "relative",
-        outlineWidth: 2,
+        outlineWidth: 4,
         outlineColor: Colors.primary,
         outlineStyle: "solid",
         backgroundColor: Colors.primary,
@@ -80,8 +80,9 @@ const styles = StyleSheet.create({
     },
     avatarContainer: {
         flexDirection: "row",
+        justifyContent: 'center',
         flexWrap: "wrap",
-        gap: 10,
+        gap: 12,
     },
     check: {
         position: "absolute",

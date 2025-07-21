@@ -1,4 +1,5 @@
 import Avatar from "@/components/Account/Avatar";
+import AvatarModal from "@/components/Account/AvatarModal";
 import AccountSection from "@/components/Account/Section";
 import FeedbackForm from "@/components/Drawer/Feedback";
 import LocaleSelect from "@/components/Locale/LocaleSelect";
@@ -9,7 +10,7 @@ import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from "expo-router";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function AccountScreen() {
     const { t } = useTranslation();
@@ -17,7 +18,8 @@ export default function AccountScreen() {
     const username = user?.user_metadata.display_name;
     const router = useRouter();
     const scrollViewRef = useRef<ScrollView | null>(null);
-    const [isFeedbackModalVisible, setIsFeedbackModalVisible] = useState(false);
+    const [showFeedbackModal, setShowFeedbackModal] = useState(false);
+    const [showAvatarModal, setShowAvatarModal] = useState(false);
 
     const scrollToInput = (inputY: number) => {
         scrollViewRef.current?.scrollTo({ y: inputY - 30, animated: true });
@@ -39,7 +41,7 @@ export default function AccountScreen() {
                     <LocaleSelect />
                 </View>
                 <View style={styles.accountHeader}>
-                    <Pressable style={styles.avatarContainer} onPress={() => router.push("/AvatarModal")}>
+                    <Pressable style={styles.avatarContainer} onPress={() => setShowAvatarModal(true)}>
                         <Avatar size={120} />
                         <View style={styles.editAvatar}>
                             <Feather name="edit" size={22} color="white" />
@@ -51,7 +53,7 @@ export default function AccountScreen() {
                     </View>
                 </View>
                 <View style={styles.sectionContainer}>
-                    <Pressable style={styles.feedbackSection} onPress={() => setIsFeedbackModalVisible(true)}>
+                    <Pressable style={styles.feedbackSection} onPress={() => setShowFeedbackModal(true)}>
                         <FontAwesome6 name="book-bookmark" size={35} color="white" />
                         <View style={styles.content}>
                             <Text style={styles.feedbackTitle} >{t('feedback.title')}</Text>
@@ -64,9 +66,22 @@ export default function AccountScreen() {
                 </View>
             </ScrollView>
             <FeedbackForm
-                visible={isFeedbackModalVisible}
-                onClose={() => setIsFeedbackModalVisible(false)}
+                visible={showFeedbackModal}
+                onClose={() => setShowFeedbackModal(false)}
             />
+            <Modal
+                visible={showAvatarModal}
+                transparent
+                animationType="fade"
+                onRequestClose={() => setShowAvatarModal(false)}
+            >
+                <Pressable onPress={() => setShowAvatarModal(false)} style={styles.overlay}>
+                    <Pressable onPress={() => { }} style={styles.modalContainer}>
+                        <AvatarModal />
+                    </Pressable>
+                </Pressable>
+            </Modal>
+
         </KeyboardAvoidingView>
     )
 }
@@ -141,4 +156,16 @@ const styles = StyleSheet.create({
         color: 'white',
         opacity: 0.8
     },
+    overlay: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContainer: {
+        backgroundColor: 'white',
+        borderRadius: 20,
+        maxWidth: 400,
+        padding: 20,
+    }
 })
