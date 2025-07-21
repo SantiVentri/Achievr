@@ -166,6 +166,16 @@
         "description": "Enter and change your email.",
         "placeholder": "e.g:  johndoe@example.com"
       },
+      "password": {
+        "title": "Change Password",
+        "description": "Change your account password here.",
+        "currentPasswordPlaceholder": "Current password",
+        "newPasswordPlaceholder": "New password",
+        "changePassword": "Change password",
+        "invalidCurrentPassword": "The current password is incorrect.",
+        "requirements": "Password must be at least 8 characters, contain a number and a symbol.",
+        "valid": "Password requirements met."
+      },
       "danger": {
         "title": "Danger Zone",
         "description": "The actions in this section are irreversible. Continue with precaution.",

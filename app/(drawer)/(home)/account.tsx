@@ -62,6 +62,7 @@ export default function AccountScreen() {
                     </Pressable>
                     <AccountSection type="username" onInputFocus={scrollToInput} />
                     <AccountSection type="email" onInputFocus={scrollToInput} />
+                    <AccountSection type="password" onInputFocus={scrollToInput} />
                     <AccountSection type="danger" />
                 </View>
             </ScrollView>
@@ -81,7 +82,6 @@ export default function AccountScreen() {
                     </Pressable>
                 </Pressable>
             </Modal>
-
         </KeyboardAvoidingView>
     )
 }

@@ -167,6 +167,16 @@
         "description": "Ingresa y cambia tu email.",
         "placeholder": "e.g:  juanperez@ejemplo.com"
       },
+      "password": {
+        "title": "Cambiar contraseña",
+        "description": "Cambia la contraseña de tu cuenta aquí.",
+        "currentPasswordPlaceholder": "Contraseña actual",
+        "newPasswordPlaceholder": "Nueva contraseña",
+        "changePassword": "Cambiar contraseña",
+        "invalidCurrentPassword": "La contraseña actual es incorrecta.",
+        "requirements": "La contraseña debe tener al menos 8 caracteres, un número y un símbolo.",
+        "valid": "La contraseña cumple los requisitos."
+      },
       "danger": {
         "title": "Zona de peligro",
         "description": "Las acciones en esta sección son irreversibles. Continúa con precaución.",
