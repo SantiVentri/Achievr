@@ -13,8 +13,6 @@ export default function LocaleSelect() {
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
-        justifyContent: "flex-end",
-        width: '100%',
         gap: 10,
     },
 })

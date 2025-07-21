@@ -44,7 +44,10 @@
       "loading": "Registrando...",
       "errorMessage": "Ocurrió un error al registrarse. Por favor, intenta nuevamente."
     },
-    "signout": "Cerrar sesión"
+    "signout": {
+      "signout": "Cerrar Sesión",
+      "errorMessage": "Ocurrió un error al cerrar sesión. Por favor, intenta nuevamente."
+    }
   },
   "drawer": {
     "home": "Inicio",

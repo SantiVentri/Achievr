@@ -5,21 +5,27 @@ import FeedbackForm from "@/components/Drawer/Feedback";
 import LocaleSelect from "@/components/Locale/LocaleSelect";
 import { Colors } from "@/constants/palette";
 import { useUser } from "@/context/UserContext";
-import { FontAwesome6 } from "@expo/vector-icons";
+import { supabase } from "@/utils/supabase";
+import { FontAwesome6, MaterialIcons } from "@expo/vector-icons";
 import Feather from '@expo/vector-icons/Feather';
-import { useRouter } from "expo-router";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Alert, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function AccountScreen() {
     const { t } = useTranslation();
     const { user } = useUser();
     const username = user?.user_metadata.display_name;
-    const router = useRouter();
     const scrollViewRef = useRef<ScrollView | null>(null);
     const [showFeedbackModal, setShowFeedbackModal] = useState(false);
     const [showAvatarModal, setShowAvatarModal] = useState(false);
+
+    const handleSignOut = async () => {
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+            Alert.alert(t('common.error'), t('auth.signout.errorMessage'))
+        }
+    }
 
     const scrollToInput = (inputY: number) => {
         scrollViewRef.current?.scrollTo({ y: inputY - 30, animated: true });
@@ -37,7 +43,10 @@ export default function AccountScreen() {
                 keyboardShouldPersistTaps="handled"
                 keyboardDismissMode="interactive"
             >
-                <View style={styles.locales}>
+                <View style={styles.options}>
+                    <TouchableOpacity onPress={handleSignOut}>
+                        <MaterialIcons name="logout" size={30} color="red" />
+                    </TouchableOpacity>
                     <LocaleSelect />
                 </View>
                 <View style={styles.accountHeader}>
@@ -94,8 +103,10 @@ const styles = StyleSheet.create({
         paddingBottom: 30,
         gap: 30,
     },
-    locales: {
-        alignItems: 'flex-end'
+    options: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     accountHeader: {
         alignItems: "center",

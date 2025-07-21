@@ -44,7 +44,10 @@
       "loading": "Signing up...",
       "errorMessage": "An error occurred while signing up. Please try again."
     },
-    "signout": "Sign out"
+    "signout": {
+      "signout": "Sign out",
+      "errorMessage": "An error occurred while signing out. Please try again."
+    }
   },
   "drawer": {
     "home": "Home",

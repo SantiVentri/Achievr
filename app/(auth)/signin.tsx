@@ -34,7 +34,9 @@ export default function SignInScreen() {
     return (
         <View style={styles.container}>
             <View style={styles.form}>
-                <LocaleSelect />
+                <View style={{ alignItems: 'flex-end' }}>
+                    <LocaleSelect />
+                </View>
                 <View style={styles.formHeader}>
                     <Image
                         source={require("@/assets/images/splash-icon.png")}
