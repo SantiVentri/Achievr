@@ -39,11 +39,13 @@ export default function SignUpScreen() {
                 </View>
                 <View style={styles.formHeader}>
                     <Image
-                        source={require("@/assets/images/splash-icon.png")}
+                        source={require("@/assets/icons/splash-icon-light.png")}
                         style={styles.logo}
                     />
-                    <Text style={styles.title}>{t("auth.signup.title")}</Text>
-                    <Text style={styles.description}>{t("auth.signup.description")}</Text>
+                    <View style={styles.titles}>
+                        <Text style={styles.title}>{t("auth.signup.title")}</Text>
+                        <Text style={styles.description}>{t("auth.signup.description")}</Text>
+                    </View>
                 </View>
                 <View style={styles.formBody}>
                     <View style={styles.formGroup}>
@@ -103,12 +105,17 @@ const styles = StyleSheet.create({
     },
     formHeader: {
         alignItems: "center",
-        gap: 10,
+        gap: 20,
     },
     logo: {
-        borderRadius: 20,
-        width: 100,
-        height: 100,
+        backgroundColor: Colors.primary,
+        borderRadius: 15,
+        width: 80,
+        height: 80,
+    },
+    titles: {
+        alignItems: 'center',
+        gap: 10
     },
     title: {
         fontSize: 24,
