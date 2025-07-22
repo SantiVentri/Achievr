@@ -18,7 +18,7 @@ export default function HomeLayout() {
     if (loading || !user) {
         return (
             <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: Colors.primary }}>
-                <Image source={require("@/assets/images/splash-icon.png")} style={{ height: 120, width: 120 }} />
+                <Image source={require("@/assets/icons/icon.png")} style={{ height: 120, width: 120 }} />
             </View>
         );
     }
