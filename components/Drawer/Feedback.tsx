@@ -91,6 +91,7 @@ export default function FeedbackForm({ visible, onClose }: { visible: boolean, o
                             numberOfLines={4}
                             maxLength={240}
                             multiline
+                            textAlignVertical="top"
                         />
                         <TouchableOpacity style={[styles.button, { backgroundColor: !isValid || isLoading ? 'grey' : Colors.primary }]} onPress={handleSend} disabled={!isValid || isLoading}>
                             <Text style={styles.buttonText}>{isLoading ? t('common.loading') : t('feedback.send')}</Text>

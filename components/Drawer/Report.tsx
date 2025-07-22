@@ -105,6 +105,7 @@ export default function ReportForm({ visible, onClose }: { visible: boolean, onC
                             numberOfLines={4}
                             maxLength={240}
                             multiline
+                            textAlignVertical="top"
                         />
                         <TouchableOpacity style={[styles.button, { backgroundColor: !isValid || isLoading ? 'grey' : Colors.primary }]} onPress={handleSend} disabled={!isValid || isLoading}>
                             <Text style={styles.buttonText}>{isLoading ? t('common.loading') : t('report.send')}</Text>
