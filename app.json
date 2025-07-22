@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/icons/adaptive-icon.png",
         "backgroundColor": "#3454d1"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.santi_ventri.Achievr"
     },
     "web": {
       "bundler": "metro",
@@ -43,6 +44,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "57c3b978-721c-43bd-849c-b7f2591ca1fe"
+      }
+    },
+    "owner": "santi_ventri"
   }
 }
