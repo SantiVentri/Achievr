@@ -8,6 +8,7 @@ import { useUser } from "@/context/UserContext";
 import { supabase } from "@/utils/supabase";
 import { FontAwesome6, MaterialIcons } from "@expo/vector-icons";
 import Feather from '@expo/vector-icons/Feather';
+import { StatusBar } from "expo-status-bar";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -43,6 +44,7 @@ export default function AccountScreen() {
                 keyboardShouldPersistTaps="handled"
                 keyboardDismissMode="interactive"
             >
+                <StatusBar style="dark" />
                 <View style={styles.options}>
                     <TouchableOpacity onPress={handleSignOut}>
                         <MaterialIcons name="logout" size={30} color="red" />

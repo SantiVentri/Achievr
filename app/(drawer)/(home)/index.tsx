@@ -45,6 +45,7 @@ export default function Page() {
 
   return (
     <View style={styles.container}>
+      {/* <StatusBar style='light' /> */}
       <FlatList
         data={goals}
         keyExtractor={(goal) => goal.id}
