@@ -7,8 +7,8 @@ export default function FormAI() {
     const { t } = useTranslation();
     const scrollViewRef = useRef<ScrollView>(null);
     const [goal, setGoal] = useState("");
-    const [steps, setSteps] = useState<number | null>(null);
-    const [hours, setHours] = useState<number | null>(null);
+    const [steps, setSteps] = useState<number>(10);
+    const [experience, setExperience] = useState<string>(t('home.createGoal.form.beginner'));
     const [extraInfo, setExtraInfo] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState({
@@ -48,7 +48,7 @@ export default function FormAI() {
     };
 
     const stepsOptions = [5, 10, 20];
-    const hoursOptions = [1, 3, 5, 7];
+    const experienceOptions = [t('home.createGoal.form.beginner'), t('home.createGoal.form.basic'), t('home.createGoal.form.intermediate'), t('home.createGoal.form.advanced')];
 
     return (
         <KeyboardAvoidingView
@@ -73,6 +73,7 @@ export default function FormAI() {
                                 placeholder={t("home.createGoal.form.goalPlaceholder")}
                                 placeholderTextColor="gray"
                                 value={goal}
+                                maxLength={30}
                                 onChangeText={(text) => {
                                     setGoal(text);
                                     setErrors({ ...errors, goal: "" });
@@ -103,23 +104,23 @@ export default function FormAI() {
                             </ScrollView>
                         </View>
                         <View style={styles.formGroup}>
-                            <Text style={styles.formGroupTitle}>{t("home.createGoal.form.hoursTitle")}</Text>
+                            <Text style={styles.formGroupTitle}>{t("home.createGoal.form.experienceTitle")}</Text>
                             <ScrollView horizontal contentContainerStyle={{ paddingVertical: 5, gap: 10 }}>
-                                {hoursOptions.map((option) => (
+                                {experienceOptions.map((option) => (
                                     <TouchableOpacity
                                         key={option}
                                         style={[
                                             styles.option,
-                                            hours === option && { backgroundColor: Colors.primary }
+                                            experience === option && { backgroundColor: Colors.primary }
                                         ]}
                                         onPress={() => {
-                                            setHours(option);
+                                            setExperience(option);
                                         }}
                                     >
                                         <Text style={[
                                             styles.optionText,
-                                            hours === option && { color: 'white' }
-                                        ]}>{option}-{option + 1} {t("home.createGoal.form.hours")}</Text>
+                                            experience === option && { color: 'white' }
+                                        ]}>{option}</Text>
                                     </TouchableOpacity>
                                 ))}
                             </ScrollView>
@@ -127,13 +128,13 @@ export default function FormAI() {
                         <View style={styles.formGroup}>
                             <Text style={styles.formGroupTitle}>{t("home.createGoal.form.extraInfoTitle")}</Text>
                             <TextInput
-                                style={[styles.input, styles.multilineInput, errors.extraInfo && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
+                                style={[styles.input, { minHeight: 120 }, errors.extraInfo && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
                                 placeholder={t("home.createGoal.form.extraInfoPlaceholder")}
                                 placeholderTextColor="gray"
                                 multiline
-                                numberOfLines={4}
                                 textAlignVertical="top"
                                 value={extraInfo}
+                                maxLength={180}
                                 onFocus={handleInputFocus}
                                 onChangeText={(text) => {
                                     setExtraInfo(text);
@@ -141,12 +142,13 @@ export default function FormAI() {
                                 }}
                             />
                             {errors.extraInfo && <Text style={styles.error}>{errors.extraInfo}</Text>}
+                            <Text style={extraInfo.length == 180 && { color: 'red' }}>{extraInfo.length} / 180</Text>
                         </View>
                     </View>
                     <TouchableOpacity
-                        style={[styles.button, { backgroundColor: !goal || steps === null || hours === null || isLoading ? 'gray' : Colors.primary }]}
+                        style={[styles.button, { backgroundColor: !goal || steps === null || experience === null || isLoading ? 'gray' : Colors.primary }]}
                         onPress={handleCreateGoal}
-                        disabled={!goal || steps === null || hours === null || isLoading}
+                        disabled={!goal || steps === null || experience === null || isLoading}
                     >
                         <Text style={styles.buttonText}>{isLoading ? t("common.loading") : t("home.createGoal.createGoal")}</Text>
                     </TouchableOpacity>
@@ -187,10 +189,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#f4f4f4",
         borderRadius: 10,
         padding: 10,
-        minHeight: 45,
-    },
-    multilineInput: {
-        minHeight: 100,
     },
     option: {
         borderWidth: 3,

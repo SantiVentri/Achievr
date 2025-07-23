@@ -72,7 +72,7 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
                 <View style={styles.formGroup}>
                     <Text style={styles.formGroupTitle}>{t("common.description")}</Text>
                     <TextInput
-                        style={styles.input}
+                        style={[styles.input, { minHeight: 100 }]}
                         placeholder={t("home.createSubtask.form.descriptionPlaceholder")}
                         placeholderTextColor="gray"
                         multiline
@@ -104,8 +104,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     input: {
+        borderWidth: 2,
+        borderColor: "grey",
+        backgroundColor: "#f4f4f4",
         borderRadius: 10,
-        backgroundColor: '#f4f4f4',
         padding: 10,
     },
     button: {

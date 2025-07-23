@@ -50,7 +50,6 @@ export default function FormManual() {
     }
 
     const handleInputFocus = () => {
-        // Scroll to bottom when description input is focused, but not too much
         setTimeout(() => {
             scrollViewRef.current?.scrollToEnd({ animated: true });
         }, 200);
@@ -79,6 +78,7 @@ export default function FormManual() {
                                 placeholder={t("home.createGoal.form.goalPlaceholder")}
                                 placeholderTextColor="gray"
                                 value={title}
+                                maxLength={30}
                                 onChangeText={(text) => {
                                     setTitle(text);
                                     setErrors({ ...errors, title: "" });
@@ -89,18 +89,19 @@ export default function FormManual() {
                         <View style={styles.formGroup}>
                             <Text style={styles.formGroupTitle}>{t("home.createGoal.form.description")}</Text>
                             <TextInput
-                                style={[styles.input, styles.multilineInput]}
+                                style={[styles.input, { minHeight: 120 }]}
                                 placeholder={t("home.createGoal.form.descriptionPlaceholder")}
                                 placeholderTextColor="gray"
                                 multiline
-                                numberOfLines={4}
                                 textAlignVertical="top"
                                 value={description}
+                                maxLength={180}
                                 onFocus={handleInputFocus}
                                 onChangeText={(text) => {
                                     setDescription(text);
                                 }}
                             />
+                            <Text style={description.length == 180 && { color: 'red' }}>{description.length} / 180</Text>
                         </View>
                     </View>
                     <TouchableOpacity style={[styles.button, { backgroundColor: !title || isLoading ? 'gray' : Colors.primary }]} onPress={handleCreateGoal} disabled={!title || isLoading}>
@@ -143,10 +144,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#f4f4f4",
         borderRadius: 10,
         padding: 10,
-        minHeight: 45,
-    },
-    multilineInput: {
-        minHeight: 100,
     },
     button: {
         paddingVertical: 15,
