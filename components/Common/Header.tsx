@@ -4,7 +4,7 @@ import { DrawerNavigationProp } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import { usePathname, useRouter } from "expo-router";
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Avatar from "../Account/Avatar";
 
 export default function Header() {
@@ -25,7 +25,7 @@ export default function Header() {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, Platform.OS == 'android' && { paddingTop: 50 }]}>
             <TouchableOpacity onPress={handleOpenDrawer} disabled={isLoading}>
                 <MaterialIcons name="menu" size={35} color="white" />
             </TouchableOpacity>
