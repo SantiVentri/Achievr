@@ -1,14 +1,18 @@
 import { Colors } from "@/constants/palette";
+import { useUser } from "@/context/UserContext";
+import { supabase } from "@/utils/supabase";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function FormAI() {
     const { t } = useTranslation();
+    const { user } = useUser();
+    const userId = user?.id;
     const scrollViewRef = useRef<ScrollView>(null);
     const [goal, setGoal] = useState("");
     const [steps, setSteps] = useState<number>(10);
-    const [experience, setExperience] = useState<string>(t('home.createGoal.form.beginner'));
+    const [experience, setExperience] = useState<string>(t("home.createGoal.form.beginner"));
     const [extraInfo, setExtraInfo] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState({
@@ -28,9 +32,54 @@ export default function FormAI() {
             setIsLoading(false);
             return;
         }
-        resetForm();
-        setIsLoading(false);
-    }
+
+        try {
+            const session = await supabase.auth.getSession();
+            const token = session.data.session?.access_token;
+
+            if (!token) {
+                alert("Usuario no autenticado. Por favor, inicia sesión.");
+                setIsLoading(false);
+                return;
+            }
+
+            const resp = await fetch("https://odpjykyuzmfjeauhkwhw.supabase.co/functions/v1/generateGoal", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    goal,
+                    steps,
+                    experience,
+                    extraInfo,
+                    creator_id: userId,
+                }),
+            });
+
+            const json = await resp.json();
+
+            if (!resp.ok) throw new Error(json.error || `Error ${resp.status}: ${resp.statusText}`);
+
+            resetForm();
+            console.log("Goal creado:", json.goal_id);
+        } catch (err) {
+            console.error(err);
+            let errorMessage = "Error creando el objetivo";
+            if (err instanceof Error) {
+                errorMessage += `: ${err.message}`;
+            } else if (typeof err === "object" && err !== null && "message" in err) {
+                // @ts-ignore
+                errorMessage += `: ${err.message}`;
+            } else {
+                errorMessage += `: ${String(err)}`;
+            }
+            alert(errorMessage);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     const resetForm = () => {
         setGoal("");
@@ -39,7 +88,7 @@ export default function FormAI() {
             goal: "",
             extraInfo: "",
         });
-    }
+    };
 
     const handleInputFocus = () => {
         setTimeout(() => {
@@ -48,7 +97,7 @@ export default function FormAI() {
     };
 
     const stepsOptions = [5, 10, 20];
-    const experienceOptions = [t('home.createGoal.form.beginner'), t('home.createGoal.form.basic'), t('home.createGoal.form.intermediate'), t('home.createGoal.form.advanced')];
+    const experienceOptions = [t("home.createGoal.form.beginner"), t("home.createGoal.form.basic"), t("home.createGoal.form.intermediate"), t("home.createGoal.form.advanced"),];
 
     return (
         <KeyboardAvoidingView
@@ -69,7 +118,10 @@ export default function FormAI() {
                         <View style={styles.formGroup}>
                             <Text style={styles.formGroupTitle}>{t("home.createGoal.form.goal")}</Text>
                             <TextInput
-                                style={[styles.input, errors.goal && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
+                                style={[
+                                    styles.input,
+                                    errors.goal && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" },
+                                ]}
                                 placeholder={t("home.createGoal.form.goalPlaceholder")}
                                 placeholderTextColor="gray"
                                 value={goal}
@@ -81,54 +133,51 @@ export default function FormAI() {
                             />
                             {errors.goal && <Text style={styles.error}>{errors.goal}</Text>}
                         </View>
+
                         <View style={styles.formGroup}>
                             <Text style={styles.formGroupTitle}>{t("home.createGoal.form.stepsTitle")}</Text>
                             <ScrollView horizontal contentContainerStyle={{ paddingVertical: 5, gap: 10 }}>
                                 {stepsOptions.map((option) => (
                                     <TouchableOpacity
                                         key={option}
-                                        style={[
-                                            styles.option,
-                                            steps === option && { backgroundColor: Colors.primary }
-                                        ]}
+                                        style={[styles.option, steps === option && { backgroundColor: Colors.primary }]}
                                         onPress={() => {
                                             setSteps(option);
                                         }}
                                     >
-                                        <Text style={[
-                                            styles.optionText,
-                                            steps === option && { color: 'white' }
-                                        ]}>{option} {t("home.createGoal.form.steps")}</Text>
+                                        <Text style={[styles.optionText, steps === option && { color: "white" }]}>
+                                            {option} {t("home.createGoal.form.steps")}
+                                        </Text>
                                     </TouchableOpacity>
                                 ))}
                             </ScrollView>
                         </View>
+
                         <View style={styles.formGroup}>
                             <Text style={styles.formGroupTitle}>{t("home.createGoal.form.experienceTitle")}</Text>
                             <ScrollView horizontal contentContainerStyle={{ paddingVertical: 5, gap: 10 }}>
                                 {experienceOptions.map((option) => (
                                     <TouchableOpacity
                                         key={option}
-                                        style={[
-                                            styles.option,
-                                            experience === option && { backgroundColor: Colors.primary }
-                                        ]}
+                                        style={[styles.option, experience === option && { backgroundColor: Colors.primary }]}
                                         onPress={() => {
                                             setExperience(option);
                                         }}
                                     >
-                                        <Text style={[
-                                            styles.optionText,
-                                            experience === option && { color: 'white' }
-                                        ]}>{option}</Text>
+                                        <Text style={[styles.optionText, experience === option && { color: "white" }]}>{option}</Text>
                                     </TouchableOpacity>
                                 ))}
                             </ScrollView>
                         </View>
+
                         <View style={styles.formGroup}>
                             <Text style={styles.formGroupTitle}>{t("home.createGoal.form.extraInfoTitle")}</Text>
                             <TextInput
-                                style={[styles.input, { minHeight: 120 }, errors.extraInfo && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
+                                style={[
+                                    styles.input,
+                                    { minHeight: 120 },
+                                    errors.extraInfo && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" },
+                                ]}
                                 placeholder={t("home.createGoal.form.extraInfoPlaceholder")}
                                 placeholderTextColor="gray"
                                 multiline
@@ -142,11 +191,14 @@ export default function FormAI() {
                                 }}
                             />
                             {errors.extraInfo && <Text style={styles.error}>{errors.extraInfo}</Text>}
-                            <Text style={extraInfo.length == 180 && { color: 'red' }}>{extraInfo.length} / 180</Text>
+                            <Text style={extraInfo.length === 180 ? { color: "red" } : undefined}>
+                                {extraInfo.length} / 180
+                            </Text>
                         </View>
                     </View>
+
                     <TouchableOpacity
-                        style={[styles.button, { backgroundColor: !goal || steps === null || experience === null || isLoading ? 'gray' : Colors.primary }]}
+                        style={[styles.button, { backgroundColor: !goal || steps === null || experience === null || isLoading ? "gray" : Colors.primary },]}
                         onPress={handleCreateGoal}
                         disabled={!goal || steps === null || experience === null || isLoading}
                     >
@@ -155,7 +207,7 @@ export default function FormAI() {
                 </View>
             </ScrollView>
         </KeyboardAvoidingView>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
