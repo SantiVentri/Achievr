@@ -20,7 +20,12 @@
     "cancel": "Cancel",
     "description": "Description",
     "notFound": "Oops...",
-    "notFoundMessage": "We couldn't find what you were looking for. Try again"
+    "notFoundMessage": "We couldn't find what you were looking for. Try again",
+    "blockedModal": {
+      "title": "Temporarily Unavailable",
+      "description": "This feature is temporarily under maintenance. It will be back soon.",
+      "button": "Go back"
+    }
   },
   "auth": {
     "signin": {

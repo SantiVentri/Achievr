@@ -20,7 +20,12 @@
     "cancel": "Cancelar",
     "description": "Descripción",
     "notFound": "Ups...",
-    "notFoundMessage": "No se encontró lo que estabas buscando. Intentalo de nuevo"
+    "notFoundMessage": "No se encontró lo que estabas buscando. Intentalo de nuevo",
+    "blockedModal": {
+      "title": "Temporalmente No Disponible",
+      "description": "Esta función está temporalmente en mantenimiento. Volverá pronto.",
+      "button": "Volver atrás"
+    } 
   },
   "auth": {
     "signin": {
