@@ -4,6 +4,7 @@ import { supabase } from "@/utils/supabase";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import BlockedFeatureModal from "../Common/BlockedFeature";
 
 export default function FormAI() {
     const { t } = useTranslation();
@@ -114,6 +115,7 @@ export default function FormAI() {
                 keyboardDismissMode="interactive"
             >
                 <View style={styles.container}>
+                    <BlockedFeatureModal />
                     <View style={styles.form}>
                         <View style={styles.formGroup}>
                             <Text style={styles.formGroupTitle}>{t("home.createGoal.form.goal")}</Text>
