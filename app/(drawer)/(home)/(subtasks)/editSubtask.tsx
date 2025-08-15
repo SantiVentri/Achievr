@@ -24,7 +24,7 @@ export default function EditSubtaskScreen() {
     }, [title]);
 
     useEffect(() => {
-        setIsDescriptionValid(description.length < 100);
+        setIsDescriptionValid(description.length < 400);
     }, [description]);
 
     useEffect(() => {
