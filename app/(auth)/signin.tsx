@@ -79,7 +79,7 @@ export default function SignInScreen() {
                         <Text style={styles.buttonText}>{loading ? t("common.loading") : t("auth.signin.signin")}</Text>
                     </TouchableOpacity>
                     <View style={styles.formFooter}>
-                        <TouchableOpacity onPress={() => router.replace("/signup")}>
+                        <TouchableOpacity onPress={() => router.replace("/forgot-password")}>
                             <Text>{t("auth.signin.forgotPassword")}</Text>
                         </TouchableOpacity>
                     </View>
