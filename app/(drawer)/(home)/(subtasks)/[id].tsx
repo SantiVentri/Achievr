@@ -86,7 +86,7 @@ export default function SubtaskScreen() {
 
     return (
         <View style={styles.container}>
-            <StatusBar style="light" />
+            <StatusBar style="dark" />
             <ScrollView
                 style={styles.scrollView}
                 refreshControl={
@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
     image: {
         height: 250,
         width: "100%",
-        filter: "brightness(0.7)",
     },
     headerTitle: {
         flexDirection: "row",
