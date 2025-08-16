@@ -1,80 +1,72 @@
+import LocaleSelect from '@/components/Locale/LocaleSelect';
 import { Colors } from '@/constants/palette';
 import { supabase } from '@/utils/supabase';
 import Feather from '@expo/vector-icons/Feather';
 import { useRouter } from 'expo-router';
 import { useState } from "react";
+import { useTranslation } from 'react-i18next';
 import { Alert, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 export default function SignUpScreen() {
     const router = useRouter();
-    const [username, setUsername] = useState("");
+    const { t } = useTranslation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [loading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    const disabled = !username || !email || !password;
+    const disabled = !email || !password;
 
-    const handleSignIn = async () => {
-        setLoading(true);
+    const handleSignUp = async () => {
+        setIsLoading(true);
         const { error } = await supabase.auth.signUp({
             email,
             password,
-            options: {
-                data: {
-                    display_name: username,
-                }
-            }
         })
         if (error) {
-            Alert.alert("Error", error.message);
+            Alert.alert(t("common.error"), t("auth.signup.errorMessage"));
         } else {
             router.replace("/");
         }
-        setLoading(false);
+        setIsLoading(false);
     }
 
     return (
         <View style={styles.container}>
             <View style={styles.form}>
+                <View style={{ alignItems: 'flex-end' }}>
+                    <LocaleSelect />
+                </View>
                 <View style={styles.formHeader}>
                     <Image
-                        source={require("@/assets/images/splash-icon.png")}
+                        source={require("@/assets/icons/splash-icon-light.png")}
                         style={styles.logo}
                     />
-                    <Text style={styles.title}>Sign up</Text>
-                    <Text style={styles.description}>Enter your email and password to create an account</Text>
+                    <View style={styles.titles}>
+                        <Text style={styles.title}>{t("auth.signup.title")}</Text>
+                        <Text style={styles.description}>{t("auth.signup.description")}</Text>
+                    </View>
                 </View>
                 <View style={styles.formBody}>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>Username:</Text>
-                        <TextInput
-                            style={styles.input}
-                            value={username}
-                            onChangeText={setUsername}
-                            placeholder="e.g: John Doe"
-                            placeholderTextColor="gray"
-                        />
-                    </View>
-                    <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>Email:</Text>
+                        <Text style={styles.formGroupLabel}>{t("common.email")}:</Text>
                         <TextInput
                             style={styles.input}
                             value={email}
                             onChangeText={setEmail}
-                            placeholder="e.g: example@gmail.com"
+                            placeholder={t("common.emailPlaceholder")}
                             placeholderTextColor="gray"
                             keyboardType="email-address"
                         />
                     </View>
                     <View style={styles.formGroup}>
-                        <Text style={styles.formGroupLabel}>Password:</Text>
+                        <Text style={styles.formGroupLabel}>{t("common.password")}:</Text>
                         <View style={styles.inputContainer}>
                             <TextInput
                                 style={styles.input}
                                 value={password}
                                 onChangeText={setPassword}
-                                placeholder="e.g: MyDogBirthday123"
+                                placeholder={t("common.passwordPlaceholder")}
                                 placeholderTextColor="gray"
                                 secureTextEntry={!showPassword}
                             />
@@ -83,15 +75,15 @@ export default function SignUpScreen() {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignIn} disabled={loading || disabled}>
-                        <Text style={styles.buttonText}>{loading ? "Creating..." : "Create account"}</Text>
+                    <TouchableOpacity style={[styles.button, { opacity: loading || disabled ? 0.5 : 1 }]} onPress={handleSignUp} disabled={loading || disabled}>
+                        <Text style={styles.buttonText}>{loading ? t("common.loading") : t("auth.signup.signup")}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.extraInfo}>
-                <Text style={styles.extraInfoText}>Already have an account?</Text>
+                <Text style={styles.extraInfoText}>{t("auth.signup.alreadyHaveAccount")}</Text>
                 <TouchableOpacity onPress={() => router.replace("/signin")}>
-                    <Text style={styles.extraInfoLink}>Sign in</Text>
+                    <Text style={styles.extraInfoLink}>{t("auth.signup.signinLink")}</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -103,7 +95,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "space-between",
         alignItems: "center",
-        paddingVertical: 60,
+        paddingTop: 40,
+        paddingBottom: 60,
     },
     form: {
         padding: 30,
@@ -112,12 +105,17 @@ const styles = StyleSheet.create({
     },
     formHeader: {
         alignItems: "center",
-        gap: 10,
+        gap: 20,
     },
     logo: {
-        borderRadius: 20,
-        width: 100,
-        height: 100,
+        backgroundColor: Colors.primary,
+        borderRadius: 15,
+        width: 80,
+        height: 80,
+    },
+    titles: {
+        alignItems: 'center',
+        gap: 10
     },
     title: {
         fontSize: 24,

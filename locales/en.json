@@ -1,0 +1,244 @@
+{
+  "common": {
+    "email": "Email",
+    "emailPlaceholder": "e.g: juanperez@gmail.com",
+    "password": "Password",
+    "passwordPlaceholder": "e.g: JuanPerez123",
+    "confirmPassword": "Confirm password",
+    "confirmPasswordPlaceholder": "e.g: Juancito123",
+    "username": "Username",
+    "usernamePlaceholder": "e.g: Juan Perez",
+    "error": "Error",
+    "success": "Success",
+    "loading": "Loading...",
+    "ok": "OK",
+    "search": "Search",
+    "create": "Create",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "description": "Description",
+    "notFound": "Oops...",
+    "notFoundMessage": "We couldn't find what you were looking for. Try again",
+    "blockedModal": {
+      "title": "Temporarily Unavailable",
+      "description": "This feature is temporarily under maintenance. It will be back soon.",
+      "button": "Go back"
+    }
+  },
+  "auth": {
+    "signin": {
+      "title": "Sign in",
+      "description": "Enter your email and password to sign in",
+      "signin": "Sign in",
+      "signup": "Sign up",
+      "forgotPassword": "Forgot your password?",
+      "dontHaveAccount": "Don't have an account?",
+      "signupLink": "Sign up",
+      "loading": "Signing in...",
+      "errorMessage": "An error occurred while signing in. Please try again."
+    },
+    "signup": {
+      "title": "Sign up",
+      "description": "Enter your email and password to sign up",
+      "signup": "Sign up",
+      "signin": "Sign in",
+      "alreadyHaveAccount": "Already have an account?",
+      "signinLink": "Sign in",
+      "loading": "Signing up...",
+      "errorMessage": "An error occurred while signing up. Please try again."
+    },
+    "signout": {
+      "signout": "Sign out",
+      "errorMessage": "An error occurred while signing out. Please try again."
+    }
+  },
+  "drawer": {
+    "home": "Home",
+    "news": "News",
+    "support": "Support",
+    "feedback": "Feedback",
+    "report": "Reports"
+  },
+  "home": {
+    "subtitle": "Hello, {{name}}",
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "goalsLists": {
+      "goals": "Goals",
+      "doneGoals": "Completed goals",
+      "noGoalsTitle": "Oops! No goals were found.",
+      "noGoalsDescription": "Refresh the page or create a goal"
+    },
+    "createGoal": {
+      "title": "Set your next goal",
+      "subtitle": "Complete the form and start your journey!",
+      "ai": "Create with AI",
+      "manual": "Create manually",
+      "form": {
+        "goal": "What is your goal?",
+        "goalPlaceholder": "e.g. 'Learn Python', 'Lose 5kg', 'Start a business'",
+        "description": "Description",
+        "descriptionPlaceholder": "e.g. 'Learning Python requires time and practice.'",
+        "stepsTitle": "How many steps to achieve it?",
+        "steps": "Steps",
+        "stepsPlaceholder": "e.g. '10', '20', '30'",
+        "experienceTitle": "What is your level of experience?",
+        "beginner": "Beginner",
+        "basic": "Basic",
+        "intermediate": "Intermediate",
+        "advanced": "Advanced",
+        "extraInfoTitle": "Extra information to help the AI:",
+        "extraInfoPlaceholder": "e.g. 'It is my first time doing this', 'I am on a tight budget', 'Only on weekends'",
+        "goalMinLength": "The goal must have at least 4 characters",
+        "extraInfoMinLength": "The extra information must have at least 10 characters"
+      },
+      "createGoal": "Create goal",
+      "errorMessage": "An error occurred while creating the goal. Please try again.",
+      "successMessage": "The goal has been created successfully"
+    },
+    "createSubtask": {
+      "title": "Create subtask",
+      "subtitle": "Complete the form and start your journey!",
+      "form": {
+        "subtask": "What is your subtask?",
+        "subtaskPlaceholder": "e.g. 'What is Python?', 'Organize a diet'.",
+        "subtaskMinLength": "The subtask must have at least 4 characters",
+        "descriptionPlaceholder": "e.g. 'Learn the basic concepts of Python programming'",
+        "createSubtask": "Create subtask",
+        "errorMessage": "An error occurred while creating the subtask. Please try again.",
+        "successMessage": "The subtask has been created successfully"
+      }
+    },
+    "goal": {
+      "subtasks": "Subtasks",
+      "noSubtasksTitle": "Oops! No subtasks were found.",
+      "noSubtasksDescription": "Refresh the page or create a subtask",
+      "deleteGoal": "Delete goal",
+      "deleteGoalMessage": "Are you sure you want to delete this goal?",
+      "errorDeleteGoal": "There was an error deleting the goal. Try again."
+    },
+    "subtask": {
+      "delete": "Delete subtask",
+      "deleteSubtaskMessage": "Are you sure you want to delete this subtask?",
+      "errorDeleteSubtask": "There was an error deleting the subtask. Try again."
+    },
+    "editGoal": {
+      "reorder": "Reorder",
+      "headerImage": "Edit header",
+      "iconImage": "Edit icon",
+      "title": "Edit goal",
+      "titlePlaceholder": "e.g. 'Learn Python'",
+      "description": "Description",
+      "descriptionPlaceholder": "e.g. 'Learn Python programming from scratch'",
+      "successMessage": "The goal has been edited successfully",
+      "errorMessage": "An error occurred while editing the goal. Please try again.",
+      "getIconError": "An error occurred while getting the icon. Please try again.",
+      "getHeaderError": "An error occurred while getting the header. Please try again."
+    },
+    "editSubtask": {
+      "title": "Edit subtask",
+      "titlePlaceholder": "e.g. 'Learn Python'",
+      "descriptionPlaceholder": "e.g. 'Learn the basic concepts of Python programming'",
+      "successMessage": "The subtask has been edited successfully",
+      "errorMessage": "An error occurred while editing the subtask. Please try again."
+    }
+  },
+  "account": {
+    "locale": {
+      "languages": "Languages",
+      "success": "Success",
+      "locale_changed_successfully": "The language has been changed successfully"
+    },
+    "avatar": {
+      "select": "Select your avatar",
+      "timeRestriction": "Time restriction",
+      "timeRestrictionMessage": "You need to wait {{remainingMinutes}} minutes before changing your avatar again.",
+      "error": "Error",
+      "errorMessage": "An error occurred while getting the avatar. Please try again."
+    },
+    "editAccount": {
+      "successMessage": "Account edited successfully",
+      "errorMessage": "An error occurred while editing the account. Please try again."
+    },
+    "sections": {
+      "username": {
+        "title": "Set Username",
+        "description": "Enter your full name or the name you want us to call you.",
+        "placeholder": "e.g:  John Doe"
+      },
+      "email": {
+        "title": "Set Email",
+        "description": "Enter and change your email.",
+        "placeholder": "e.g:  johndoe@example.com"
+      },
+      "password": {
+        "title": "Change Password",
+        "description": "Change your account password here.",
+        "currentPasswordPlaceholder": "Current password",
+        "newPasswordPlaceholder": "New password",
+        "changePassword": "Change password",
+        "invalidCurrentPassword": "The current password is incorrect.",
+        "requirements": "Password must be at least 8 characters, contain a number and a symbol.",
+        "valid": "Password requirements met."
+      },
+      "danger": {
+        "title": "Danger Zone",
+        "description": "The actions in this section are irreversible. Continue with precaution.",
+        "delete": "Delete account",
+        "deleteTitle": "Delete account",
+        "deleteMessage": "Are you sure you want to delete your account? This action cannot be undone.",
+        "deleteSuccess": "Your account was successfully deleted.",
+        "deleteError": "There was an error deleting your account.",
+        "reset": "Reset account",
+        "resetTitle": "Reset account",
+        "resetMessage": "Are you sure you want to reset your account? This action cannot be undone.",
+        "resetSuccess": "Your account was successfully reset.",
+        "resetError": "There was an error resetting your account."
+      }
+    }
+  },
+  "news": {
+    "noNewsTitle": "Oops! No news were found.",
+    "noNewsDescription": "Refresh the page or try again later"
+  },
+  "onboarding": {
+    "getOnboardingStateError": "An error occurred while fetching the onboarding state. Try again.",
+    "updateOnboardingStateError": "An error occurred while finalizing the onboarding. Try again.",
+    "button": {
+      "continue": "Continue",
+      "finishSetup": "Finish setup"
+    },
+    "welcome": {
+      "title": "Become your best version",
+      "coloredTitle": "one step at a time"
+    },
+    "setUsername": {
+      "title": "Finish setup",
+      "description": "Choose the name you'd like us to call you. You can change it later."
+    }
+  },
+  "feedback": {
+    "title": "Have any feedback?",
+    "description": "Let us know about your experience or what you’d like to see in the future.",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Message",
+    "send": "Send feedback",
+    "successMessage": "Feedback sent. Thanks for helping us improve!",
+    "errorMessage": "Feedback could not be sent. Please try again later."
+  },
+  "report": {
+    "errorMessage": "Could not send the report. Please try again later.",
+    "successMessage": "Report sent successfully! Thanks for helping us improve.",
+    "other": "Other",
+    "title": "Report a problem",
+    "description": "Tell us about the problem or suggestion you found.",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Message",
+    "send": "Send report"
+  }
+}

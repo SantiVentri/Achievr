@@ -1,0 +1,245 @@
+{
+  "common": {
+    "email": "Email",
+    "emailPlaceholder": "e.g: juanperez@gmail.com",
+    "password": "Contraseña",
+    "passwordPlaceholder": "e.g: JuanPerez123",
+    "confirmPassword": "Confirmar contraseña",
+    "confirmPasswordPlaceholder": "e.g: Juancito123",
+    "username": "Nombre de usuario",
+    "usernamePlaceholder": "e.g: Juan Perez",
+    "error": "Error",
+    "success": "Éxito",
+    "loading": "Cargando...",
+    "ok": "OK",
+    "search": "Buscar",
+    "create": "Crear",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "cancel": "Cancelar",
+    "description": "Descripción",
+    "notFound": "Ups...",
+    "notFoundMessage": "No se encontró lo que estabas buscando. Intentalo de nuevo",
+    "blockedModal": {
+      "title": "Temporalmente No Disponible",
+      "description": "Esta función está temporalmente en mantenimiento. Volverá pronto.",
+      "button": "Volver atrás"
+    } 
+  },
+  "auth": {
+    "signin": {
+      "title": "Iniciar sesión",
+      "description": "Ingresa tu email y contraseña para iniciar sesión",
+      "signin": "Iniciar sesión",
+      "signup": "Registrarse",
+      "forgotPassword": "¿Olvidaste tu contraseña?",
+      "dontHaveAccount": "¿No tienes una cuenta?",
+      "signupLink": "Registrarse",
+      "loading": "Iniciando sesión...",
+      "errorMessage": "Ocurrió un error al iniciar sesión. Por favor, intenta nuevamente."
+    },
+    "signup": {
+      "title": "Registrarse",
+      "description": "Ingresa tu email y contraseña para registrarte",
+      "signup": "Registrarse",
+      "signin": "Iniciar sesión",
+      "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+      "signinLink": "Iniciar sesión",
+      "loading": "Registrando...",
+      "errorMessage": "Ocurrió un error al registrarse. Por favor, intenta nuevamente."
+    },
+    "signout": {
+      "signout": "Cerrar Sesión",
+      "errorMessage": "Ocurrió un error al cerrar sesión. Por favor, intenta nuevamente."
+    }
+  },
+  "drawer": {
+    "home": "Inicio",
+    "news": "Noticias",
+    "support": "Soporte",
+    "feedback": "Sugerencias",
+    "report": "Reportes"
+  },
+  "home": {
+    "subtitle": "Hola, {{name}}",
+    "greeting": {
+      "morning": "Buenos días",
+      "afternoon": "Buenas tardes",
+      "evening": "Buenas noches"
+    },
+    "goalsLists": {
+      "goals": "Objetivos",
+      "doneGoals": "Objetivos completados",
+      "noGoalsTitle": "¡Ups! No se encontraron objetivos.",
+      "noGoalsDescription": "Refresca la página o crea un objetivo"
+    },
+    "createGoal": {
+      "title": "Establece tu próximo objetivo",
+      "subtitle": "Completa el formulario y comienza tu viaje!",
+      "descriptiveSubtitle": "Llená el formulario, usaremos IA para crear un mapa de metas para ayudarte a alcanzar tu objetivo.",
+      "ai": "Crear con IA",
+      "manual": "Crear manualmente",
+      "form": {
+        "goal": "¿Cuál es tu objetivo?",
+        "goalPlaceholder": "e.g. 'Aprender Python', 'Perder 5kg', 'Iniciar un negocio'",
+        "description": "Descripción",
+        "descriptionPlaceholder": "e.g. 'Aprender Python requiere tiempo y práctica.'",
+        "stepsTitle": "¿En cuántos pasos querés lograrlo?",
+        "steps": "Pasos",
+        "stepsPlaceholder": "e.g. '10', '20', '30'",
+        "experienceTitle": "¿Cuál es tu nivel de experiencia?",
+        "beginner": "Principiante",
+        "basic": "Básico",
+        "intermediate": "Intermedio",
+        "advanced": "Avanzado",
+        "extraInfoTitle": "Información extra para ayudar a la IA:",
+        "extraInfoPlaceholder": "e.g. 'Soy nuevo en esto', 'Tengo un presupuesto ajustado', 'Solo los fines de semana'",
+        "goalMinLength": "El objetivo debe tener al menos 4 caracteres",
+        "extraInfoMinLength": "La información extra debe tener al menos 10 caracteres"
+      },
+      "createGoal": "Crear objetivo",
+      "errorMessage": "Ocurrió un error al crear el objetivo. Por favor, intenta nuevamente.",
+      "successMessage": "El objetivo se ha creado correctamente"
+    },
+    "createSubtask": {
+      "title": "Crear subtarea",
+      "subtitle": "Completa el formulario y comienza tu viaje!",
+      "form": {
+        "subtask": "¿Cuál es tu subtarea?",
+        "subtaskPlaceholder": "e.g. '¿Qué es Python?', 'Organizar una dieta'.",
+        "subtaskMinLength": "La subtarea debe tener al menos 4 caracteres",
+        "descriptionPlaceholder": "e.g. 'Aprender los conceptos básicos de programación en Python'",
+        "createSubtask": "Crear subtarea",
+        "errorMessage": "Ocurrió un error al crear la subtarea. Por favor, intenta nuevamente.",
+        "successMessage": "La subtarea se ha creado correctamente"
+      }
+    },
+    "goal": {
+      "subtasks": "Subtareas",
+      "noSubtasksTitle": "¡Ups! No se encontraron subtareas.",
+      "noSubtasksDescription": "Refresca la página o crea una tarea",
+      "deleteGoal": "Eliminar objetivo",
+      "deleteGoalMessage": "¿Estás seguro de querer eliminar este objetivo?",
+      "errorDeleteGoal": "Hubo un error al elimnar el objetivo. Intentar de nuevo."
+    },
+    "subtask": {
+      "delete": "Eliminar subtarea",
+      "deleteSubtaskMessage": "¿Estás seguro de querer eliminar esta subtarea?",
+      "errorDeleteSubtask": "Hubo un error al elimnar la subtarea. Intentar de nuevo."
+    },
+    "editGoal": {
+      "reorder": "Reordenar",
+      "headerImage": "Editar portada",
+      "iconImage": "Editar icono",
+      "title": "Editar objetivo",
+      "titlePlaceholder": "e.g. 'Aprender Python'",
+      "description": "Descripción",
+      "descriptionPlaceholder": "e.g. 'Aprender programación en Python desde cero'",
+      "successMessage": "El objetivo se ha editado correctamente",
+      "errorMessage": "Ocurrió un error al editar el objetivo. Por favor, intenta nuevamente.",
+      "getIconError": "Ocurrió un error al obtener el icono. Por favor, intenta nuevamente.",
+      "getHeaderError": "Ocurrió un error al obtener la portada. Por favor, intenta nuevamente."
+    },
+    "editSubtask": {
+      "title": "Editar subtarea",
+      "titlePlaceholder": "e.g. 'Aprender Python'",
+      "descriptionPlaceholder": "e.g. 'Aprender los conceptos básicos de programación en Python'",
+      "successMessage": "La subtarea se ha editado correctamente",
+      "errorMessage": "Ocurrió un error al editar la subtarea. Por favor, intenta nuevamente."
+    }
+  },
+  "account": {
+    "locale": {
+      "languages": "Idiomas",
+      "success": "Éxito",
+      "locale_changed_successfully": "El idioma se ha cambiado correctamente"
+    },
+    "avatar": {
+      "select": "Selecciona tu avatar",
+      "timeRestriction": "Tiempo de restricción",
+      "timeRestrictionMessage": "Necesitas esperar {{remainingMinutes}} minutos antes de cambiar tu avatar nuevamente.",
+      "error": "Error",
+      "errorMessage": "Ocurrió un error al obtener el avatar. Por favor, intenta nuevamente."
+    },
+    "editAccount": {
+      "successMessage": "La cuenta se ha editado correctamente",
+      "errorMessage": "Ocurrió un error al editar la cuenta. Por favor, intenta nuevamente."
+    },
+    "sections": {
+      "username": {
+        "title": "Cambiar nombre de usuario",
+        "description": "Ingresa tu nombre completo o el nombre por el que quieres que te llamemos.",
+        "placeholder": "ej:  Juan"
+      },
+      "email": {
+        "title": "Cambiar Email",
+        "description": "Ingresa y cambia tu email.",
+        "placeholder": "e.g:  juanperez@ejemplo.com"
+      },
+      "password": {
+        "title": "Cambiar contraseña",
+        "description": "Cambia la contraseña de tu cuenta aquí.",
+        "currentPasswordPlaceholder": "Contraseña actual",
+        "newPasswordPlaceholder": "Nueva contraseña",
+        "changePassword": "Cambiar contraseña",
+        "invalidCurrentPassword": "La contraseña actual es incorrecta.",
+        "requirements": "La contraseña debe tener al menos 8 caracteres, un número y un símbolo.",
+        "valid": "La contraseña cumple los requisitos."
+      },
+      "danger": {
+        "title": "Zona de peligro",
+        "description": "Las acciones en esta sección son irreversibles. Continúa con precaución.",
+        "delete": "Eliminar cuenta",
+        "deleteTitle": "Eliminar cuenta",
+        "deleteMessage": "¿Estás seguro de que querés eliminar tu cuenta? Esta acción no se puede deshacer.",
+        "deleteSuccess": "Tu cuenta fue eliminada con éxito.",
+        "deleteError": "Hubo un error al eliminar tu cuenta.",
+        "reset": "Reiniciar cuenta",
+        "resetTitle": "Reiniciar cuenta",
+        "resetMessage": "¿Estás seguro de que querés reiniciar tu cuenta? Esta acción no se puede deshacer.",
+        "resetSuccess": "Tu cuenta fue reiniciada con éxito.",
+        "resetError": "Hubo un error al reiniciar tu cuenta."
+      }
+    }
+  },
+  "news": {
+    "noNewsTitle": "¡Ups! No se encontraron noticias.",
+    "noNewsDescription": "Refresca la página o vuelve a intentar luego"
+  },
+  "onboarding": {
+    "getOnboardingStateError": "Hubo un error al obtener el progreso de inicialización. Intentar de nuevo.",
+    "updateOnboardingStateError": "Hubo un error al finalizar el progreso de inicialización. Intentar de nuevo.",
+    "button": {
+      "continue": "Continuar",
+      "finishSetup": "Finalizar"
+    },
+    "welcome": {
+      "title": "Convertite en tu mejor versión",
+      "coloredTitle": "con un paso a la vez"
+    },
+    "setUsername": {
+      "title": "Configura tu cuenta",
+      "description": "Elige el nombre con el que quieras que te llamemos. Puedes cambiarlo luego."
+    }
+  },
+  "feedback": {
+    "title": "¿Tenés alguna sugerencia?",
+    "description": "Cuentanos sobre tu experiencia o sobre lo que quisieras ver en el futuro.",
+    "subjectPlaceholder": "Asunto",
+    "messagePlaceholder": "Mensaje",
+    "send": "Enviar comentarios",
+    "successMessage": "Se enviaron los comentarios. ¡Gracias por ayudarnos a mejorar!",
+    "errorMessage": "No se pudieron enviar los comentarios. Intentalo de nuevo más tarde."
+  },
+  "report": {
+    "errorMessage": "No se pudo enviar el reporte. Inténtalo de nuevo más tarde.",
+    "successMessage": "¡Reporte enviado correctamente! Gracias por ayudarnos a mejorar.",
+    "other": "Otro",
+    "title": "Reportar un problema",
+    "description": "Cuéntanos sobre el problema o sugerencia que encontraste.",
+    "subjectPlaceholder": "Asunto",
+    "messagePlaceholder": "Mensaje",
+    "send": "Enviar reporte"
+  }
+}
