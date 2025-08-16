@@ -105,6 +105,7 @@ export default function EditGoalScreen() {
                                 value={title}
                                 onChangeText={setTitle}
                                 placeholder={t("home.editGoal.titlePlaceholder")}
+                                maxLength={50}
                                 placeholderTextColor="gray"
                             />
                         </View>
@@ -118,7 +119,8 @@ export default function EditGoalScreen() {
                                 placeholderTextColor="gray"
                                 multiline
                                 numberOfLines={4}
-                                textAlignVertical="top"
+                                verticalAlign="top"
+                                maxLength={200}
                                 onFocus={handleInputFocus}
                             />
                         </View>

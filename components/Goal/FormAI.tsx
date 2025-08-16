@@ -183,7 +183,7 @@ export default function FormAI() {
                                 placeholder={t("home.createGoal.form.extraInfoPlaceholder")}
                                 placeholderTextColor="gray"
                                 multiline
-                                textAlignVertical="top"
+                                verticalAlign="top"
                                 value={extraInfo}
                                 maxLength={180}
                                 onFocus={handleInputFocus}

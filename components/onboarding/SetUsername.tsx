@@ -27,6 +27,7 @@ export default function SetUsernameModal({ onUsernameChange, initialUsername = "
                 <TextInput
                     style={styles.input}
                     value={username}
+                    maxLength={18}
                     onChangeText={handleUsernameChange}
                     placeholder={t("common.usernamePlaceholder")}
                     placeholderTextColor="gray"

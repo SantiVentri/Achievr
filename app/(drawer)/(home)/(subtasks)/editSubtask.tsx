@@ -72,6 +72,7 @@ export default function EditSubtaskScreen() {
                     <TextInput
                         style={styles.input}
                         value={title}
+                        maxLength={35}
                         onChangeText={setTitle}
                         placeholder={t("home.editSubtask.titlePlaceholder")}
                         placeholderTextColor="gray"
@@ -82,6 +83,7 @@ export default function EditSubtaskScreen() {
                     <TextInput
                         style={styles.input}
                         value={description}
+                        maxLength={200}
                         onChangeText={setDescription}
                         placeholder={t("home.editSubtask.descriptionPlaceholder")}
                         placeholderTextColor="gray"

@@ -61,6 +61,7 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
                         style={[styles.input, errors.subtask && { borderColor: "red", borderWidth: 2, backgroundColor: "rgba(255, 0, 0, 0.1)" }]}
                         placeholder={t("home.createSubtask.form.subtaskPlaceholder")}
                         placeholderTextColor="gray"
+                        maxLength={35}
                         value={subtask}
                         onChangeText={(text) => {
                             setSubtask(text);
@@ -75,6 +76,8 @@ export default function FormSubtask({ goal_id }: { goal_id: string }) {
                         style={[styles.input, { minHeight: 100 }]}
                         placeholder={t("home.createSubtask.form.descriptionPlaceholder")}
                         placeholderTextColor="gray"
+                        maxLength={120}
+                        verticalAlign="top"
                         multiline
                         value={description}
                         onChangeText={setDescription}

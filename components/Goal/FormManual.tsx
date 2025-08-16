@@ -93,7 +93,7 @@ export default function FormManual() {
                                 placeholder={t("home.createGoal.form.descriptionPlaceholder")}
                                 placeholderTextColor="gray"
                                 multiline
-                                textAlignVertical="top"
+                                verticalAlign="top"
                                 value={description}
                                 maxLength={180}
                                 onFocus={handleInputFocus}
